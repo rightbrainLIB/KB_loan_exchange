@@ -1,0 +1,71 @@
+.exchangeWayList
+  [class~="ant-radio"]
+    width: 24px
+    height: 24px
+
+    & > div
+      display: none
+
+    [class~="ant-radio-inner"]
+      width: 24px
+      height: 24px
+      border-color: #7D6C59
+
+      &:after
+        width: 24px
+        height: 24px
+        margin-block-start: -12px
+        margin-inline-start: -12px
+
+  [class~="ant-radio"][class*="ant-wave-target"]
+    & + span
+      padding-left: 12px
+      padding-inline-start: 12px
+
+  span
+    display: flex
+    align-items: center
+
+  label
+    margin: 0
+    padding-top: 17px
+    padding-bottom: 17px
+    width: 100%
+
+    & + label
+      border-top: 1px solid #EBEEF0
+
+  .imgBox
+    display: inline-flex
+    justify-content: center
+    align-items: center
+    flex: none
+    box-sizing: border-box
+    width: 56px
+    height: 56px
+    border: 1px solid #DDE1E4
+    -webkit-border-radius: 12px
+    -moz-border-radius: 12px
+    border-radius: 12px
+    margin-right: 20px
+    //border-color: #AAB0B8
+    //border-color: #7D6C59
+    img
+      width: 24px
+      height: 24px
+
+  .textBox
+    display: inline-flex
+    flex-direction: column
+    justify-content: center
+
+    .listTitle
+      font-size: 16px
+      font-weight: 700
+      line-height: 23px
+
+    .listSubText
+      font-size: 14px
+      font-weight: 300
+      letter-spacing: -0.1em
+      padding-top: 4px

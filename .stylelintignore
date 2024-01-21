@@ -1,0 +1,6 @@
+plugins/**/*.*
+data/**/*.*
+src/app/**/*.*
+src/pages/**/*.tsx
+src/components/**/*.tsx
+src/router/**/*

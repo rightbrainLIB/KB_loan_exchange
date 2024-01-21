@@ -1,0 +1,13 @@
+import { configureStore } from "@reduxjs/toolkit";
+import exchangeSlice from "@slices/exchangeSlices.ts";
+
+const store = configureStore({
+  reducer: {
+    exchange: exchangeSlice
+  }
+});
+
+export type ExchangeState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+export default store;

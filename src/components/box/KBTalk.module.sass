@@ -1,0 +1,23 @@
+.KBTalk
+  display: inline-flex
+  flex-direction: column
+  background-color: #fff
+  -webkit-border-radius: 14px
+  -moz-border-radius: 14px
+  border-radius: 14px
+  max-width: 305px
+  line-height: 1.5em
+
+  & + .KBTalk
+    margin-top: 17px
+
+  h2
+    font-weight: 700
+    color: #26282C
+
+/* <media: 가로 전환 대응 */
+@media screen and (orientation: Landscape)
+  .KBTalk
+    display: flex
+
+/* media>: 가로 전환 대응 */

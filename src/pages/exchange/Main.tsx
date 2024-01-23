@@ -12,7 +12,10 @@ import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import iconArrow20 from "@imgs/icons/icon_arrow_20.png";
 import {
   setChoiceCurrency,
-  setCurrencySelection
+  setCurrencySelection,
+  setUserStep3,
+  setUserStep4,
+  setUserStep5
 } from "@slices/exchangeSlices.ts";
 import { AppDispatch, ExchangeState } from "@src/store";
 import { useCallback } from "react";
@@ -21,9 +24,13 @@ import { useDispatch, useSelector } from "react-redux";
 const ExchangeMain = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const { choiceCurrency, isCurrencySelected } = useSelector(
-    (state: ExchangeState) => state.exchange.userStep
-  );
+  const {
+    choiceCurrency,
+    isCurrencySelected,
+    userStep3,
+    userStep4,
+    userStep5
+  } = useSelector((state: ExchangeState) => state.exchange.userStep);
 
   const onSetChoiceCurrency = useCallback(() => {
     dispatch(setChoiceCurrency(true));
@@ -33,9 +40,49 @@ const ExchangeMain = () => {
     dispatch(setCurrencySelection(true));
   }, [dispatch]);
 
+  const onClickJPYBtnm = useCallback(() => {
+    dispatch(setUserStep3(true));
+  }, [dispatch]);
+
+  const onClickEURBtnm = useCallback(() => {
+    dispatch(setUserStep4(true));
+  }, [dispatch]);
+
+  const onClickOtherBtnm = useCallback(() => {
+    dispatch(setUserStep5(true));
+  }, [dispatch]);
+
   const modifyUserCurrency = useCallback(() => {
     dispatch(setCurrencySelection(false));
   }, [dispatch]);
+
+  const modifyUserCurrency1 = useCallback(() => {
+    dispatch(setUserStep3(false));
+  }, [dispatch]);
+
+  const modifyUserCurrency2 = useCallback(() => {
+    dispatch(setUserStep4(false));
+  }, [dispatch]);
+
+  const modifyUserCurrency3 = useCallback(() => {
+    dispatch(setUserStep5(false));
+  }, [dispatch]);
+
+  const handleModifyButtonClick = useCallback(() => {
+    modifyUserCurrency(); // modifyUserCurrency 호출
+  }, [modifyUserCurrency]);
+
+  const handleModify1ButtonClick = useCallback(() => {
+    modifyUserCurrency1(); // modifyUserCurrency1 호출
+  }, [modifyUserCurrency1]);
+
+  const handleModify2ButtonClick = useCallback(() => {
+    modifyUserCurrency2(); // modifyUserCurrency2 호출
+  }, [modifyUserCurrency2]);
+
+  const handleModify3ButtonClick = useCallback(() => {
+    modifyUserCurrency3(); // modifyUserCurrency3 호출
+  }, [modifyUserCurrency3]);
 
   return (
     <>
@@ -68,15 +115,17 @@ const ExchangeMain = () => {
                     </SelectableBtn>
                   </li>
                   <li>
-                    <SelectableBtn useImg={true}>JPY (일본 엔)</SelectableBtn>
+                    <SelectableBtn useImg={true} onClickBtn={onClickJPYBtnm}>
+                      JPY (일본 엔)
+                    </SelectableBtn>
                   </li>
                   <li>
-                    <SelectableBtn useImg={true}>
+                    <SelectableBtn useImg={true} onClickBtn={onClickEURBtnm}>
                       EUR (유럽연합 유로)
                     </SelectableBtn>
                   </li>
                   <li>
-                    <SelectableBtn>
+                    <SelectableBtn onClickBtn={onClickOtherBtnm}>
                       다른 통화 보기
                       <span>
                         <img src={`${iconArrow20}`} alt="" />
@@ -91,8 +140,23 @@ const ExchangeMain = () => {
 
         <MotionListWrap>
           <MotionList aniCondition={isCurrencySelected}>
-            <SelectedUserBox modifyUserSelect={modifyUserCurrency}>
+            <SelectedUserBox modifyUserSelect={handleModifyButtonClick}>
               USD (미국달러)
+            </SelectedUserBox>
+          </MotionList>
+          <MotionList aniCondition={userStep3}>
+            <SelectedUserBox modifyUserSelect={handleModify1ButtonClick}>
+              JPY (일본 엔)
+            </SelectedUserBox>
+          </MotionList>
+          <MotionList aniCondition={userStep4}>
+            <SelectedUserBox modifyUserSelect={handleModify2ButtonClick}>
+              EUR (유럽연합 유로)
+            </SelectedUserBox>
+          </MotionList>
+          <MotionList aniCondition={userStep5}>
+            <SelectedUserBox modifyUserSelect={handleModify3ButtonClick}>
+              다른 통화 보기
             </SelectedUserBox>
           </MotionList>
         </MotionListWrap>

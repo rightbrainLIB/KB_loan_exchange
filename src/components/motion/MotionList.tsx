@@ -28,7 +28,12 @@ const MotionList: FC<IMotionList> = ({
       variants={item}
       initial={{ opacity: 0, y: -20 }}
       animate={aniCondition ? "visible" : "hidden"}
-      onAnimationComplete={exitAnim}>
+      transition={{
+        duration: 0.5,
+        onComplete: () => {
+          exitAnim();
+        }
+      }}>
       {children}
     </motion.div>
   );

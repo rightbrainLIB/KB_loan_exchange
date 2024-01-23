@@ -2,26 +2,27 @@ import KBConfirmBtn from "@components/buttons/KBConfirmBtn.tsx";
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import ExchangeWayList from "@components/list/ExchangeWayList.tsx";
 import exchangeWayIcon from "@imgs/Ellipse 4.png";
+import { setOpenTakenPlaceSheet } from "@slices/exchangeCurrencySlices.ts";
 import { Drawer } from "antd";
 import { FC, useCallback } from "react";
+import { useDispatch } from "react-redux";
 
-// import { useDispatch } from "react-redux";
-
-interface ICurrencySelectSheet2 {
-  sheetOpen: boolean
-  onClickCloseSheet: () => void
+interface ICurrencyTakenPlaceSheet {
+  sheetOpen: boolean;
 }
 
-const CurrencySelectSheet2: FC<ICurrencySelectSheet2> = ({ sheetOpen, onClickCloseSheet }) => {
-  // const dispatch = useDispatch();
+const CurrencyTakenPlaceSheet: FC<ICurrencyTakenPlaceSheet> = ({
+  sheetOpen
+}) => {
+  const dispatch = useDispatch();
   // 시트 닫기
   const closeSheet = useCallback(() => {
-    onClickCloseSheet();
-  }, [onClickCloseSheet]);
+    dispatch(setOpenTakenPlaceSheet(false));
+  }, [dispatch]);
 
   const onClickConfirmBtn = useCallback(() => {
-    onClickCloseSheet();
-  }, [onClickCloseSheet]);
+    dispatch(setOpenTakenPlaceSheet(false));
+  }, [dispatch]);
 
   const wayList = [
     {
@@ -38,7 +39,7 @@ const CurrencySelectSheet2: FC<ICurrencySelectSheet2> = ({ sheetOpen, onClickClo
       imgSrc: `${exchangeWayIcon}`,
       title: "인천공항에서 받기",
       subText: "최소 환전금액 USD 10부터 가능해요"
-    },
+    }
   ];
 
   return (
@@ -62,7 +63,7 @@ const CurrencySelectSheet2: FC<ICurrencySelectSheet2> = ({ sheetOpen, onClickClo
         />
       }
       placement={"bottom"}
-      key={"CurrencySelectSheet2"}
+      key={"CurrencyTakenPlaceSheet"}
       footer={
         <KBConfirmBtn onClickConfirm={onClickConfirmBtn}>확인</KBConfirmBtn>
       }>
@@ -71,4 +72,4 @@ const CurrencySelectSheet2: FC<ICurrencySelectSheet2> = ({ sheetOpen, onClickClo
   );
 };
 
-export default CurrencySelectSheet2;
+export default CurrencyTakenPlaceSheet;

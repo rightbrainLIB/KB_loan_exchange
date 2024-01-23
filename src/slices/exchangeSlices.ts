@@ -30,6 +30,7 @@ export interface IExchangeState {
   // 챗봇 progreses
   botStep: {
     prsExchangeRate: boolean; // 지금 바로 환전을 도와드릴까요?
+    prsTermsAgreeForExchange: boolean; // 은행지점에서 받기 위해 외화거래에 대한 약관동의가 필요해요
   };
 }
 
@@ -60,7 +61,8 @@ const initialState: IExchangeState = {
   },
   lastUserStep: null,
   botStep: {
-    prsExchangeRate: false
+    prsExchangeRate: false,
+    prsTermsAgreeForExchange: false
   }
 };
 
@@ -141,6 +143,12 @@ const exchangeSlice = createSlice({
 
     setPrsExchangeRate: (state, { payload }: PayloadAction<boolean>) => {
       state.botStep.prsExchangeRate = payload;
+    },
+    setPrsTermsAgreeForExchange: (
+      state,
+      { payload }: PayloadAction<boolean>
+    ) => {
+      state.botStep.prsTermsAgreeForExchange = payload;
     }
   }
 });
@@ -169,7 +177,8 @@ export const {
   setEachRequestInfo,
   setRequestedDate,
   setLastUserStep,
-  setPrsExchangeRate
+  setPrsExchangeRate,
+  setPrsTermsAgreeForExchange
 } = exchangeSlice.actions;
 
 export default exchangeSlice.reducer;

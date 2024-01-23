@@ -1,4 +1,5 @@
 import CurrencySelectSheet from "@components/bottomSheet/CurrencySelectSheet.tsx";
+import CurrencyTakenPlaceSheet from "@components/bottomSheet/CurrencyTakenPlaceSheet.tsx";
 import EmphasisContent from "@components/box/EmphasisContent.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
@@ -9,8 +10,17 @@ import SelectableListWrap from "@components/list/SelectableListWrap.tsx";
 import UtilUnderTalkList from "@components/list/UtilUnderTalkList.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
-import { setSaveAlarm } from "@slices/exchangeSlices.ts";
+import {
+  setCompUserSelect,
+  setOpenTakenWaySheet
+} from "@slices/exchangeCurrencySlices.ts";
+import {
+  setPrsTermsAgreeForExchange,
+  setSaveAlarm,
+  setTakenPlace
+} from "@slices/exchangeSlices.ts";
 import { AppDispatch, ExchangeState } from "@src/store";
+import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -19,33 +29,85 @@ import $style from "./ExecuteCurrency.module.sass";
 const ExecuteCurrency: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const [sheetOpen, setSheetOpen] = useState(false);
+  // const [sheetOpen, setSheetOpen] = useState(false);
 
   const [showBotStep, setShowBotStep] = useState(false);
 
-  // const { isCurrencySelected } = useSelector(
-  //   (state: ExchangeState) => state.exchange.userStep
-  // );
+  const [isLastChoiceNegative, setIsLastChoiceNegative] = useState(false);
+  const [isLastChoicePositive, setIsLastChoicePositive] = useState(false);
 
-  const onClickExecute = useCallback(() => {
-    setSheetOpen(true);
-  }, [sheetOpen]);
+  const [showUserStepPositive, setShowUserStepPositive] = useState(false);
 
-  const openAlarmSheet = useCallback(() => {
-    dispatch(setSaveAlarm(true));
-  }, []);
+  const [showUserStepNegative, setShowUserStepNegative] = useState(false);
 
-  const { isCurrencySelected, saveAlarm } = useSelector(
+  const { isCurrencySelected, isTakenPlace, saveAlarm } = useSelector(
     (state: ExchangeState) => state.exchange.userStep
   );
 
-  const { prsExchangeRate } = useSelector(
+  const { prsExchangeRate, prsTermsAgreeForExchange } = useSelector(
     (state: ExchangeState) => state.exchange.botStep
   );
 
+  const { openTakenWaySheet, openTakenPlaceSheet, compUserSelect } =
+    useSelector((state: ExchangeState) => state.exchangeCurrency);
+
+  const onClickExecute = useCallback(() => {
+    if (showUserStepPositive || showUserStepNegative) return;
+    dispatch(setCompUserSelect(false));
+    dispatch(setOpenTakenWaySheet(true));
+  }, [showUserStepPositive, showUserStepNegative, dispatch]);
+
+  const openAlarmSheet = useCallback(() => {
+    if (showUserStepPositive || showUserStepNegative) return;
+    setShowUserStepNegative(true);
+    setTimeout(() => {
+      dispatch(setSaveAlarm(true));
+    });
+  }, [showUserStepPositive, showUserStepNegative, dispatch]);
+
   const modifySaveAlarm = useCallback(() => {
     dispatch(setSaveAlarm(false));
+    setTimeout(() => {
+      setShowUserStepNegative(false);
+    }, 500);
   }, [dispatch]);
+
+  const modifyTakenPlace = useCallback(() => {
+    dispatch(setPrsTermsAgreeForExchange(false));
+    setTimeout(() => {
+      dispatch(setTakenPlace(false));
+    }, 500);
+    setTimeout(() => {
+      setShowUserStepPositive(false); // 은행지점에서 받기 감추기
+    }, 800);
+  }, [dispatch]);
+
+  const wrapperStyle = {
+    marginTop: 53,
+    ...(!prsTermsAgreeForExchange ? { paddingBottom: 50 } : {})
+  };
+
+  // 마지막 step 체크하기
+  const lastStr = LastTrueUserStep();
+
+  useEffect(() => {
+    setIsLastChoiceNegative(lastStr === "saveAlarm");
+    setIsLastChoicePositive(lastStr === "isTakenPlace");
+  }, [lastStr]);
+
+  useEffect(() => {
+    if (compUserSelect) {
+      setShowUserStepPositive(true); // 은행지점에서 받기 보이기
+      setTimeout(() => {
+        dispatch(setTakenPlace(true));
+      }, 500); // 은행지점에서 받기 애니메이션
+      setTimeout(() => {
+        dispatch(setPrsTermsAgreeForExchange(true)); // 동의하기 내용
+      }, 800);
+    } else {
+      setShowUserStepPositive(false);
+    }
+  }, [compUserSelect]);
 
   useEffect(() => {
     isCurrencySelected
@@ -58,7 +120,7 @@ const ExecuteCurrency: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 53, paddingBottom: 90 }}>
+        <div style={wrapperStyle}>
           <MotionListWrap>
             <MotionList aniCondition={prsExchangeRate}>
               <BotProfile />
@@ -91,17 +153,34 @@ const ExecuteCurrency: FC = () => {
               </KBTalk>
               <UtilUnderTalkList btnList={["환율 차트", "환율 계산기"]} />
             </MotionList>
-            <MotionList aniCondition={saveAlarm}>
-              <SelectedUserBox modifyUserSelect={modifySaveAlarm}>
-                원하는 환율일 때 알림받기
-              </SelectedUserBox>
-            </MotionList>
           </MotionListWrap>
 
-          <CurrencySelectSheet
-            sheetOpen={sheetOpen}
-            onClickCloseSheet={() => setSheetOpen(false)}
-          />
+          {showUserStepPositive && (
+            <MotionListWrap>
+              <MotionList aniCondition={isTakenPlace} showHeight={45}>
+                <SelectedUserBox
+                  modifyUserSelect={modifyTakenPlace}
+                  isLastSelect={isLastChoicePositive}>
+                  은행지점에서 받기
+                </SelectedUserBox>
+              </MotionList>
+            </MotionListWrap>
+          )}
+
+          {showUserStepNegative && (
+            <MotionListWrap>
+              <MotionList aniCondition={saveAlarm}>
+                <SelectedUserBox
+                  modifyUserSelect={modifySaveAlarm}
+                  isLastSelect={isLastChoiceNegative}>
+                  원하는 환율일 때 알림받기
+                </SelectedUserBox>
+              </MotionList>
+            </MotionListWrap>
+          )}
+
+          <CurrencySelectSheet sheetOpen={openTakenWaySheet} />
+          <CurrencyTakenPlaceSheet sheetOpen={openTakenPlaceSheet} />
         </div>
       )}
     </>

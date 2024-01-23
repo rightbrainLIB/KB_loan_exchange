@@ -30,15 +30,16 @@ const ChoiceCurrency: FC = () => {
   const [showUserStep, setShowUserStep] = useState(false);
 
   const onClickCurrencyBtn = useCallback(() => {
+    if (showUserStep) return;
     setShowUserStep(true);
     dispatch(setCurrencySelection(true));
-  }, [dispatch]);
+  }, [showUserStep, dispatch]);
 
   const modifyUserCurrency = useCallback(() => {
     dispatch(setPrsExchangeRate(false)); // 지금 바로 환전을 도와드릴까요 감추기
     setTimeout(() => {
       dispatch(setCurrencySelection(false)); // USD (미국 달러) 감추기
-    }, 300);
+    }, 500);
     setTimeout(() => {
       setShowUserStep(false);
     }, 600);

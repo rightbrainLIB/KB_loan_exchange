@@ -2,26 +2,27 @@ import KBConfirmBtn from "@components/buttons/KBConfirmBtn.tsx";
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import ExchangeWayList from "@components/list/ExchangeWayList.tsx";
 import exchangeWayIcon from "@imgs/Ellipse 4.png";
+import { setOpenTakenWaySheet } from "@slices/exchangeCurrencySlices.ts";
 import { Drawer } from "antd";
 import { FC, useCallback } from "react";
+import { useDispatch } from "react-redux";
 
 // import { useDispatch } from "react-redux";
 
 interface ICurrencySelectSheet {
-  sheetOpen: boolean
-  onClickCloseSheet: () => void
+  sheetOpen: boolean;
 }
 
-const CurrencySelectSheet: FC<ICurrencySelectSheet> = ({ sheetOpen, onClickCloseSheet }) => {
-  // const dispatch = useDispatch();
+const CurrencySelectSheet: FC<ICurrencySelectSheet> = ({ sheetOpen }) => {
+  const dispatch = useDispatch();
   // 시트 닫기
   const closeSheet = useCallback(() => {
-    onClickCloseSheet();
-  }, [onClickCloseSheet]);
+    dispatch(setOpenTakenWaySheet(false));
+  }, []);
 
-  const onClickConfirmBtn = useCallback(() => {
-    onClickCloseSheet();
-  }, [onClickCloseSheet]);
+  // const onClickConfirmBtn = useCallback(() => {
+  //   onClickCloseSheet && onClickCloseSheet();
+  // }, [onClickCloseSheet]);
 
   const wayList = [
     {
@@ -57,7 +58,6 @@ const CurrencySelectSheet: FC<ICurrencySelectSheet> = ({ sheetOpen, onClickClose
       open={sheetOpen}
       onClose={closeSheet}
       closeIcon={false}
-      // height={467}
       height={544}
       title={
         <DrawerTitle
@@ -69,9 +69,7 @@ const CurrencySelectSheet: FC<ICurrencySelectSheet> = ({ sheetOpen, onClickClose
       }
       placement={"bottom"}
       key={"CurrencySelectSheet"}
-      footer={
-        <KBConfirmBtn onClickConfirm={onClickConfirmBtn}>확인</KBConfirmBtn>
-      }>
+      footer={<KBConfirmBtn>확인</KBConfirmBtn>}>
       <ExchangeWayList wayList={wayList} />
     </Drawer>
   );

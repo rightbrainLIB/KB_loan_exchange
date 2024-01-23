@@ -4,13 +4,13 @@ import { FC, ReactNode, useCallback } from "react";
 import $style from "./KBConfirmBtn.module.sass";
 
 interface KBConfirmBtn {
-  onClickConfirm: () => void;
+  onClickConfirm?: () => void;
   children?: ReactNode;
 }
 
 const KBConfirmBtn: FC<KBConfirmBtn> = ({ onClickConfirm, children }) => {
   const onClickBtn = useCallback(() => {
-    onClickConfirm();
+    onClickConfirm && onClickConfirm();
   }, [onClickConfirm]);
 
   return (

@@ -6,12 +6,16 @@ interface ISelectableBtn {
   useImg?: boolean;
   onClickBtn?: (data: boolean) => void;
   children?: ReactNode;
+  bgBtn?: boolean;
+  size?: string;
 }
 
 const SelectableBtn: FC<ISelectableBtn> = ({
   useImg = false,
   onClickBtn,
-  children
+  children,
+  bgBtn = false,
+  size = "",
 }) => {
   const onClickSelectableBtn = useCallback(() => {
     onClickBtn && onClickBtn(true);
@@ -20,8 +24,9 @@ const SelectableBtn: FC<ISelectableBtn> = ({
   return (
     <button
       type="button"
-      className={$style.selectableBtn}
-      onClick={onClickSelectableBtn}>
+      className={`${$style.selectableBtn} ${bgBtn ? $style.bgBtn : ""} ${$style[size]}`}
+      onClick={onClickSelectableBtn}
+      >
       {useImg && (
         <div className={$style.imgBox}>
           <img src="" alt="" />

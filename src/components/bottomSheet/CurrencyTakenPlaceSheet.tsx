@@ -2,47 +2,42 @@ import KBConfirmBtn from "@components/buttons/KBConfirmBtn.tsx";
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import ExchangeWayList from "@components/list/ExchangeWayList.tsx";
 import exchangeWayIcon from "@imgs/Ellipse 4.png";
-import { setOpenTakenWaySheet } from "@slices/exchangeCurrencySlices.ts";
+import { setOpenTakenPlaceSheet } from "@slices/exchangeCurrencySlices.ts";
 import { Drawer } from "antd";
 import { FC, useCallback } from "react";
 import { useDispatch } from "react-redux";
 
-// import { useDispatch } from "react-redux";
-
-interface ICurrencySelectSheet {
+interface ICurrencyTakenPlaceSheet {
   sheetOpen: boolean;
 }
 
-const CurrencySelectSheet: FC<ICurrencySelectSheet> = ({ sheetOpen }) => {
+const CurrencyTakenPlaceSheet: FC<ICurrencyTakenPlaceSheet> = ({
+  sheetOpen
+}) => {
   const dispatch = useDispatch();
   // 시트 닫기
   const closeSheet = useCallback(() => {
-    dispatch(setOpenTakenWaySheet(false));
-  }, []);
+    dispatch(setOpenTakenPlaceSheet(false));
+  }, [dispatch]);
 
-  // const onClickConfirmBtn = useCallback(() => {
-  //   onClickCloseSheet && onClickCloseSheet();
-  // }, [onClickCloseSheet]);
+  const onClickConfirmBtn = useCallback(() => {
+    dispatch(setOpenTakenPlaceSheet(false));
+  }, [dispatch]);
 
   const wayList = [
     {
       imgSrc: `${exchangeWayIcon}`,
-      title: "직접 받으로 가기",
+      title: "은행에서 직접 받기",
       subText: "최소 환전금액 USD 50부터 가능해요"
     },
     {
       imgSrc: `${exchangeWayIcon}`,
-      title: "외화 선물하기 (기프티콘)",
-      subText: "최소 환전금액 USD 50부터 가능해요"
+      title: "외환 ATM에서 받기",
+      subText: "최소 환전금액 USD 10부터 가능해요"
     },
     {
       imgSrc: `${exchangeWayIcon}`,
-      title: "우편으로 받기",
-      subText: "최소 환전금액 USD 400부터 가능해요"
-    },
-    {
-      imgSrc: `${exchangeWayIcon}`,
-      title: "외화 머니박스 보관하기",
+      title: "인천공항에서 받기",
       subText: "최소 환전금액 USD 10부터 가능해요"
     }
   ];
@@ -58,7 +53,7 @@ const CurrencySelectSheet: FC<ICurrencySelectSheet> = ({ sheetOpen }) => {
       open={sheetOpen}
       onClose={closeSheet}
       closeIcon={false}
-      height={544}
+      height={"auto"}
       title={
         <DrawerTitle
           title={"환전 수령 방법"}
@@ -68,11 +63,13 @@ const CurrencySelectSheet: FC<ICurrencySelectSheet> = ({ sheetOpen }) => {
         />
       }
       placement={"bottom"}
-      key={"CurrencySelectSheet"}
-      footer={<KBConfirmBtn>확인</KBConfirmBtn>}>
+      key={"CurrencyTakenPlaceSheet"}
+      footer={
+        <KBConfirmBtn onClickConfirm={onClickConfirmBtn}>확인</KBConfirmBtn>
+      }>
       <ExchangeWayList wayList={wayList} />
     </Drawer>
   );
 };
 
-export default CurrencySelectSheet;
+export default CurrencyTakenPlaceSheet;

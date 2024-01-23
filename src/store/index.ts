@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
+import exchangeCurrencySlice from "@slices/exchangeCurrencySlices.ts";
 import exchangeSlice from "@slices/exchangeSlices.ts";
+import globalUISlice from "@slices/globalUISlice.ts";
 
 const store = configureStore({
   reducer: {
-    exchange: exchangeSlice
+    exchange: exchangeSlice,
+    exchangeCurrency: exchangeCurrencySlice,
+    globalUI: globalUISlice
   }
 });
 

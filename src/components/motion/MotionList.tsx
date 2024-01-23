@@ -14,21 +14,29 @@ const MotionList: FC<IMotionList> = ({
 }) => {
   const item = {
     hidden: { opacity: 0, y: -50 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
+    hideAndRemove: { opacity: 0, y: -50, height: 0 }
   };
 
   const exitAnim = useCallback(() => {
-    setTimeout(() => {
-      afterAnim && afterAnim();
-    }, 300);
-  }, [afterAnim]);
+    aniCondition &&
+      afterAnim &&
+      setTimeout(() => {
+        afterAnim();
+      }, 500);
+  }, [afterAnim, aniCondition]);
 
   return (
     <motion.div
       variants={item}
-      initial={{ opacity: 0, y: -20 }}
-      animate={aniCondition ? "visible" : "hidden"}
-      onAnimationComplete={exitAnim}>
+      initial={"hidden"}
+      animate={aniCondition ? "visible" : "hideAndRemove"}
+      transition={{
+        duration: 0.5,
+        onComplete: () => {
+          exitAnim();
+        }
+      }}>
       {children}
     </motion.div>
   );

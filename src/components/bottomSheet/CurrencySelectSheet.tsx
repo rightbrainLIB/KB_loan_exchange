@@ -3,24 +3,25 @@ import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import ExchangeWayList from "@components/list/ExchangeWayList.tsx";
 import exchangeWayIcon from "@imgs/Ellipse 4.png";
 import { Drawer } from "antd";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback } from "react";
 
 // import { useDispatch } from "react-redux";
 
-interface ICurrencySelectSheet {}
+interface ICurrencySelectSheet {
+  sheetOpen: boolean
+  onClickCloseSheet: () => void
+}
 
-const CurrencySelectSheet: FC<ICurrencySelectSheet> = () => {
+const CurrencySelectSheet: FC<ICurrencySelectSheet> = ({ sheetOpen, onClickCloseSheet }) => {
   // const dispatch = useDispatch();
-  const [open, setOpen] = useState<boolean>(false);
-
   // 시트 닫기
   const closeSheet = useCallback(() => {
-    setOpen(false);
-  }, []);
+    onClickCloseSheet();
+  }, [onClickCloseSheet]);
 
   const onClickConfirmBtn = useCallback(() => {
-    setOpen(false);
-  }, []);
+    onClickCloseSheet();
+  }, [onClickCloseSheet]);
 
   const wayList = [
     {
@@ -53,11 +54,11 @@ const CurrencySelectSheet: FC<ICurrencySelectSheet> = () => {
         body: { padding: 24 },
         footer: { borderTop: 0, padding: 0 }
       }}
-      open={open}
+      open={sheetOpen}
       onClose={closeSheet}
       closeIcon={false}
       // height={467}
-      height={564}
+      height={544}
       title={
         <DrawerTitle
           title={"환전 수령 방법"}

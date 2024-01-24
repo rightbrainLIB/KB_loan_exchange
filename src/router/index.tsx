@@ -13,10 +13,6 @@ const router = createBrowserRouter([
     element: <ExchangeMain />
   },
   {
-    path: "*",
-    element: <ExchangeMain />
-  },
-  {
     path: "/ExchangeChatBot",
     element: <ExchangeChatBot />
   },

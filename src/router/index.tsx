@@ -1,10 +1,13 @@
+import LoanAgreeCheck from "@components/loan/LoanAgreeCheck.tsx";
+import LoanChat from "@components/loan/LoanChat.tsx";
 import LoanCreditLimitProduct from "@components/loan/LoanCreditLimitProduct.tsx";
 import LoanFacePop from "@components/loan/LoanFacePop.tsx";
 import LoanImportCheck from "@components/loan/LoanImportCheck.tsx";
 import LoanSuitableConfirm from "@components/loan/LoanSuitableConfirm.tsx";
+import LoanTelecomInputPop from "@components/loan/LoanTelecomInputPop.tsx";
+import LoanTelecomSelectPop from "@components/loan/LoanTelecomSelectPop.tsx";
 import ExchangeChatBot from "@pages/exchange/ChatBot.tsx";
 import ExchangeMain from "@pages/exchange/Main.tsx";
-import LoanMain from "@pages/loan/Main.tsx";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -19,10 +22,6 @@ const router = createBrowserRouter([
   // 대출
   {
     path: "/Loan",
-    element: <LoanMain />
-  },
-  {
-    path: "/LoanCreditLimitProduct",
     element: <LoanCreditLimitProduct />
   },
   {
@@ -36,6 +35,22 @@ const router = createBrowserRouter([
   {
     path: "/LoanFacePop",
     element: <LoanFacePop />
+  },
+  {
+    path: "/LoanChat",
+    element: <LoanChat />
+  },
+  {
+    path: "/LoanAgreeCheck",
+    element: <LoanAgreeCheck />
+  },
+  {
+    path: "/LoanTelecomSelectPop",
+    element: <LoanTelecomSelectPop />
+  },
+  {
+    path: "/LoanTelecomInputPop",
+    element: <LoanTelecomInputPop />
   }
 ]);
 

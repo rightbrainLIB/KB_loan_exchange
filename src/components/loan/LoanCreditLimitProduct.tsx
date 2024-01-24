@@ -1,3 +1,6 @@
+/**
+ * Step 01. 맞춤상품안내
+ */
 import KBConfirmBtn from "@components/buttons/KBConfirmBtn.tsx";
 import img01 from "@imgs/loan/LoanCreditLimitProduct_01.png";
 import img02 from "@imgs/loan/LoanCreditLimitProduct_02.png";

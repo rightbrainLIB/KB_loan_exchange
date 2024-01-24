@@ -1,21 +1,23 @@
 /**
- * Step 05. 출금정보입력(Progress bar 5/7)
- * 환전사유 선택 바텀시트
+ * Step 03. 환전정보입력(Progress bar 3/7)
+ * 꼭 확인해주세요! 바텀시트
  */
+import KBConfirmBtn from "@components/buttons/KBConfirmBtn.tsx";
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
+import img from "@imgs/exchange/EssentialConfirmationSheet.png";
 import { Drawer } from "antd";
 import { FC, useCallback } from "react";
 
-import $style from "./ReasonExchangeSelectSheet.module.scss";
+import $style from "./EssentialConfirmationSheet.module.scss";
 // import { useDispatch } from "react-redux";
 
-interface IReasonExchangeSelectSheet {
+interface IEssentialConfirmationSheet {
   sheetOpen: boolean;
 }
 
-const ReasonExchangeSelectSheet: FC<IReasonExchangeSelectSheet> = ({ sheetOpen }) => {
+const EssentialConfirmationSheet: FC<IEssentialConfirmationSheet> = ({ sheetOpen }) => {
   // const dispatch = useDispatch();
-  
+
   // 시트 닫기
   const closeSheet = useCallback(() => {
     // dispatch(setOpenTakenWaySheet(false));
@@ -35,21 +37,22 @@ const ReasonExchangeSelectSheet: FC<IReasonExchangeSelectSheet> = ({ sheetOpen }
       height={"auto"}
       title={
         <DrawerTitle
-          title={"환전 사유"}
+          title={<span className={$style.sheetTitle}>꼭 확인해주세요!</span>}
           useCloseBtn
           closeDrawerBtn={closeSheet}
         />
       }
       placement={"bottom"}
-      key={"ReasonExchangeSelectSheet"}>
-      <ul className={$style.reasonList}>
-        <li>관광, 친지방문 등 일반해외여행경비</li>
-        <li>보유목적</li>
-        <li>유학경비 (6개월 이상 해외연수 또는 유학)</li>
-        <li>해외체재비 (해외파견 주재원 또는 6개월 미만 해외연수)</li>
-      </ul>
+      key={"EssentialConfirmationSheet"}
+			footer={
+				<div className={$style.footerBtns}>
+					<KBConfirmBtn type="default">취소</KBConfirmBtn>
+					<KBConfirmBtn>다음</KBConfirmBtn>
+				</div>
+      }>
+			<img src={img} className={$style.img} /> 
     </Drawer>
   );
 };
 
-export default ReasonExchangeSelectSheet;
+export default EssentialConfirmationSheet;

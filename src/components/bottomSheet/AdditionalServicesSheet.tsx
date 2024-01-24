@@ -1,23 +1,23 @@
 /**
- * Step 04. 수령정보입력(Progress bar 4/7)
- * 날짜 선택 바텀시트
+ * Step 03. 환전정보입력(Progress bar 3/7)
+ * KB 외화 환전/송금 부가 서비스 신청서 바텀시트
  */
 import KBConfirmBtn from "@components/buttons/KBConfirmBtn.tsx";
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
-import img from "@imgs/exchange/SelectReceiveDateSheet.png";
+import img from "@imgs/exchange/AdditionalServicesSheet.png";
 import { Drawer } from "antd";
 import { FC, useCallback } from "react";
 
 import $style from "./SelectReceiveDateSheet.module.scss";
 // import { useDispatch } from "react-redux";
 
-interface ISelectReceiveDateSheet {
+interface IAdditionalServicesSheet {
   sheetOpen: boolean;
 }
 
-const SelectReceiveDateSheet: FC<ISelectReceiveDateSheet> = ({ sheetOpen }) => {
+const AdditionalServicesSheet: FC<IAdditionalServicesSheet> = ({ sheetOpen }) => {
   // const dispatch = useDispatch();
-  
+
   // 시트 닫기
   const closeSheet = useCallback(() => {
     // dispatch(setOpenTakenWaySheet(false));
@@ -28,28 +28,24 @@ const SelectReceiveDateSheet: FC<ISelectReceiveDateSheet> = ({ sheetOpen }) => {
       style={{ borderRadius: "12px 12px 0 0" }}
       styles={{
         header: { borderBottom: 0, paddingTop: 32, paddingBottom: 0 },
-        body: { padding: 24 },
+        body: { padding: 0 },
         footer: { borderTop: 0, padding: 0 }
       }}
       open={sheetOpen}
       onClose={closeSheet}
       closeIcon={false}
       height={"auto"}
-      title={
-        <DrawerTitle
-          title={"날짜 선택"}
-          useCloseBtn
-          closeDrawerBtn={closeSheet}
-        />
-      }
+      title={<DrawerTitle
+				title={""}
+				useCloseBtn
+				closeDrawerBtn={closeSheet}
+			/>}
       placement={"bottom"}
-      key={"SelectReceiveDateSheet"}
-			footer={
-        <KBConfirmBtn>확인</KBConfirmBtn>
-      }>
+      key={"AdditionalServicesSheet"}
+			footer={<KBConfirmBtn>신청</KBConfirmBtn>}>
 			<img src={img} className={$style.img} /> 
     </Drawer>
   );
 };
 
-export default SelectReceiveDateSheet;
+export default AdditionalServicesSheet;

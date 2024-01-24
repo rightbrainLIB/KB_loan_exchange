@@ -1,11 +1,11 @@
 import iconClose from "@imgs/icons/icon_close_24.png";
 import { Button } from "antd";
-import { FC, useCallback } from "react";
+import { FC, ReactNode, useCallback } from "react";
 
 import $style from "./DrawerTitle.module.sass";
 
 interface IDrawerTitle {
-  title: string;
+  title: string | ReactNode;
   subText?: string;
   useCloseBtn?: boolean;
   closeDrawerBtn?: () => void;

@@ -9,13 +9,15 @@ interface KBConfirmBtn {
   onClickConfirm?: () => void;
   children?: ReactNode;
   type?: string; // default
+  disabled?: boolean;
 }
 
 const KBConfirmBtn: FC<KBConfirmBtn> = ({
   width,
   onClickConfirm,
   type,
-  children
+  children,
+  disabled
 }) => {
   const onClickBtn = useCallback(() => {
     onClickConfirm && onClickConfirm();
@@ -31,7 +33,9 @@ const KBConfirmBtn: FC<KBConfirmBtn> = ({
         [$style.default]: type === "default"
       })}
       onClick={onClickBtn}
-      style={styles}>
+      style={styles}
+      disabled={disabled}
+      >
       {children}
     </Button>
   );

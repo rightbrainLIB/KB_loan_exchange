@@ -1,0 +1,22 @@
+.img {
+	width: 100%;
+}
+.sheetTitle {
+	&::before {
+		content: "";
+		display: inline-block;
+		width: 24px;
+		height: 24px;
+		background-image: url(../../assets/imgs/icons/ic_alram_24.png);
+		background-size: cover;
+		vertical-align: top;
+		margin-right: 6px;
+	}
+}
+.footerBtns {
+	display: flex;
+	button:first-child {
+		width: 37%;
+    flex-shrink: 0;
+	}
+}

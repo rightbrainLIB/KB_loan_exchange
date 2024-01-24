@@ -1,0 +1,22 @@
+.imgWrap {
+	position: relative;
+	margin-top: 16px;
+	margin-bottom: 10px;
+}
+.beforeInputImg {
+	background-color: #fff;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	img {
+		width: 100%;
+	}
+}
+.afterInputImg {
+	width: 100%;
+	background-color: #fff;
+	img {
+		width: 100%;
+	}
+}

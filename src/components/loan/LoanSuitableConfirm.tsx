@@ -1,3 +1,6 @@
+/**
+ * Step 03. 대출 적합성 확인서, 피성년, 피한정 후견인 여부 팝업
+ */
 import KBHeader from "@components/common/KBHeader.tsx";
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import img01 from "@imgs/loan/LoanSuitableConfirm_01.png";

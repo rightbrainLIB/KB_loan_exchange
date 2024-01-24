@@ -6,6 +6,7 @@ import BotProfile from "@components/imgs/BotProfile.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MoreBtn from "@imgs/exchange/MonthExchange_list_more_btn.png";
 import ThreeMonthExchange_list from "@imgs/exchange/ThreeMonthExchange_list.png";
+import img from "@imgs/exchange/ThreeMonthExchangeList.png";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { FC, useCallback, useEffect, useState } from "react";
@@ -18,8 +19,7 @@ const ThreeMonthExchangeList: FC = () => {
     <MotionList>
       <BotProfile />
       <KBTalk>
-        <h2>최근 3개월 내 환전 내역이에요</h2>
-				<p className={$style.subText}>2023.11.05~2024.01.05</p>
+				<img src={img} />
 				<SelectableListWrap>
           <li>
             <SelectableBtn>조회기간 설정</SelectableBtn>

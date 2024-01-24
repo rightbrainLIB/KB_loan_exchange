@@ -1,24 +1,52 @@
 import KBTalk from "@components/box/KBTalk.tsx";
+import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
+import StandardTerms from "@components/fullPopup/StandardTerms.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
 import UtilUnderTalkList from "@components/list/UtilUnderTalkList.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
+import termsContent from "@imgs/terms/exchange_standard.png";
+import { setAgreeForeignCurrency } from "@slices/exchangeSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { ExchangeState } from "@src/store";
-import { FC, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
+import { FC, useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const TermsAgree: FC = () => {
-  const [showBotStep, setShowBotStep] = useState(false);
+  const dispatch = useDispatch();
 
-  const { isTakenPlace } = useSelector(
+  const [showBotStep, setShowBotStep] = useState(false);
+  const [openTerms, setOpenTerms] = useState(false);
+  const [showUserStep, setShowUserStep] = useState(false);
+  const [isLastChoice, setIsLastChoice] = useState(false);
+
+  const { isTakenPlace, agreeForeignCurrency } = useSelector(
     (state: ExchangeState) => state.exchange.userStep
   );
 
   const { prsTermsAgreeForExchange } = useSelector(
     (state: ExchangeState) => state.exchange.botStep
   );
+
+  // 동의
+  const termsConfirm = useCallback(() => {
+    setOpenTerms(false);
+    dispatch(setAgreeForeignCurrency(true));
+    setShowUserStep(true);
+  }, [dispatch]);
+
+  const wrapperStyle = {
+    marginTop: 40
+  };
+
+  // 마지막 step 체크하기
+  const lastStr = LastTrueUserStep();
+
+  useEffect(() => {
+    setIsLastChoice(lastStr === "agreeForeignCurrency");
+  }, [lastStr]);
 
   useEffect(() => {
     if (isTakenPlace) {
@@ -31,10 +59,6 @@ const TermsAgree: FC = () => {
       });
     }
   }, [isTakenPlace]);
-
-  const wrapperStyle = {
-    marginTop: 40
-  };
 
   return (
     <>
@@ -51,13 +75,30 @@ const TermsAgree: FC = () => {
                 </h2>
                 <SelectableListWrap>
                   <li>
-                    <SelectableBtn bgBtn>외화 약관 동의</SelectableBtn>
+                    <SelectableBtn bgBtn onClickBtn={() => setOpenTerms(true)}>
+                      외화 약관 동의
+                    </SelectableBtn>
                   </li>
                 </SelectableListWrap>
               </KBTalk>
               <UtilUnderTalkList btnList={["외화거래기본약관 확인"]} />
             </MotionList>
+
+            {showUserStep && (
+              <MotionList aniCondition={agreeForeignCurrency} showHeight={45}>
+                <SelectedUserBox isLastSelect={isLastChoice}>
+                  외화 약관 동의
+                </SelectedUserBox>
+              </MotionList>
+            )}
           </MotionListWrap>
+
+          <StandardTerms
+            sheetOpen={openTerms}
+            closeSheet={() => setOpenTerms(false)}
+            onClickConfirm={termsConfirm}>
+            <img src={`${termsContent}`} alt="" />
+          </StandardTerms>
         </div>
       )}
     </>

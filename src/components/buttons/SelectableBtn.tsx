@@ -1,4 +1,4 @@
-import { disableInstantTransitions } from "framer-motion";
+// import { disableInstantTransitions } from "framer-motion";
 import { FC, ReactNode, useCallback } from "react";
 
 import $style from "./SelectableBtn.module.sass";
@@ -29,8 +29,7 @@ const SelectableBtn: FC<ISelectableBtn> = ({
       type="button"
       className={`${$style.selectableBtn} ${bgBtn ? $style.bgBtn : ""} ${size ? $style[size] : ""}`}
       onClick={onClickSelectableBtn}
-      disabled={disabled}
-      >
+      disabled={disabled}>
       {useImg && (
         <div className={$style.imgBox}>
           <img src="" alt="" />

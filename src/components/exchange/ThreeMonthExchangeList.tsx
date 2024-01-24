@@ -9,7 +9,7 @@ import ThreeMonthExchange_list from "@imgs/exchange/ThreeMonthExchange_list.png"
 import img from "@imgs/exchange/ThreeMonthExchangeList.png";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC } from "react";
 
 import $style from "./MonthExchangeList.module.scss";
 

@@ -26,6 +26,7 @@ export default defineConfig({
       { find: "@api", replacement: resolve(__dirname, "src/api") }
     ]
   },
+  base: process.env.NODE_ENV === "production" ? "/KB_loan_exchange/" : "/",
   server: {
     port: 8080,
     open: "/"

@@ -1,3 +1,6 @@
+/**
+ * Step 02. 금융상품의 중요사항
+ */
 import KBHeader from "@components/common/KBHeader.tsx";
 import img01 from "@imgs/loan/LoanChack_01.png";
 import { Button, CheckboxProps, GetProp } from "antd";
@@ -24,15 +27,26 @@ const LoanImportCheck = () => {
 
   const [checkedList, setCheckedList] =
     useState<CheckboxValueType[]>(defaultCheckedList);
-
-  const checkAll = plainOptions.length === checkedList.length;
+  const [checkAll, setCheckAll] = useState(false);
 
   const onChange = (list: CheckboxValueType[]) => {
     setCheckedList(list);
+
+    if (list.length == 5) {
+      setCheckAll(true);
+    } else {
+      setCheckAll(false);
+    }
   };
 
   const onCheckAllChange: CheckboxProps["onChange"] = (e) => {
     setCheckedList(e.target.checked ? plainOptions : []);
+
+    if (e.target.checked) {
+      setCheckAll(true);
+    } else {
+      setCheckAll(false);
+    }
   };
 
   const clickBtn = () => {
@@ -47,7 +61,10 @@ const LoanImportCheck = () => {
       <div className={$style.LoanImportCheckWrap}>
         <h4>대출 신청 전 꼭 확인해주세요</h4>
         <div className={$style.checkBox}>
-          <Checkbox onChange={onCheckAllChange} className={$style.checkAll}>
+          <Checkbox
+            onChange={onCheckAllChange}
+            checked={checkAll}
+            className={$style.checkAll}>
             금융상품 중요사항 및 필수 확인사항
           </Checkbox>
           <CheckboxGroup

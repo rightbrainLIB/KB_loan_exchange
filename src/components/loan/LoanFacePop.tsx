@@ -1,3 +1,6 @@
+/**
+ * Step 04. face 인증
+ */
 import img01 from "@imgs/loan/LoanFacePop.png";
 import { Modal } from "antd";
 import { useState } from "react";
@@ -10,7 +13,7 @@ const LoanFacePop = () => {
   const [sheetOpen, setsheetOpen] = useState(true);
   const clickFacePop = () => {
     setsheetOpen(false);
-    navigate("/Loan");
+    navigate("/LoanChat");
   };
   return (
     <>

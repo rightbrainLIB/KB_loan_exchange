@@ -65,22 +65,22 @@ const ExecuteCurrency: FC = () => {
     });
   }, [showUserStepPositive, showUserStepNegative, dispatch]);
 
-  const modifySaveAlarm = useCallback(() => {
-    dispatch(setSaveAlarm(false));
-    setTimeout(() => {
-      setShowUserStepNegative(false);
-    }, 500);
-  }, [dispatch]);
-
-  const modifyTakenPlace = useCallback(() => {
-    dispatch(setPrsTermsAgreeForExchange(false));
-    setTimeout(() => {
-      dispatch(setTakenPlace(false));
-    }, 500);
-    setTimeout(() => {
-      setShowUserStepPositive(false); // 은행지점에서 받기 감추기
-    }, 800);
-  }, [dispatch]);
+  // const modifySaveAlarm = useCallback(() => {
+  //   dispatch(setSaveAlarm(false));
+  //   setTimeout(() => {
+  //     setShowUserStepNegative(false);
+  //   }, 500);
+  // }, [dispatch]);
+  //
+  // const modifyTakenPlace = useCallback(() => {
+  //   dispatch(setPrsTermsAgreeForExchange(false));
+  //   setTimeout(() => {
+  //     dispatch(setTakenPlace(false));
+  //   }, 500);
+  //   setTimeout(() => {
+  //     setShowUserStepPositive(false); // 은행지점에서 받기 감추기
+  //   }, 800);
+  // }, [dispatch]);
 
   const wrapperStyle = {
     marginTop: 53
@@ -159,7 +159,7 @@ const ExecuteCurrency: FC = () => {
             <MotionListWrap>
               <MotionList aniCondition={isTakenPlace} showHeight={45}>
                 <SelectedUserBox
-                  modifyUserSelect={modifyTakenPlace}
+                  // modifyUserSelect={modifyTakenPlace}
                   isLastSelect={isLastChoicePositive}>
                   은행지점에서 받기
                 </SelectedUserBox>
@@ -171,7 +171,7 @@ const ExecuteCurrency: FC = () => {
             <MotionListWrap>
               <MotionList aniCondition={saveAlarm}>
                 <SelectedUserBox
-                  modifyUserSelect={modifySaveAlarm}
+                  // modifyUserSelect={modifySaveAlarm}
                   isLastSelect={isLastChoiceNegative}>
                   원하는 환율일 때 알림받기
                 </SelectedUserBox>

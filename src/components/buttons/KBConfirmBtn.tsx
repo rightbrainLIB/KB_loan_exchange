@@ -7,13 +7,15 @@ import $style from "./KBConfirmBtn.module.sass";
 interface KBConfirmBtn {
   width?: number;
   onClickConfirm?: () => void;
-  children?: ReactNode;
+  disabled?: boolean;
   type?: string; // default
+  children?: ReactNode;
 }
 
 const KBConfirmBtn: FC<KBConfirmBtn> = ({
   width,
   onClickConfirm,
+  disabled = false,
   type,
   children
 }) => {
@@ -31,7 +33,8 @@ const KBConfirmBtn: FC<KBConfirmBtn> = ({
         [$style.default]: type === "default"
       })}
       onClick={onClickBtn}
-      style={styles}>
+      style={styles}
+      disabled={disabled}>
       {children}
     </Button>
   );

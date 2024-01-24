@@ -75,7 +75,10 @@ const TermsAgree: FC = () => {
                 </h2>
                 <SelectableListWrap>
                   <li>
-                    <SelectableBtn bgBtn onClickBtn={() => setOpenTerms(true)}>
+                    <SelectableBtn
+                      bgBtn
+                      onClickBtn={() => setOpenTerms(true)}
+                      disabled={agreeForeignCurrency}>
                       외화 약관 동의
                     </SelectableBtn>
                   </li>

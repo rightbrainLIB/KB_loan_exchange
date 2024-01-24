@@ -32,9 +32,11 @@ const TermsAgree: FC = () => {
 
   // 동의
   const termsConfirm = useCallback(() => {
-    setOpenTerms(false);
-    dispatch(setAgreeForeignCurrency(true));
+    setOpenTerms(false); // 팝업 닫기
     setShowUserStep(true);
+    setTimeout(() => {
+      dispatch(setAgreeForeignCurrency(true)); // 외화 약관 동의
+    });
   }, [dispatch]);
 
   const wrapperStyle = {

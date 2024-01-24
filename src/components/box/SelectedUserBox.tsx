@@ -8,15 +8,23 @@ import $style from "./SelectedUserBox.module.sass";
 interface ISelectedUserBox {
   modifyUserSelect?: () => void;
   isLastSelect?: boolean;
+  useTaskModify?: boolean;
   children?: ReactNode;
 }
 
 const SelectedUserBox: FC<ISelectedUserBox> = ({
   modifyUserSelect,
   isLastSelect = false,
+  useTaskModify = false,
   children
 }) => {
   const [openRemindSheet, setOpenRemindSheet] = useState(false);
+
+  const callModifySheet = useCallback(() => {
+    if (useTaskModify) {
+      setOpenRemindSheet(true);
+    }
+  }, [useTaskModify]);
 
   const onClickModifyBtn = useCallback(() => {
     setOpenRemindSheet(false);
@@ -34,7 +42,7 @@ const SelectedUserBox: FC<ISelectedUserBox> = ({
           <Button
             className={$style.modifyBtn}
             htmlType="button"
-            onClick={() => setOpenRemindSheet(true)}>
+            onClick={callModifySheet}>
             <div className={$style.imgBox}>
               <img src={`${modifyPencil}`} alt="" />
             </div>

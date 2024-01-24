@@ -5,6 +5,7 @@ import $style from "./SelectableBtn.module.sass";
 
 interface ISelectableBtn {
   useImg?: boolean;
+  imgSrc?: string;
   onClickBtn?: (data: boolean) => void;
   children?: ReactNode;
   bgBtn?: boolean;
@@ -14,6 +15,7 @@ interface ISelectableBtn {
 
 const SelectableBtn: FC<ISelectableBtn> = ({
   useImg = false,
+  imgSrc,
   onClickBtn,
   children,
   bgBtn = false,
@@ -32,7 +34,7 @@ const SelectableBtn: FC<ISelectableBtn> = ({
       disabled={disabled}>
       {useImg && (
         <div className={$style.imgBox}>
-          <img src="" alt="" />
+          <img src={`${imgSrc}`} alt="" />
         </div>
       )}
       <p>{children}</p>

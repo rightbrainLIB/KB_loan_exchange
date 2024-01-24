@@ -2,9 +2,8 @@ import KBConfirmBtn from "@components/buttons/KBConfirmBtn.tsx";
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import Keypad from "@components/contents/Keypad.tsx";
 import usaFlag from "@imgs/logo/icon_country.png";
-import { setRequestCurrencyValue } from "@slices/exchangeSlices.ts";
 import { Drawer } from "antd";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import $style from "./CurrencyPriceInput.module.sass";
@@ -12,11 +11,13 @@ import $style from "./CurrencyPriceInput.module.sass";
 interface ICurrencyPriceInput {
   sheetOpen?: boolean;
   onClickClose?: () => void;
+  onClickConfirm?: () => void;
 }
 
 const CurrencyPriceInput: FC<ICurrencyPriceInput> = ({
   sheetOpen,
-  onClickClose
+  onClickClose,
+  onClickConfirm
 }) => {
   const dispatch = useDispatch();
 
@@ -24,14 +25,21 @@ const CurrencyPriceInput: FC<ICurrencyPriceInput> = ({
 
   const closeSheet = useCallback(() => {
     onClickClose && onClickClose();
+    setUserClicked(false);
   }, [onClickClose]);
 
-  const onClickConfirm = useCallback(() => {
-    onClickClose && onClickClose(); // 키패드창 닫기
-    setTimeout(() => {
-      dispatch(setRequestCurrencyValue(true));
-    }, 300);
-  }, [onClickClose]);
+  const onClickConfirms = useCallback(() => {
+    onClickConfirm && onClickConfirm(); // 키패드창 닫기
+    // dispatch(setRequestCurrencyValue(true));
+  }, [dispatch, onClickConfirm]);
+
+  useEffect(() => {
+    if (!sheetOpen) {
+      setTimeout(() => {
+        setUserClicked(false);
+      }, 500);
+    }
+  }, [sheetOpen]);
 
   return (
     <Drawer
@@ -54,7 +62,7 @@ const CurrencyPriceInput: FC<ICurrencyPriceInput> = ({
       height={443}
       placement={"bottom"}
       footer={
-        <KBConfirmBtn disabled={!userClicked} onClickConfirm={onClickConfirm}>
+        <KBConfirmBtn disabled={!userClicked} onClickConfirm={onClickConfirms}>
           확인
         </KBConfirmBtn>
       }>

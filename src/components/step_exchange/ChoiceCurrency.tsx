@@ -6,6 +6,7 @@ import BotProfile from "@components/imgs/BotProfile.tsx";
 import SelectableListWrap from "@components/list/SelectableListWrap.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
+import noImg from "@imgs/icons/Ellipse 4.png";
 import iconArrow20 from "@imgs/icons/icon_arrow_20.png";
 import {
   setCurrencySelection,
@@ -77,15 +78,20 @@ const ChoiceCurrency: FC = () => {
               <h2>환전을 원하는 통화를 선택해주세요</h2>
               <SelectableListWrap>
                 <li>
-                  <SelectableBtn useImg={true} onClickBtn={onClickCurrencyBtn}>
+                  <SelectableBtn
+                    useImg={true}
+                    imgSrc={noImg}
+                    onClickBtn={onClickCurrencyBtn}>
                     USD (미국 달러)
                   </SelectableBtn>
                 </li>
                 <li>
-                  <SelectableBtn useImg={true}>JPY (일본 엔)</SelectableBtn>
+                  <SelectableBtn useImg={true} imgSrc={noImg}>
+                    JPY (일본 엔)
+                  </SelectableBtn>
                 </li>
                 <li>
-                  <SelectableBtn useImg={true}>
+                  <SelectableBtn useImg={true} imgSrc={noImg}>
                     EUR (유럽연합 유로)
                   </SelectableBtn>
                 </li>
@@ -111,7 +117,7 @@ const ChoiceCurrency: FC = () => {
             <SelectedUserBox
               modifyUserSelect={modifyUserCurrency}
               isLastSelect={isLastChoice}>
-              USD (미국달러) 123
+              USD (미국달러)
             </SelectedUserBox>
           </MotionList>
         </MotionListWrap>

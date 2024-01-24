@@ -15,19 +15,22 @@ interface IExchangeApplicationAmountSheet {
   sheetOpen: boolean;
 }
 
-const ExchangeApplicationAmountSheet: FC<IExchangeApplicationAmountSheet> = ({ sheetOpen }) => {
+const ExchangeApplicationAmountSheet: FC<IExchangeApplicationAmountSheet> = ({
+  sheetOpen
+}) => {
   // const dispatch = useDispatch();
-	
+
   // 시트 닫기
   const closeSheet = useCallback(() => {
     // dispatch(setOpenTakenWaySheet(false));
   }, []);
 
-	// 입력전 이미지 클릭시 입력후 이미지 보이게
-	const beforeInputClick = (e) => {
-		e.target.style.display = "none";
-	}
-  
+  // 입력전 이미지 클릭시 입력후 이미지 보이게
+  const beforeInputClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const targetEl = e.target as HTMLElement;
+    targetEl.style.display = "none";
+  };
+
   return (
     <Drawer
       style={{ borderRadius: "12px 12px 0 0" }}
@@ -40,22 +43,24 @@ const ExchangeApplicationAmountSheet: FC<IExchangeApplicationAmountSheet> = ({ s
       onClose={closeSheet}
       closeIcon={false}
       height={"auto"}
-      title={<DrawerTitle
-				title={"환전 신청금액 입력"}
-				useCloseBtn
-				closeDrawerBtn={closeSheet}
-			/>}
+      title={
+        <DrawerTitle
+          title={"환전 신청금액 입력"}
+          useCloseBtn
+          closeDrawerBtn={closeSheet}
+        />
+      }
       placement={"bottom"}
       key={"ExchangeApplicationAmountSheet"}
-			footer={<KBConfirmBtn disabled>확인</KBConfirmBtn>}>
-				<div className={$style.imgWrap}>
-					<div className={$style.beforeInputImg} onClick={beforeInputClick}>
-						<img src={beforeInput} /> 
-					</div>
-					<div className={$style.afterInputImg}>
-						<img src={afterInput} /> 
-					</div>
-				</div>
+      footer={<KBConfirmBtn disabled>확인</KBConfirmBtn>}>
+      <div className={$style.imgWrap}>
+        <div className={$style.beforeInputImg} onClick={beforeInputClick}>
+          <img src={beforeInput} />
+        </div>
+        <div className={$style.afterInputImg}>
+          <img src={afterInput} />
+        </div>
+      </div>
     </Drawer>
   );
 };

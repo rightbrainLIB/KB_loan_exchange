@@ -1,5 +1,6 @@
 /**
- * Step 07. 환전신청완료 : 환전 신청 내역 확인
+ * Step 07. 환전신청완료(Progress bar 7/7)
+ * 환전 신청 내역을 확인해주세요
  */
 import KBTalk from "@components/box/KBTalk.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";

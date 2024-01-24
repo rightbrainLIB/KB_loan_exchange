@@ -1,5 +1,6 @@
 /**
- * Step 07. 환전신청완료 : 환전 신청 완료
+ * Step 07. 환전신청완료(Progress bar 7/7)
+ * 환전 신청을 완료했어요!
  */
 import KBTalk from "@components/box/KBTalk.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
@@ -11,7 +12,7 @@ import { FC } from "react";
 
 const ExchangeRequestCompletion: FC = () => {
   return (
-    <>
+    <> 
     <MotionList>
       <BotProfile />
       <KBTalk>

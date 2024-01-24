@@ -1,5 +1,6 @@
 /**
- * Step 06. 환전정보확인
+ * Step 06. 환전정보확인(Progress bar 6/7)
+ * 환전을 신청할게요
  */
 import KBTalk from "@components/box/KBTalk.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";

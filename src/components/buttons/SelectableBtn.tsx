@@ -1,7 +1,7 @@
+import { disableInstantTransitions } from "framer-motion";
 import { FC, ReactNode, useCallback } from "react";
 
 import $style from "./SelectableBtn.module.sass";
-import { disableInstantTransitions } from "framer-motion";
 
 interface ISelectableBtn {
   useImg?: boolean;

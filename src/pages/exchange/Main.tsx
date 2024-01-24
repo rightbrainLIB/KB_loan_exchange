@@ -1,6 +1,7 @@
 import KBContainer from "@components/common/KBContainer.tsx";
 import KBHeader from "@components/common/KBHeader.tsx";
-// import TermsAgree from "@components/exchange/TermsAgree.tsx";
+import TermsAgree from "@components/exchange/TermsAgree.tsx";
+// import WriteCurrency from "@components/exchange/WriteCurrency.tsx";
 import ChoiceCurrency from "@components/step_exchange/ChoiceCurrency.tsx";
 import ExecuteCurrency from "@components/step_exchange/ExecuteCurrency.tsx";
 
@@ -18,8 +19,12 @@ const ExchangeMain = () => {
         {/* E: 지금 바로 환전을 도와드릴까요? */}
 
         {/* S: 약관동의가 필요해요 */}
-        {/*<TermsAgree />*/}
+        <TermsAgree />
         {/* E: 약관동의가 필요해요 */}
+
+        {/* S: 환전 신청 금액을 입력해주세요 */}
+        {/*<WriteCurrency />*/}
+        {/* E: 환전 신청 금액을 입력해주세요 */}
       </KBContainer>
     </>
   );

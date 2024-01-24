@@ -4,6 +4,8 @@ import LoanCreditLimitProduct from "@components/loan/LoanCreditLimitProduct.tsx"
 import LoanFacePop from "@components/loan/LoanFacePop.tsx";
 import LoanImportCheck from "@components/loan/LoanImportCheck.tsx";
 import LoanSuitableConfirm from "@components/loan/LoanSuitableConfirm.tsx";
+import LoanTelecomInputPop from "@components/loan/LoanTelecomInputPop.tsx";
+import LoanTelecomSelectPop from "@components/loan/LoanTelecomSelectPop.tsx";
 import ExchangeChatBot from "@pages/exchange/ChatBot.tsx";
 import ExchangeMain from "@pages/exchange/Main.tsx";
 import { createBrowserRouter } from "react-router-dom";
@@ -41,6 +43,14 @@ const router = createBrowserRouter([
   {
     path: "/LoanAgreeCheck",
     element: <LoanAgreeCheck />
+  },
+  {
+    path: "/LoanTelecomSelectPop",
+    element: <LoanTelecomSelectPop />
+  },
+  {
+    path: "/LoanTelecomInputPop",
+    element: <LoanTelecomInputPop />
   }
 ]);
 

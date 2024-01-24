@@ -7,10 +7,12 @@ import img01 from "@imgs/loan/arrow_up.png";
 import img02 from "@imgs/loan/LoanAgreeCheck_01.png";
 import { Button, Checkbox, CheckboxProps, Drawer } from "antd";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanAgreeCheck.module.scss";
 
 const LoanAgreeCheck = () => {
+  const navigate = useNavigate();
   const [sheetOpen, setsheetOpen] = useState(true);
   const [sheetImgOpen, setsheetImgOpen] = useState(false);
 
@@ -32,6 +34,10 @@ const LoanAgreeCheck = () => {
     setsheetOpen(true);
     setsheetImgOpen(false);
     setpopCheck(true);
+  };
+
+  const clickBtnAgreePop = () => {
+    navigate("/LoanChat");
   };
   return (
     <>
@@ -58,7 +64,10 @@ const LoanAgreeCheck = () => {
         placement={"bottom"}
         key={"LoanAgreeCheckList"}
         footer={
-          <Button className={$style.btn} disabled={popCheck ? false : true}>
+          <Button
+            className={$style.btn}
+            onClick={clickBtnAgreePop}
+            disabled={popCheck ? false : true}>
             동의
           </Button>
         }

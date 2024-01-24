@@ -1,0 +1,54 @@
+.LoanTelecomInputPop {
+    .inputbox {
+        input {
+            height: 33px;
+            border:0;
+            border-bottom: 2px solid #26282c;
+            border-radius: 0;
+            &::placeholder {
+                text-align: right;
+                font-family: 'KBL';
+                font-size: 26px;
+                line-height: 33px;
+                font-weight: 700;
+                color:#929292;
+            }
+        }
+    }
+    .img {
+        margin-top: 24px;
+        line-height: 0;
+    }
+    .btn {
+        position: fixed;
+        width: 100%;
+        bottom:0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 57px;
+        padding: 0;
+        background-color: #FFD338;
+        color: #26282C;
+        font-family: 'KBB';
+        font-size: 20px;
+        letter-spacing: -0.2em;
+        border: none;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        &:disabled {
+            background-color: #DDE1E4;
+            span {
+                color: #AAB0B8;
+            }
+        }
+        &:hover,
+        &:active
+          {
+            color: #26282C !important;
+          }
+    }
+}

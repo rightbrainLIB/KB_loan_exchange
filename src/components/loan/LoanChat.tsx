@@ -3,6 +3,7 @@
  */
 import KBContainer from "@components/common/KBContainer.tsx";
 import KBHeader from "@components/common/KBHeader.tsx";
+import LoanIdentityCheck from "@components/loan/LoanIdentityCheck.tsx";
 import LoanLimitCurrency from "@components/loan/LoanLimitCurrency.tsx";
 
 const LoanChat = () => {
@@ -13,6 +14,10 @@ const LoanChat = () => {
         {/* S: 부동산담보대출 조회하기 위한 동의 */}
         <LoanLimitCurrency />
         {/* E: 부동산담보대출 조회하기 위한 동의 */}
+
+        {/* S: 부동산담보대출 본인인증 */}
+        <LoanIdentityCheck />
+        {/* E: 부동산담보대출 본인인증 */}
       </KBContainer>
     </>
   );

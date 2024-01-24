@@ -1,0 +1,196 @@
+.LoanConfirmWrap {
+    padding-bottom: 110px;
+    background-color: #fff;
+    h4 {
+        padding: 20px 24px 0;
+        font-size: 24px;
+        line-height: 33px;
+        font-weight: 700;
+        p{
+            font-weight: 300;
+            font-size: 18px;
+            line-height: 25px;
+        }
+    }
+    .list {
+        padding: 40px 24px 0 24px;
+        li{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            & + li {
+                margin-top: 20px;
+            }
+        }
+        .left {
+            width: 105px;
+            font-size: 16px;
+            line-height: 23px;
+            color:#696E76;
+        }
+        .right {
+            width: calc(100% - 105px);
+            margin-left: 10px;
+            border-bottom: 1px solid #B0986A;
+            line-height: 40px;
+            background-image: url("@imgs/loan/arrow_down.png");
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: 20px;
+            .before {
+                font-size: 16px;
+                color:#929292;
+            }
+            .after {
+                font-size: 16px;
+                color:#26282C;
+                font-weight: 700;
+                
+            }
+        }
+    }
+    .bottomList {
+        padding: 35px 24px 0;
+        border-top: 10px solid #F1F3F5;
+        .checkAll {
+            padding-bottom: 14px;
+            border-bottom: 1px solid #484B51;
+            [class~="ant-checkbox"]+span {
+                padding-left: 14px;
+                font-family: 'KBL', sans-serif;
+                font-size: 18px;
+                font-weight: 700;
+                line-height: 25px;
+                letter-spacing: -0.5px;
+            }
+        }
+        .innerList {
+            margin-top: 20px;
+            margin-bottom: 21px;
+            li {
+                position: relative;
+                display:flex;
+                justify-content: space-between;
+                color:#26282C;
+                font-size: 16px;
+                line-height: 23px;
+                padding-left: 34px;
+                &.imgChange {
+                    &::before {
+                        content:'';
+                        display: inline-block;
+                        position:absolute;
+                        top:0;
+                        left:0;
+                        width: 24px;
+                        height: 24px;
+                        background-image: url("@imgs/loan/LoanSuitableConfirm_03_on.png");
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: 24px;
+                    }     
+                }
+                &::before {
+                    content:'';
+                    display: inline-block;
+                    position:absolute;
+                    top:0;
+                    left:0;
+                    width: 24px;
+                    height: 24px;
+                    background-image: url("@imgs/loan/LoanSuitableConfirm_03.png");
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: 24px;
+                }
+                & + li {
+                    margin-top: 16px;
+                }
+            }
+        }
+    }
+  
+    .img {
+        padding: 8px 24px 35px 24px;
+        
+    }
+    .btn {
+        position: fixed;
+        width: 100%;
+        bottom:0;
+        left: 0;
+        button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 57px;
+            padding: 0;
+            background-color: #FFD338;
+            color: #26282C;
+            font-family: 'KBB';
+            font-size: 20px;
+            letter-spacing: -0.2em;
+            border: none;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+            &:disabled {
+                background-color: #DDE1E4;
+                span {
+                    color: #AAB0B8;
+                }
+            }
+            &:hover,
+            &:active
+              {
+                color: #26282C !important;
+              }
+        }
+    }
+    [class~="ant-checkbox-inner"] {
+        border:0;
+        width: 24px;
+        height: 24px;
+        background-image: url("@imgs/loan/LoanChack.png");
+        background-size: 24px;
+        background-position: center;
+        background-color: transparent;
+        &:hover{
+            background-color: transparent;
+        }
+        &::after {
+            display: none;
+        }
+    }
+    [class~="ant-checkbox-wrapper"]:not([class~="ant-checkbox-wrapper-disabled"]):hover [class~="ant-checkbox-checked"]:not([class~="ant-checkbox-disabled"]) [class~="ant-checkbox-inner"] {
+        background-color: transparent;
+    }
+    [class~="ant-checkbox-checked"]:not([class~="ant-checkbox-disabled"]):hover [class~="ant-checkbox-inner"]{
+        background-color: transparent;
+    }
+    [class~="ant-checkbox-checked"]{
+        [class~="ant-checkbox-inner"] {
+            background-color: transparent;
+            border:0;
+            width: 24px;
+            height: 24px;
+            background-image: url("@imgs/loan/LoanChack_on.png");
+            background-size: 24px;
+            background-position: center;
+        }
+    }
+}
+
+.LoanConfirmPop {
+    ul {
+        li {
+            font-size: 16px;
+            line-height: 23px;
+            & + li {
+                margin-top: 20px;
+            }
+        }
+    }
+}

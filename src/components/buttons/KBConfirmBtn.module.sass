@@ -7,7 +7,7 @@
   padding: 0
   background-color: #FFD338
   color: #26282C
-  font-family: 'KBB'
+  font-family: 'KBB', sans-serif
   font-size: 20px
   letter-spacing: -0.2em
   border: none
@@ -15,6 +15,12 @@
   -moz-border-radius: 0
   border-radius: 0
 
+  &.default
+    background-color: #EBEEF0
+
   &:hover,
   &:active
     color: #26282C !important
+
+  [class~="ant-wave"]
+    display: none

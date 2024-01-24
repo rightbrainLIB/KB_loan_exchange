@@ -1,6 +1,6 @@
+import iconClose from "@imgs/icons/icon_close_24.png";
 import { Button } from "antd";
 import { FC, useCallback } from "react";
-import iconClose from "@imgs/icons/icon_close_24.png"
 
 import $style from "./DrawerTitle.module.sass";
 
@@ -29,7 +29,7 @@ const DrawerTitle: FC<IDrawerTitle> = ({
         <>
           <Button className={$style.closeBtn} onClick={onClickCloseBtn}>
             <div className={$style.imgBox}>
-              <img src={`${iconClose}`} alt=""/>
+              <img src={`${iconClose}`} alt="" />
             </div>
           </Button>
         </>

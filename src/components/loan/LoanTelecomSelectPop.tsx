@@ -18,7 +18,7 @@ const LoanTelecomSelectPop: FC = () => {
     setsheetImgOpen(false);
   };
   const clickNextPop = () => {
-    navigate("/KB_loan_exchange/LoanTelecomInputPop");
+    navigate("/LoanTelecomInputPop");
   };
   return (
     <>

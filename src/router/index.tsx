@@ -8,55 +8,53 @@ import LoanTelecomInputPop from "@components/loan/LoanTelecomInputPop.tsx";
 import LoanTelecomSelectPop from "@components/loan/LoanTelecomSelectPop.tsx";
 import ExchangeChatBot from "@pages/exchange/ChatBot.tsx";
 import ExchangeMain from "@pages/exchange/Main.tsx";
-import LoanSearchAddressPop from "@src/components/loan/LoanSearchAddressPop";
 import { createBrowserRouter } from "react-router-dom";
 
-const router = createBrowserRouter([
-  {
-    path: "/KB_loan_exchange",
-    element: <ExchangeMain />
-  },
-  {
-    path: "/ExchangeChatBot",
-    element: <ExchangeChatBot />
-  },
-  // 대출
-  {
-    path: "/KB_loan_exchange/Loan",
-    element: <LoanCreditLimitProduct />
-  },
-  {
-    path: "/KB_loan_exchange/LoanImportCheck",
-    element: <LoanImportCheck />
-  },
-  {
-    path: "/KB_loan_exchange/LoanSuitableConfirm",
-    element: <LoanSuitableConfirm />
-  },
-  {
-    path: "/KB_loan_exchange/LoanFacePop",
-    element: <LoanFacePop />
-  },
-  {
-    path: "/KB_loan_exchange/LoanChat",
-    element: <LoanChat />
-  },
-  {
-    path: "/KB_loan_exchange/LoanAgreeCheck",
-    element: <LoanAgreeCheck />
-  },
-  {
-    path: "/KB_loan_exchange/LoanTelecomSelectPop",
-    element: <LoanTelecomSelectPop />
-  },
-  {
-    path: "/KB_loan_exchange/LoanTelecomInputPop",
-    element: <LoanTelecomInputPop />
-  },
-  {
-    path: "/KB_loan_exchange/LoanSearchAddressPop",
-    element: <LoanSearchAddressPop />
-  }
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <ExchangeMain />
+    },
+    {
+      path: "/ExchangeChatBot",
+      element: <ExchangeChatBot />
+    },
+    // 대출
+    {
+      path: "/Loan",
+      element: <LoanCreditLimitProduct />
+    },
+    {
+      path: "/LoanImportCheck",
+      element: <LoanImportCheck />
+    },
+    {
+      path: "/LoanSuitableConfirm",
+      element: <LoanSuitableConfirm />
+    },
+    {
+      path: "/LoanFacePop",
+      element: <LoanFacePop />
+    },
+    {
+      path: "/LoanChat",
+      element: <LoanChat />
+    },
+    {
+      path: "/LoanAgreeCheck",
+      element: <LoanAgreeCheck />
+    },
+    {
+      path: "/LoanTelecomSelectPop",
+      element: <LoanTelecomSelectPop />
+    },
+    {
+      path: "/LoanTelecomInputPop",
+      element: <LoanTelecomInputPop />
+    }
+  ],
+  { basename: "/KB_loan_exchange" }
+);
 
 export default router;

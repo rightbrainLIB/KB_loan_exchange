@@ -14,7 +14,7 @@ const LoanFacePop: FC = () => {
   const [sheetOpen, setsheetOpen] = useState(true);
   const clickFacePop = () => {
     setsheetOpen(false);
-    navigate("/KB_loan_exchange/LoanChat");
+    navigate("/LoanChat");
   };
   return (
     <>

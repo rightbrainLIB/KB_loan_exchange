@@ -38,7 +38,7 @@ const LoanAgreeCheck: FC = () => {
   };
 
   const clickBtnAgreePop = () => {
-    navigate("/KB_loan_exchange/LoanChat");
+    navigate("/LoanChat");
   };
   return (
     <>

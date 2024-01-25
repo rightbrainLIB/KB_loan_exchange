@@ -41,7 +41,7 @@ const LoanSuitableConfirm: FC = () => {
     setsheetValue(true);
   };
   const confirmClick = () => {
-    navigate("/KB_loan_exchange/LoanFacePop");
+    navigate("/LoanFacePop");
   };
   return (
     <>

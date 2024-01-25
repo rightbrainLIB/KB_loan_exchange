@@ -16,7 +16,7 @@ const LoanIdentityCheck: FC = () => {
   const navigate = useNavigate();
   const [choiceCurrency, setChoiceCurrency] = useState(false);
   const clickNextPop = () => {
-    navigate("/KB_loan_exchange/LoanTelecomSelectPop");
+    navigate("/LoanTelecomSelectPop");
   };
 
   return (

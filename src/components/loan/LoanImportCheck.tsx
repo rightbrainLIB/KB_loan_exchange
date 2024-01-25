@@ -52,7 +52,7 @@ const LoanImportCheck: FC = () => {
 
   const clickBtn = () => {
     if (checkAll) {
-      navigate("/KB_loan_exchange/LoanSuitableConfirm");
+      navigate("/LoanSuitableConfirm");
     }
   };
 

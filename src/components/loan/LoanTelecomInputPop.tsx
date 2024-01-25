@@ -19,7 +19,7 @@ const LoanTelecomInputPop: FC = () => {
   };
 
   const clickBtnPop = () => {
-    navigate("/KB_loan_exchange/LoanChat");
+    navigate("/LoanChat");
   };
   return (
     <>

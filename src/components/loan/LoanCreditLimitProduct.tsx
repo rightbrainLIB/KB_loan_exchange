@@ -12,7 +12,7 @@ import $style from "./LoanCreditLimitProduct.module.scss";
 const LoanCreditLimitProduct: FC = () => {
   const navigate = useNavigate();
   const onClickConfirmBtn = () => {
-    navigate("/KB_loan_exchange/LoanImportCheck");
+    navigate("/LoanImportCheck");
   };
 
   return (

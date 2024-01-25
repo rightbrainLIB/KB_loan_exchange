@@ -15,7 +15,7 @@ const LoanLimitCurrency: FC = () => {
   const navigate = useNavigate();
   const [choiceCurrency, setChoiceCurrency] = useState(false);
   const clickCurrencyPop = () => {
-    navigate("/LoanAgreeCheck");
+    navigate("/KB_loan_exchange/LoanAgreeCheck");
   };
 
   return (

@@ -5,11 +5,12 @@ import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import img01 from "@imgs/loan/LoanTelecomSelectPop_01.png";
 import { Button, Drawer } from "antd";
 import { useState } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanTelecomSelectPop.module.scss";
 
-const LoanTelecomSelectPop = () => {
+const LoanTelecomSelectPop: FC = () => {
   const navigate = useNavigate();
   const [sheetImgOpen, setsheetImgOpen] = useState(true);
 
@@ -17,7 +18,7 @@ const LoanTelecomSelectPop = () => {
     setsheetImgOpen(false);
   };
   const clickNextPop = () => {
-    navigate("/LoanTelecomInputPop");
+    navigate("/KB_loan_exchange/LoanTelecomInputPop");
   };
   return (
     <>

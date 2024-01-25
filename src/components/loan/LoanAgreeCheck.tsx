@@ -7,11 +7,12 @@ import img01 from "@imgs/loan/arrow_up.png";
 import img02 from "@imgs/loan/LoanAgreeCheck_01.png";
 import { Button, Checkbox, CheckboxProps, Drawer } from "antd";
 import { useState } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanAgreeCheck.module.scss";
 
-const LoanAgreeCheck = () => {
+const LoanAgreeCheck: FC = () => {
   const navigate = useNavigate();
   const [sheetOpen, setsheetOpen] = useState(true);
   const [sheetImgOpen, setsheetImgOpen] = useState(false);
@@ -37,7 +38,7 @@ const LoanAgreeCheck = () => {
   };
 
   const clickBtnAgreePop = () => {
-    navigate("/LoanChat");
+    navigate("/KB_loan_exchange/LoanChat");
   };
   return (
     <>

@@ -8,6 +8,7 @@ import LoanTelecomInputPop from "@components/loan/LoanTelecomInputPop.tsx";
 import LoanTelecomSelectPop from "@components/loan/LoanTelecomSelectPop.tsx";
 import ExchangeChatBot from "@pages/exchange/ChatBot.tsx";
 import ExchangeMain from "@pages/exchange/Main.tsx";
+import LoanSearchAddressPop from "@src/components/loan/LoanSearchAddressPop";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -21,36 +22,40 @@ const router = createBrowserRouter([
   },
   // 대출
   {
-    path: "/Loan",
+    path: "/KB_loan_exchange/Loan",
     element: <LoanCreditLimitProduct />
   },
   {
-    path: "/LoanImportCheck",
+    path: "/KB_loan_exchange/LoanImportCheck",
     element: <LoanImportCheck />
   },
   {
-    path: "/LoanSuitableConfirm",
+    path: "/KB_loan_exchange/LoanSuitableConfirm",
     element: <LoanSuitableConfirm />
   },
   {
-    path: "/LoanFacePop",
+    path: "/KB_loan_exchange/LoanFacePop",
     element: <LoanFacePop />
   },
   {
-    path: "/LoanChat",
+    path: "/KB_loan_exchange/LoanChat",
     element: <LoanChat />
   },
   {
-    path: "/LoanAgreeCheck",
+    path: "/KB_loan_exchange/LoanAgreeCheck",
     element: <LoanAgreeCheck />
   },
   {
-    path: "/LoanTelecomSelectPop",
+    path: "/KB_loan_exchange/LoanTelecomSelectPop",
     element: <LoanTelecomSelectPop />
   },
   {
-    path: "/LoanTelecomInputPop",
+    path: "/KB_loan_exchange/LoanTelecomInputPop",
     element: <LoanTelecomInputPop />
+  },
+  {
+    path: "/KB_loan_exchange/LoanSearchAddressPop",
+    element: <LoanSearchAddressPop />
   }
 ]);
 

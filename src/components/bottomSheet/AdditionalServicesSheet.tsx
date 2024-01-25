@@ -9,41 +9,46 @@ import { Drawer } from "antd";
 import { FC, useCallback } from "react";
 
 import $style from "./SelectReceiveDateSheet.module.scss";
-// import { useDispatch } from "react-redux";
 
 interface IAdditionalServicesSheet {
   sheetOpen: boolean;
+  closeSheet: () => void;
+  clickNext: () => void;
 }
 
-const AdditionalServicesSheet: FC<IAdditionalServicesSheet> = ({ sheetOpen }) => {
-  // const dispatch = useDispatch();
-
+const AdditionalServicesSheet: FC<IAdditionalServicesSheet> = ({
+  sheetOpen,
+  closeSheet,
+  clickNext
+}) => {
   // 시트 닫기
-  const closeSheet = useCallback(() => {
-    // dispatch(setOpenTakenWaySheet(false));
-  }, []);
-  
+  const closeAdditionalSheet = useCallback(() => {
+    closeSheet && closeSheet();
+  }, [closeSheet]);
+
   return (
     <Drawer
       style={{ borderRadius: "12px 12px 0 0" }}
       styles={{
-        header: { borderBottom: 0, paddingTop: 32, paddingBottom: 0 },
+        header: { borderBottom: 0, paddingTop: 13, paddingBottom: 0 },
         body: { padding: 0 },
         footer: { borderTop: 0, padding: 0 }
       }}
       open={sheetOpen}
-      onClose={closeSheet}
+      onClose={closeAdditionalSheet}
       closeIcon={false}
       height={"auto"}
-      title={<DrawerTitle
-				title={""}
-				useCloseBtn
-				closeDrawerBtn={closeSheet}
-			/>}
+      title={
+        <DrawerTitle
+          title={""}
+          useCloseBtn
+          closeDrawerBtn={closeAdditionalSheet}
+        />
+      }
       placement={"bottom"}
       key={"AdditionalServicesSheet"}
-			footer={<KBConfirmBtn>신청</KBConfirmBtn>}>
-			<img src={img} className={$style.img} /> 
+      footer={<KBConfirmBtn onClickConfirm={clickNext}>신청</KBConfirmBtn>}>
+      <img src={img} className={$style.img} />
     </Drawer>
   );
 };

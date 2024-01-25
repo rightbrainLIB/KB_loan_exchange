@@ -44,7 +44,6 @@ const CurrencySelectSheet: FC<ICurrencySelectSheet> = ({ sheetOpen }) => {
         setSelectedWay("");
       }, 600);
     }
-    console.log(selectedWay);
   }, [selectedWay]);
 
   const wayList = [

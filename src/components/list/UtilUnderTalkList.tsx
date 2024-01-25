@@ -1,20 +1,43 @@
-import {Button} from "antd";
-import {FC} from "react";
+import { Button } from "antd";
+import { FC } from "react";
 
 import $style from "./UtilUnderTalkList.module.sass";
 
 interface IUtilUnderTalkList {
-  btnList: string[];
+  disabled?: boolean;
+  btnList?: string[];
+  btnUnderList?: {
+    disabled?: boolean;
+    text: string;
+    onClickBtn?: () => void;
+  }[];
 }
 
-const UtilUnderTalkList: FC<IUtilUnderTalkList> = ({ btnList }) => {
+const UtilUnderTalkList: FC<IUtilUnderTalkList> = ({
+  disabled = false,
+  btnList,
+  btnUnderList
+}) => {
   return (
     <ul className={$style.utilUnderTalkList}>
-      {btnList.map((btn, idx) => (
-        <li key={btn+idx}>
-          <Button>{btn}</Button>
-        </li>
-      ))}
+      {btnList &&
+        btnList.map((btn, idx) => (
+          <li key={btn + idx}>
+            <Button disabled={disabled}>{btn}</Button>
+          </li>
+        ))}
+      {btnUnderList &&
+        btnUnderList.map((btn, idx) => (
+          <li key={btn.text + idx}>
+            {btn.onClickBtn ? (
+              <Button onClick={btn.onClickBtn} disabled={btn.disabled}>
+                {btn.text}
+              </Button>
+            ) : (
+              <Button>{btn.text}</Button>
+            )}
+          </li>
+        ))}
     </ul>
   );
 };

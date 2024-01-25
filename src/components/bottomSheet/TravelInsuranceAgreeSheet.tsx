@@ -12,37 +12,41 @@ import $style from "./SelectReceiveDateSheet.module.scss";
 
 interface ITravelInsuranceAgreeSheet {
   sheetOpen: boolean;
+  closeSheet: () => void;
+  clickNext: () => void;
 }
 
-const TravelInsuranceAgreeSheet: FC<ITravelInsuranceAgreeSheet> = ({ sheetOpen }) => {
+const TravelInsuranceAgreeSheet: FC<ITravelInsuranceAgreeSheet> = ({
+  sheetOpen,
+  closeSheet,
+  clickNext
+}) => {
   // const dispatch = useDispatch();
-	
+
   // 시트 닫기
-  const closeSheet = useCallback(() => {
-    // dispatch(setOpenTakenWaySheet(false));
-  }, []);
-  
+  const closeAgreeSheet = useCallback(() => {
+    closeSheet && closeSheet();
+  }, [closeSheet]);
+
   return (
     <Drawer
       style={{ borderRadius: "12px 12px 0 0" }}
       styles={{
-        header: { borderBottom: 0, paddingTop: 32, paddingBottom: 0 },
+        header: { borderBottom: 0, paddingTop: 13, paddingBottom: 0 },
         body: { padding: 0 },
         footer: { borderTop: 0, padding: 0 }
       }}
       open={sheetOpen}
-      onClose={closeSheet}
+      onClose={closeAgreeSheet}
       closeIcon={false}
       height={"auto"}
-      title={<DrawerTitle
-				title={""}
-				useCloseBtn
-				closeDrawerBtn={closeSheet}
-			/>}
+      title={
+        <DrawerTitle title={""} useCloseBtn closeDrawerBtn={closeAgreeSheet} />
+      }
       placement={"bottom"}
       key={"TravelInsuranceAgreeSheet"}
-			footer={<KBConfirmBtn>신청</KBConfirmBtn>}>
-			<img src={img} className={$style.img} /> 
+      footer={<KBConfirmBtn onClickConfirm={clickNext}>동의</KBConfirmBtn>}>
+      <img src={img} className={$style.img} />
     </Drawer>
   );
 };

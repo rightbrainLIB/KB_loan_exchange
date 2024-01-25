@@ -1,6 +1,5 @@
-import globalUISlice from "@slices/globalUISlice.ts";
 import { ExchangeState } from "@src/store";
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode } from "react";
 import { isMobile } from "react-device-detect";
 import { useSelector } from "react-redux";
 

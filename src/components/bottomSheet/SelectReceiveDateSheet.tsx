@@ -9,20 +9,25 @@ import { Drawer } from "antd";
 import { FC, useCallback } from "react";
 
 import $style from "./SelectReceiveDateSheet.module.scss";
+
 // import { useDispatch } from "react-redux";
 
 interface ISelectReceiveDateSheet {
   sheetOpen: boolean;
+  closeSheet: () => void;
+  clickNext: () => void;
 }
 
-const SelectReceiveDateSheet: FC<ISelectReceiveDateSheet> = ({ sheetOpen }) => {
-  // const dispatch = useDispatch();
-  
+const SelectReceiveDateSheet: FC<ISelectReceiveDateSheet> = ({
+  sheetOpen,
+  closeSheet,
+  clickNext
+}) => {
   // 시트 닫기
-  const closeSheet = useCallback(() => {
-    // dispatch(setOpenTakenWaySheet(false));
-  }, []);
-  
+  const closeCalendar = useCallback(() => {
+    closeSheet && closeSheet();
+  }, [closeSheet]);
+
   return (
     <Drawer
       style={{ borderRadius: "12px 12px 0 0" }}
@@ -32,22 +37,20 @@ const SelectReceiveDateSheet: FC<ISelectReceiveDateSheet> = ({ sheetOpen }) => {
         footer: { borderTop: 0, padding: 0 }
       }}
       open={sheetOpen}
-      onClose={closeSheet}
+      onClose={closeCalendar}
       closeIcon={false}
       height={"auto"}
       title={
         <DrawerTitle
           title={"날짜 선택"}
           useCloseBtn
-          closeDrawerBtn={closeSheet}
+          closeDrawerBtn={closeCalendar}
         />
       }
       placement={"bottom"}
       key={"SelectReceiveDateSheet"}
-			footer={
-        <KBConfirmBtn>확인</KBConfirmBtn>
-      }>
-			<img src={img} className={$style.img} /> 
+      footer={<KBConfirmBtn onClickConfirm={clickNext}>확인</KBConfirmBtn>}>
+      <img src={img} className={$style.img} />
     </Drawer>
   );
 };

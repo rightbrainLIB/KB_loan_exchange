@@ -9,20 +9,30 @@ import { Drawer } from "antd";
 import { FC, useCallback } from "react";
 
 import $style from "./EssentialConfirmationSheet.module.scss";
+
 // import { useDispatch } from "react-redux";
 
 interface IEssentialConfirmationSheet {
   sheetOpen: boolean;
+  closeSheet: () => void;
+  clickNext: () => void;
 }
 
-const EssentialConfirmationSheet: FC<IEssentialConfirmationSheet> = ({ sheetOpen }) => {
-  // const dispatch = useDispatch();
-
+const EssentialConfirmationSheet: FC<IEssentialConfirmationSheet> = ({
+  sheetOpen,
+  closeSheet,
+  clickNext
+}) => {
   // 시트 닫기
-  const closeSheet = useCallback(() => {
-    // dispatch(setOpenTakenWaySheet(false));
-  }, []);
-  
+  const closeEssentialSheet = useCallback(() => {
+    closeSheet && closeSheet();
+  }, [closeSheet]);
+
+  // 다음
+  const nextStep = useCallback(() => {
+    clickNext && clickNext();
+  }, [clickNext]);
+
   return (
     <Drawer
       style={{ borderRadius: "12px 12px 0 0" }}
@@ -32,7 +42,7 @@ const EssentialConfirmationSheet: FC<IEssentialConfirmationSheet> = ({ sheetOpen
         footer: { borderTop: 0, padding: 0 }
       }}
       open={sheetOpen}
-      onClose={closeSheet}
+      onClose={closeEssentialSheet}
       closeIcon={false}
       height={"auto"}
       title={
@@ -44,13 +54,15 @@ const EssentialConfirmationSheet: FC<IEssentialConfirmationSheet> = ({ sheetOpen
       }
       placement={"bottom"}
       key={"EssentialConfirmationSheet"}
-			footer={
-				<div className={$style.footerBtns}>
-					<KBConfirmBtn type="default">취소</KBConfirmBtn>
-					<KBConfirmBtn>다음</KBConfirmBtn>
-				</div>
+      footer={
+        <div className={$style.footerBtns}>
+          <KBConfirmBtn type="default" onClickConfirm={closeEssentialSheet}>
+            취소
+          </KBConfirmBtn>
+          <KBConfirmBtn onClickConfirm={nextStep}>다음</KBConfirmBtn>
+        </div>
       }>
-			<img src={img} className={$style.img} /> 
+      <img src={img} className={$style.img} />
     </Drawer>
   );
 };

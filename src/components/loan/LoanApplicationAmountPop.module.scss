@@ -8,13 +8,13 @@
             border:0;
             border-bottom: 2px solid #26282c;
             border-radius: 0;
-            font-family: 'KBL';
+            font-family: 'KBB';
             font-size: 19px;
             line-height: 27px;
             font-weight: 700;
             color:#26282C;
             &::placeholder {
-                font-family: 'KBL';
+                font-family: 'KBB';
                 font-size: 19px;
                 line-height: 27px;
                 font-weight: 700;
@@ -22,14 +22,14 @@
             }
         }
         [class~="ant-input-affix-wrapper"]{
-            font-family: 'KBL';
+            font-family: 'KBB';
             padding:0;
             border:0;
             [class~="ant-input-suffix"]{
                 position:absolute;
                 bottom:4px;
                 right:0;
-                font-family: 'KBL';
+                font-family: 'KBB';
                 font-size: 26px;
                 line-height: 33px;
                 font-weight: 700;
@@ -54,6 +54,7 @@
                 margin-left: 4px;
             }
             span {
+                font-family: 'robotoL';
                 font-size: 15px;
                 line-height: 20px;
                 font-weight: 400;

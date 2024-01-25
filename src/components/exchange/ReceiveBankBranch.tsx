@@ -4,6 +4,7 @@
  */
 import KBTalk from "@components/box/KBTalk.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
+import UtilUnderTalkList from "@components/list/UtilUnderTalkList.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import img from "@imgs/exchange/ReceiveBankBranch.png";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
@@ -19,7 +20,7 @@ const ReceiveBankBranch: FC = () => {
 				<img src={img} />
 				<SelectableListWrap>
 					<li>
-            <SelectableBtn bgBtn>
+            <SelectableBtn bgBtn disabled>
 							바로 진행
 						</SelectableBtn>
           </li>
@@ -29,6 +30,7 @@ const ReceiveBankBranch: FC = () => {
 						</SelectableBtn>
           </li>
         </SelectableListWrap>
+        <UtilUnderTalkList btnList={["지점 위치 안내"]} />
       </KBTalk>
     </MotionList>
     </>

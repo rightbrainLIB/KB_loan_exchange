@@ -64,9 +64,6 @@ const WriteCurrency: FC = () => {
     setTimeout(() => {
       dispatch(setRequestCurrencyValue(false)); // NeedfulExchangeMoney 컴포넌트에서 useEffect로 requestCurrencyValue를 감시
     }, 500);
-    // setTimeout(() => {
-    //   setSheetOpen(true);
-    // }, 900);
   }, [dispatch]);
 
   // 마지막 step 체크하기
@@ -114,7 +111,10 @@ const WriteCurrency: FC = () => {
                   해야합니다.
                 </p>
                 <div style={{ marginTop: 23 }}>
-                  <SelectableBtn bgBtn onClickBtn={onClickCTABtn}>
+                  <SelectableBtn
+                    bgBtn
+                    onClickBtn={onClickCTABtn}
+                    disabled={requestCurrencyValue}>
                     환전 신청금액 입력
                   </SelectableBtn>
                 </div>

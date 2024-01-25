@@ -3,16 +3,19 @@
  * 환전에 필요한 금액을 알려드릴게요
  */
 import KBTalk from "@components/box/KBTalk.tsx";
+import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import img from "@imgs/exchange/NeedfulExchangeMoney.png";
 import {
+  setCheckRequestValue,
   setPrsNeedfulExchangeMoney,
   setRequestCurrencyValue
 } from "@slices/exchangeSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { ExchangeState } from "@src/store";
+import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -20,8 +23,10 @@ const NeedfulExchangeMoney: FC = () => {
   const dispatch = useDispatch();
 
   const [showBotStep, setShowBotStep] = useState(false);
+  const [showUserStep, setShowUserStep] = useState(false);
+  const [isLastChoice, setIsLastChoice] = useState(false);
 
-  const { requestCurrencyValue } = useSelector(
+  const { requestCurrencyValue, checkRequestValue } = useSelector(
     (state: ExchangeState) => state.exchange.userStep
   );
 
@@ -29,12 +34,25 @@ const NeedfulExchangeMoney: FC = () => {
     (state: ExchangeState) => state.exchange.botStep
   );
 
+  // 환전 바로 진행
+  const onClickNext = useCallback(() => {
+    setShowUserStep(true);
+    dispatch(setCheckRequestValue(true));
+  }, [dispatch, showUserStep]);
+
   const onClickModifyTask = useCallback(() => {
     dispatch(setPrsNeedfulExchangeMoney(false)); // wrapper 감추기
     setTimeout(() => {
       dispatch(setRequestCurrencyValue(false)); // USD 1,000 (userStep)을 false로 돌림 - 렌더 삭제됨!
     }, 500);
   }, [dispatch]);
+
+  // 마지막 step 체크하기
+  const lastStr = LastTrueUserStep();
+
+  useEffect(() => {
+    setIsLastChoice(lastStr === "checkRequestValue");
+  }, [lastStr]);
 
   useEffect(() => {
     if (requestCurrencyValue) {
@@ -45,26 +63,41 @@ const NeedfulExchangeMoney: FC = () => {
     } else {
       setShowBotStep(false);
     }
-  }, [requestCurrencyValue]);
+  }, [requestCurrencyValue, dispatch]);
 
   return (
     <>
       {showBotStep && (
-        <MotionList aniCondition={prsNeedfulExchangeMoney} showHeight={430}>
+        <MotionList aniCondition={prsNeedfulExchangeMoney} showHeight={470}>
           <BotProfile />
           <KBTalk>
             <img src={img} />
             <SelectableListWrap>
               <li>
-                <SelectableBtn bgBtn>환전 바로 진행</SelectableBtn>
+                <SelectableBtn
+                  bgBtn
+                  onClickBtn={onClickNext}
+                  disabled={checkRequestValue}>
+                  환전 바로 진행
+                </SelectableBtn>
               </li>
               <li>
-                <SelectableBtn onClickBtn={onClickModifyTask}>
+                <SelectableBtn
+                  onClickBtn={onClickModifyTask}
+                  disabled={checkRequestValue}>
                   환전 금액 수정
                 </SelectableBtn>
               </li>
             </SelectableListWrap>
           </KBTalk>
+        </MotionList>
+      )}
+
+      {showUserStep && (
+        <MotionList aniCondition={checkRequestValue}>
+          <SelectedUserBox isLastSelect={isLastChoice}>
+            환전 바로 진행
+          </SelectedUserBox>
         </MotionList>
       )}
     </>

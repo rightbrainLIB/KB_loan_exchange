@@ -1,10 +1,16 @@
 import KBConfirmBtn from "@components/buttons/KBConfirmBtn.tsx";
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import ExchangeWayList from "@components/list/ExchangeWayList.tsx";
-import exchangeWayIcon from "@imgs/Ellipse 4.png";
-import { setOpenTakenWaySheet } from "@slices/exchangeCurrencySlices.ts";
+import way_1_direct from "@imgs/icons/way_1_direct.png";
+import way_1_gift from "@imgs/icons/way_1_gift.png";
+import way_1_keep from "@imgs/icons/way_1_keep.png";
+import way_1_post from "@imgs/icons/way_1_post.png";
+import {
+  setOpenTakenPlaceSheet,
+  setOpenTakenWaySheet
+} from "@slices/exchangeCurrencySlices.ts";
 import { Drawer } from "antd";
-import { FC, useCallback } from "react";
+import { FC, useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 
 // import { useDispatch } from "react-redux";
@@ -15,33 +21,50 @@ interface ICurrencySelectSheet {
 
 const CurrencySelectSheet: FC<ICurrencySelectSheet> = ({ sheetOpen }) => {
   const dispatch = useDispatch();
+
+  const [selectedWay, setSelectedWay] = useState("");
+
   // 시트 닫기
   const closeSheet = useCallback(() => {
     dispatch(setOpenTakenWaySheet(false));
-  }, []);
+  }, [dispatch]);
 
   // const onClickConfirmBtn = useCallback(() => {
   //   onClickCloseSheet && onClickCloseSheet();
   // }, [onClickCloseSheet]);
 
+  // 확인 버튼
+  const onClickNext = useCallback(() => {
+    if (selectedWay === "직접 받으로 가기") {
+      dispatch(setOpenTakenWaySheet(false));
+      setTimeout(() => {
+        dispatch(setOpenTakenPlaceSheet(true));
+      }, 300);
+      setTimeout(() => {
+        setSelectedWay("");
+      }, 600);
+    }
+    console.log(selectedWay);
+  }, [selectedWay]);
+
   const wayList = [
     {
-      imgSrc: `${exchangeWayIcon}`,
+      imgSrc: `${way_1_direct}`,
       title: "직접 받으로 가기",
       subText: "최소 환전금액 USD 50부터 가능해요"
     },
     {
-      imgSrc: `${exchangeWayIcon}`,
+      imgSrc: `${way_1_gift}`,
       title: "외화 선물하기 (기프티콘)",
       subText: "최소 환전금액 USD 50부터 가능해요"
     },
     {
-      imgSrc: `${exchangeWayIcon}`,
+      imgSrc: `${way_1_post}`,
       title: "우편으로 받기",
       subText: "최소 환전금액 USD 400부터 가능해요"
     },
     {
-      imgSrc: `${exchangeWayIcon}`,
+      imgSrc: `${way_1_keep}`,
       title: "외화 머니박스 보관하기",
       subText: "최소 환전금액 USD 10부터 가능해요"
     }
@@ -69,8 +92,11 @@ const CurrencySelectSheet: FC<ICurrencySelectSheet> = ({ sheetOpen }) => {
       }
       placement={"bottom"}
       key={"CurrencySelectSheet"}
-      footer={<KBConfirmBtn>확인</KBConfirmBtn>}>
-      <ExchangeWayList wayList={wayList} />
+      footer={<KBConfirmBtn onClickConfirm={onClickNext}>확인</KBConfirmBtn>}>
+      <ExchangeWayList
+        wayList={wayList}
+        clickWay={(str) => setSelectedWay(str)}
+      />
     </Drawer>
   );
 };

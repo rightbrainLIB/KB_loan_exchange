@@ -1,25 +1,36 @@
 .inputWrap {
-	border-bottom: 2px solid #26282C;
-	display: flex;
-	padding-bottom: 7px;
-	span {
-		font-family: "KBB";
-		font-size: 26px;
-		line-height: 33px;
-	}
-	.input {
-		height: 33px;
-		border: 0;
-		font-family: "KBB";
-		font-size: 19px;
-		line-height: 27px;
-		letter-spacing: -0.02em;
-		padding: 0;
-		&::placeholder {
-			color: #929292;
-		}
-		&:focus {
-			box-shadow: unset;
-		}
-	}
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 7px;
+  border-bottom: 2px solid #26282C;
+
+  span {
+    font-family: "KBB", sans-serif;
+    font-size: 26px;
+    line-height: 33px;
+  }
+
+  .input {
+    font-family: "KBB", sans-serif;
+    font-size: 19px;
+    line-height: 33px;
+    height: 33px;
+    padding: 0;
+    letter-spacing: -0.02em;
+    border: 0;
+
+    &.disabled {
+      color: #929292;
+    }
+
+    &::placeholder {
+      color: #929292;
+    }
+
+    &:focus {
+      box-shadow: unset;
+    }
+  }
 }

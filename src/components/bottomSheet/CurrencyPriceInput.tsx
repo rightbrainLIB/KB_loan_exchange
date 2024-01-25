@@ -1,7 +1,7 @@
 import KBConfirmBtn from "@components/buttons/KBConfirmBtn.tsx";
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import Keypad from "@components/contents/Keypad.tsx";
-import usaFlag from "@imgs/logo/icon_country.png";
+import usaFlag from "@imgs/logo/usa.png";
 import { Drawer } from "antd";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";

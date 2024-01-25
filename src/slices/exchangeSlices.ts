@@ -33,6 +33,10 @@ export interface IExchangeState {
     prsTermsAgreeForExchange: boolean; // 은행지점에서 받기 위해 외화거래에 대한 약관동의가 필요해요
     prsInputCurrencyValue: boolean; // 환전 신청 금액을 입력해주세요
     prsNeedfulExchangeMoney: boolean; // 환전에 필요한 금액을 알려드릴게요
+    notificationUSD: boolean; // 미국달러로 계속 진행할까요?
+    notifyWhenExchangeRate: boolean; // 환율이 얼마일때 알려드릴까요?
+    checkNotificationExchangeRate: boolean; // 환율이 1,300.8원 이하 일때 알림을 드릴까요?
+    completionNotificationExchangeRate: boolean; // 원하는 환율일 때 알림을 드릴게요
   };
 }
 
@@ -66,7 +70,11 @@ const initialState: IExchangeState = {
     prsExchangeRate: false,
     prsTermsAgreeForExchange: false,
     prsInputCurrencyValue: false,
-    prsNeedfulExchangeMoney: false
+    prsNeedfulExchangeMoney: false,
+    notificationUSD: false,
+    notifyWhenExchangeRate: false,
+    checkNotificationExchangeRate: false,
+    completionNotificationExchangeRate: false
   }
 };
 
@@ -162,6 +170,24 @@ const exchangeSlice = createSlice({
       { payload }: PayloadAction<boolean>
     ) => {
       state.botStep.prsNeedfulExchangeMoney = payload;
+    },
+    setNotificationUSD: (state, { payload }: PayloadAction<boolean>) => {
+      state.botStep.notificationUSD = payload;
+    },
+    setNotifyWhenExchangeRate: (state, { payload }: PayloadAction<boolean>) => {
+      state.botStep.notifyWhenExchangeRate = payload;
+    },
+    setCheckNotificationExchangeRate: (
+      state,
+      { payload }: PayloadAction<boolean>
+    ) => {
+      state.botStep.checkNotificationExchangeRate = payload;
+    },
+    setCompletionNotificationExchangeRate: (
+      state,
+      { payload }: PayloadAction<boolean>
+    ) => {
+      state.botStep.completionNotificationExchangeRate = payload;
     }
   }
 });
@@ -193,7 +219,11 @@ export const {
   setPrsExchangeRate,
   setPrsTermsAgreeForExchange,
   setPrsInputCurrencyValue,
-  setPrsNeedfulExchangeMoney
+  setPrsNeedfulExchangeMoney,
+  setNotificationUSD,
+  setNotifyWhenExchangeRate,
+  setCheckNotificationExchangeRate,
+  setCompletionNotificationExchangeRate
 } = exchangeSlice.actions;
 
 export default exchangeSlice.reducer;

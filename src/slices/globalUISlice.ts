@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface IGlobalUI {
-  containerBootmSize: number;
+  containerBootmSize: number | null;
   exchangeProgressStep: number;
   exchangeTotalStep: number;
   loanProgressStep: number;
@@ -9,7 +9,7 @@ export interface IGlobalUI {
 }
 
 const initialState: IGlobalUI = {
-  containerBootmSize: 0,
+  containerBootmSize: null,
   exchangeProgressStep: 0,
   exchangeTotalStep: 0,
   loanProgressStep: 0,
@@ -20,7 +20,10 @@ const globalUISlice = createSlice({
   name: "containerBottom",
   initialState,
   reducers: {
-    setContainerBottomSize: (state, { payload }: PayloadAction<number>) => {
+    setContainerBottomSize: (
+      state,
+      { payload }: PayloadAction<number | null>
+    ) => {
       state.containerBootmSize = payload;
     },
     setExchangeProgressStep: (state, { payload }: PayloadAction<number>) => {

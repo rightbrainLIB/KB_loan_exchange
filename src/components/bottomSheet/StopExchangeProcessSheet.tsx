@@ -11,7 +11,7 @@ interface IRemindReverse {
   execConfirm: () => void;
 }
 
-const RemindReverseSheet: FC<IRemindReverse> = ({
+const StopExchangeProcessSheet: FC<IRemindReverse> = ({
   sheetOpen = false,
   closeSheet,
   execConfirm
@@ -35,15 +35,15 @@ const RemindReverseSheet: FC<IRemindReverse> = ({
         height={189}
         title={
           <DrawerTitle
-            title={"다시 선택하시겠어요?"}
-            subText={"바로 이전의 선택지로 돌아갈 수 있어요"}
+            title={"진행을 그만둘까요?"}
+            subText={"환전이 정상적으로 신청되어 지금 나가도 내역은 남아있어요"}
             headerLinkSubText
             useCloseBtn
             closeDrawerBtn={closeSheet}
           />
         }
         placement={"bottom"}
-        key={"RemindReverseSheet"}
+        key={"StopExchangeProcessSheet"}
         footer={
           <div className={$style.sheetFooter}>
             <KBConfirmBtn
@@ -62,4 +62,4 @@ const RemindReverseSheet: FC<IRemindReverse> = ({
   );
 };
 
-export default RemindReverseSheet;
+export default StopExchangeProcessSheet;

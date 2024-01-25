@@ -1,10 +1,15 @@
 import KBConfirmBtn from "@components/buttons/KBConfirmBtn.tsx";
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import ExchangeWayList from "@components/list/ExchangeWayList.tsx";
-import exchangeWayIcon from "@imgs/Ellipse 4.png";
-import { setOpenTakenPlaceSheet } from "@slices/exchangeCurrencySlices.ts";
+import way_2_airport from "@imgs/icons/way_2_airport.png";
+import way_2_atm from "@imgs/icons/way_2_atm.png";
+import way_2_bank from "@imgs/icons/way_2_bank.png";
+import {
+  setCompUserSelect,
+  setOpenTakenPlaceSheet
+} from "@slices/exchangeCurrencySlices.ts";
 import { Drawer } from "antd";
-import { FC, useCallback } from "react";
+import { FC, useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 
 interface ICurrencyTakenPlaceSheet {
@@ -15,28 +20,37 @@ const CurrencyTakenPlaceSheet: FC<ICurrencyTakenPlaceSheet> = ({
   sheetOpen
 }) => {
   const dispatch = useDispatch();
+
+  const [selectedWay, setSelectedWay] = useState("");
+
   // 시트 닫기
   const closeSheet = useCallback(() => {
     dispatch(setOpenTakenPlaceSheet(false));
   }, [dispatch]);
 
   const onClickConfirmBtn = useCallback(() => {
-    dispatch(setOpenTakenPlaceSheet(false));
-  }, [dispatch]);
+    if (selectedWay === "은행에서 직접 받기") {
+      dispatch(setOpenTakenPlaceSheet(false));
+      dispatch(setCompUserSelect(true)); // 모두 선택 되었는지 체크하여 '은행지점에서 받기 보이기를 useEffect로 체크
+      setTimeout(() => {
+        setSelectedWay("");
+      }, 300);
+    }
+  }, [selectedWay, dispatch]);
 
   const wayList = [
     {
-      imgSrc: `${exchangeWayIcon}`,
+      imgSrc: `${way_2_bank}`,
       title: "은행에서 직접 받기",
       subText: "최소 환전금액 USD 50부터 가능해요"
     },
     {
-      imgSrc: `${exchangeWayIcon}`,
+      imgSrc: `${way_2_atm}`,
       title: "외환 ATM에서 받기",
       subText: "최소 환전금액 USD 10부터 가능해요"
     },
     {
-      imgSrc: `${exchangeWayIcon}`,
+      imgSrc: `${way_2_airport}`,
       title: "인천공항에서 받기",
       subText: "최소 환전금액 USD 10부터 가능해요"
     }
@@ -67,7 +81,10 @@ const CurrencyTakenPlaceSheet: FC<ICurrencyTakenPlaceSheet> = ({
       footer={
         <KBConfirmBtn onClickConfirm={onClickConfirmBtn}>확인</KBConfirmBtn>
       }>
-      <ExchangeWayList wayList={wayList} />
+      <ExchangeWayList
+        wayList={wayList}
+        clickWay={(str) => setSelectedWay(str)}
+      />
     </Drawer>
   );
 };

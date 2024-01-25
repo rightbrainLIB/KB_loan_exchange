@@ -15,6 +15,7 @@ import {
   setOpenTakenWaySheet
 } from "@slices/exchangeCurrencySlices.ts";
 import {
+  setNotificationUSD,
   setPrsTermsAgreeForExchange,
   setSaveAlarm,
   setTakenPlace
@@ -63,6 +64,10 @@ const ExecuteCurrency: FC = () => {
     setTimeout(() => {
       dispatch(setSaveAlarm(true));
     });
+    // 미국달러로 계속 진행할까요?
+    setTimeout(() => {
+      dispatch(setNotificationUSD(true));
+    }, 600);
   }, [showUserStepPositive, showUserStepNegative, dispatch]);
 
   const modifySaveAlarm = useCallback(() => {
@@ -140,12 +145,16 @@ const ExecuteCurrency: FC = () => {
                 </EmphasisContent>
                 <SelectableListWrap>
                   <li>
-                    <SelectableBtn onClickBtn={onClickExecute}>
+                    <SelectableBtn
+                      onClickBtn={onClickExecute}
+                      disabled={isTakenPlace || saveAlarm}>
                       지금 바로 환전
                     </SelectableBtn>
                   </li>
                   <li>
-                    <SelectableBtn onClickBtn={openAlarmSheet}>
+                    <SelectableBtn
+                      onClickBtn={openAlarmSheet}
+                      disabled={isTakenPlace || saveAlarm}>
                       원하는 환율일 때 알림받기
                     </SelectableBtn>
                   </li>

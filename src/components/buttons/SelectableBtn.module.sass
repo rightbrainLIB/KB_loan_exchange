@@ -4,6 +4,7 @@
   align-items: center
   background-color: #fff
   border: 1px solid #FFD338
+  color: #26282C
   -webkit-border-radius: 10px
   -moz-border-radius: 10px
   border-radius: 10px
@@ -11,10 +12,16 @@
   height: 44px
   margin: 0
   padding: 0
+  transition: all .3s ease-in
 
   &.bgBtn
     background-color: #FFD338
     border: 0
+
+    &:disabled
+      background-color: #D7D7D7
+      border-color: #D7D7D7
+      color: #929395
 
   &.small
     height: 30px
@@ -26,7 +33,7 @@
   &:disabled
     border: 1px solid #D7D7D7
     background-color: unset
-    color: #26282C
+    color: rgba(38, 40, 44, .5)
 
   .imgBox
     background-color: #E5E5E5
@@ -47,7 +54,6 @@
     font-family: 'KBM', sans-serif
     font-size: 16px
     line-height: 24px
-    letter-spacing: -0.1em
 
     span
       display: inline-flex

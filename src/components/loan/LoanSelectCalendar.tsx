@@ -22,7 +22,7 @@ const LoanSelectCalendar: FC = () => {
         <BotBox>
           <BotProfile />
           <KBTalk>
-            <img src={img} />
+            <img src={img} width="247" />
             <SelectableListWrap>
               <li>
                 <SelectableBtn bgBtn onClickBtn={clickNextPop}>

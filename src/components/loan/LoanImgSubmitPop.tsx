@@ -107,14 +107,14 @@ const LoanImgSubmitPop: FC = () => {
       <Drawer
         style={{ borderRadius: "12px 12px 0 0" }}
         styles={{
-          header: { borderBottom: 0, paddingTop: 32, paddingBottom: 0 },
-          body: { padding: 24, paddingTop: 0 },
+          header: { borderBottom: 0, paddingTop: 26, paddingBottom: 0 },
+          body: { padding: 24, paddingTop: 50 },
           footer: { borderTop: 0, padding: 0 }
         }}
         open={imgSelectOpen}
         onClose={closeImgSheet}
         closeIcon={false}
-        height={542}
+        height={530}
         title={
           <DrawerTitle
             title={

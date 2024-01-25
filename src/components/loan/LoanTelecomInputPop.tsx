@@ -5,11 +5,12 @@ import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import img01 from "@imgs/loan/LoanTelecomInputPop_01.png";
 import { Button, Drawer, Input } from "antd";
 import { useState } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanTelecomInputPop.module.scss";
 
-const LoanTelecomInputPop = () => {
+const LoanTelecomInputPop: FC = () => {
   const navigate = useNavigate();
   const [sheetImgOpen, setsheetImgOpen] = useState(true);
 
@@ -18,7 +19,7 @@ const LoanTelecomInputPop = () => {
   };
 
   const clickBtnPop = () => {
-    navigate("/LoanTelecomInputPop");
+    navigate("/LoanChat");
   };
   return (
     <>

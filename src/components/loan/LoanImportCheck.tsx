@@ -6,11 +6,12 @@ import img01 from "@imgs/loan/LoanChack_01.png";
 import { Button, CheckboxProps, GetProp } from "antd";
 import { Checkbox } from "antd";
 import { useState } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanImportCheck.module.scss";
 
-const LoanImportCheck = () => {
+const LoanImportCheck: FC = () => {
   const navigate = useNavigate();
   type CheckboxValueType = GetProp<typeof Checkbox.Group, "value">[number];
 

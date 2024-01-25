@@ -4,11 +4,12 @@
 import img01 from "@imgs/loan/LoanFacePop.png";
 import { Modal } from "antd";
 import { useState } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanFacePop.module.scss";
 
-const LoanFacePop = () => {
+const LoanFacePop: FC = () => {
   const navigate = useNavigate();
   const [sheetOpen, setsheetOpen] = useState(true);
   const clickFacePop = () => {

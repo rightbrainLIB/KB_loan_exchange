@@ -7,11 +7,12 @@ import img01 from "@imgs/loan/LoanSuitableConfirm_01.png";
 import img02 from "@imgs/loan/LoanSuitableConfirm_02.png";
 import { Button, Checkbox, Drawer } from "antd";
 import { useState } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanSuitableConfirm.module.scss";
 
-const LoanSuitableConfirm = () => {
+const LoanSuitableConfirm: FC = () => {
   const navigate = useNavigate();
   const [sheetOpen, setsheetOpen] = useState(false);
   const [sheetValue, setsheetValue] = useState(false);

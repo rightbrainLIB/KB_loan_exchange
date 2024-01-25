@@ -4,11 +4,12 @@
 import KBConfirmBtn from "@components/buttons/KBConfirmBtn.tsx";
 import img01 from "@imgs/loan/LoanCreditLimitProduct_01.png";
 import img02 from "@imgs/loan/LoanCreditLimitProduct_02.png";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanCreditLimitProduct.module.scss";
 
-const LoanCreditLimitProduct = () => {
+const LoanCreditLimitProduct: FC = () => {
   const navigate = useNavigate();
   const onClickConfirmBtn = () => {
     navigate("/LoanImportCheck");

@@ -20,6 +20,8 @@ import LoanLimitCurrency from "@components/loan/LoanLimitCurrency.tsx";
 import LoanRecommendGuide from "@components/loan/LoanRecommendGuide.tsx";
 import LoanSearchHouse from "@components/loan/LoanSearchHouse.tsx";
 import LoanSelectCalendar from "@components/loan/LoanSelectCalendar.tsx";
+import LoanSubmitComplete from "@components/loan/LoanSubmitComplete.tsx";
+import LoanSubmitInfo from "@components/loan/LoanSubmitInfo.tsx";
 import { FC } from "react";
 
 const LoanChat: FC = () => {
@@ -94,6 +96,14 @@ const LoanChat: FC = () => {
         {/* S: 부동산담보대출 대출 서류 이미지로 제출하기*/}
         <LoanInfoSubmitComplete />
         {/* E: 부동산담보대출 대출 서류 이미지로 제출하기*/}
+
+        {/* S: 부동산담보대출 신청 완료*/}
+        <LoanSubmitComplete />
+        {/* E: 부동산담보대출 신청 완료*/}
+
+        {/* S: 부동산담보대출 신청 완료 내역*/}
+        <LoanSubmitInfo />
+        {/* E: 부동산담보대출 신청 완료 내역*/}
       </KBContainer>
     </>
   );

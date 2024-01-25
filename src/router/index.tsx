@@ -6,7 +6,9 @@ import LoanFacePop from "@components/loan/LoanFacePop.tsx";
 import LoanFirstRatePop from "@components/loan/LoanFirstRatePop.tsx";
 import LoanImgSubmitPop from "@components/loan/LoanImgSubmitPop.tsx";
 import LoanImportCheck from "@components/loan/LoanImportCheck.tsx";
+import LoanInfoTotalComplete from "@components/loan/LoanInfoTotalComplete.tsx";
 import LoanSelectCalendarPop from "@components/loan/LoanSelectCalendarPop.tsx";
+import LoanSubmitComplete from "@components/loan/LoanSubmitComplete.tsx";
 import LoanSuitableConfirm from "@components/loan/LoanSuitableConfirm.tsx";
 import LoanTelecomInputPop from "@components/loan/LoanTelecomInputPop.tsx";
 import LoanTelecomSelectPop from "@components/loan/LoanTelecomSelectPop.tsx";
@@ -72,6 +74,14 @@ const router = createBrowserRouter(
     {
       path: "/LoanImgSubmitPop",
       element: <LoanImgSubmitPop />
+    },
+    {
+      path: "/LoanSubmitComplete",
+      element: <LoanSubmitComplete />
+    },
+    {
+      path: "/LoanInfoTotalComplete",
+      element: <LoanInfoTotalComplete />
     }
   ],
   { basename: "/KB_loan_exchange" }

@@ -20,7 +20,7 @@ const ReceiveBankBranch: FC = () => {
 				<img src={img} />
 				<SelectableListWrap>
 					<li>
-            <SelectableBtn bgBtn disabled>
+            <SelectableBtn bgBtn>
 							바로 진행
 						</SelectableBtn>
           </li>

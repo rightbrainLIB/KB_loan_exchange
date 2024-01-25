@@ -28,7 +28,7 @@ const InterestRateInfoSheet: FC<IInterestRateInfoSheet> = ({
         }}
         open={sheetOpen}
         closeIcon={false}
-        height={"95vh"}
+        height={"100vh"}
         title={
           <DrawerTitle
             title={"금리 방식 안내"}

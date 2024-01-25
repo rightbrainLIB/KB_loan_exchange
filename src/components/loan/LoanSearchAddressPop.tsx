@@ -56,7 +56,7 @@ const LoanSearchAddressPop: FC<ILoanSearchAddressPop> = ({
         }}
         open={sheetOpen}
         closeIcon={false}
-        height={"95vh"}
+        height={"100vh"}
         title={
           <DrawerTitle
             title={"주택 시세정보 검색"}

@@ -60,7 +60,6 @@ const LoanSearchAddressPop: FC<ILoanSearchAddressPop> = ({
         title={
           <DrawerTitle
             title={"주택 시세정보 검색"}
-            subText={""}
             useCloseBtn
           />
         }

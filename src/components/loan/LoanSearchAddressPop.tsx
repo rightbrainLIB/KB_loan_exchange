@@ -4,7 +4,7 @@
  */
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import { Drawer, Input } from "antd";
-import { FC, useState } from "react";
+import { FC, useRef, useState } from "react";
 
 import $style from "./LoanSearchAddressPop.module.scss"
 
@@ -15,16 +15,23 @@ interface ILoanSearchAddressPop {
 const LoanSearchAddressPop: FC<ILoanSearchAddressPop> = ({
   sheetOpen
 }) => {
+  const inputRef = useRef(null);
   const [searchValue, setSearchValue] = useState("");
   const [resultVisible, setResultVisible] = useState(false);
   const [clickResultVisible, setClickResultVisible] = useState(false);
 
   const InputSetValue = () => {
     setSearchValue("대치동 은마아파트");
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   };
 
   const onKeyPressInput = () => {
     setResultVisible(true);
+    if (inputRef.current) {
+      inputRef.current.blur();
+    }
   };
 
   const resultClick = () => {
@@ -52,7 +59,7 @@ const LoanSearchAddressPop: FC<ILoanSearchAddressPop> = ({
         height={"95vh"}
         title={
           <DrawerTitle
-            title={"인증번호 입력"}
+            title={"주택 시세정보 검색"}
             subText={""}
             useCloseBtn
           />
@@ -62,12 +69,17 @@ const LoanSearchAddressPop: FC<ILoanSearchAddressPop> = ({
         className={$style.LoanSearchAddressPop}>
         <div className={$style.inputbox}>
           <Input 
+            className={$style.fakeInput} 
+            ref={inputRef}
+            value={""}
+            onPressEnter={onKeyPressInput} 
+          />
+          <Input 
             className={$style.input} 
             placeholder="예) 대치동 은마아파트 입력" 
-            inputMode="none"
+            // inputMode="none"
             readOnly
             value={searchValue}
-            onPressEnter={onKeyPressInput} 
           />
           <button type="button" className={`${$style.clearBtn} ${searchValue === "대치동 은마아파트" && $style.visible}`} onClick={clearValue}></button>
           <button type="button" className={$style.searchBtn} onClick={InputSetValue}></button>

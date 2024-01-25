@@ -4,6 +4,7 @@ import LoanChat from "@components/loan/LoanChat.tsx";
 import LoanCreditLimitProduct from "@components/loan/LoanCreditLimitProduct.tsx";
 import LoanFacePop from "@components/loan/LoanFacePop.tsx";
 import LoanFirstRatePop from "@components/loan/LoanFirstRatePop.tsx";
+import LoanImgSubmitPop from "@components/loan/LoanImgSubmitPop.tsx";
 import LoanImportCheck from "@components/loan/LoanImportCheck.tsx";
 import LoanSelectCalendarPop from "@components/loan/LoanSelectCalendarPop.tsx";
 import LoanSuitableConfirm from "@components/loan/LoanSuitableConfirm.tsx";
@@ -67,6 +68,10 @@ const router = createBrowserRouter(
     {
       path: "/LoanApplicationAmountPop",
       element: <LoanApplicationAmountPop />
+    },
+    {
+      path: "/LoanImgSubmitPop",
+      element: <LoanImgSubmitPop />
     }
   ],
   { basename: "/KB_loan_exchange" }

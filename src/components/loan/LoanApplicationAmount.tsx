@@ -22,7 +22,7 @@ const LoanApplicationAmount: FC = () => {
         <BotBox>
           <BotProfile />
           <KBTalk>
-            <img src={img} />
+            <img src={img} width="263" />
             <SelectableListWrap>
               <li>
                 <SelectableBtn bgBtn onClickBtn={clickNextPop}>

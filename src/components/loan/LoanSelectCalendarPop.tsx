@@ -37,7 +37,7 @@ const LoanSelectCalendarPop: FC = () => {
         height={540}
         title={
           <DrawerTitle
-            title={"우대금리 적용"}
+            title={"대출희망일 선택"}
             subText={""}
             useCloseBtn
             closeDrawerBtn={closeImgSheet}

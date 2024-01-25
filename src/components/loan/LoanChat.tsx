@@ -3,9 +3,20 @@
  */
 import KBContainer from "@components/common/KBContainer.tsx";
 import KBHeader from "@components/common/KBHeader.tsx";
+import LoanApplicationAmount from "@components/loan/LoanApplicationAmount.tsx";
+import LoanHouseAddComfirm from "@components/loan/LoanHouseAddComfirm.tsx";
+import LoanHouseAddComfirmStep01 from "@components/loan/LoanHouseAddComfirmStep01.tsx";
+import LoanHouseAddComfirmStep02 from "@components/loan/LoanHouseAddComfirmStep02.tsx";
+import LoanHouseAddComfirmStep03 from "@components/loan/LoanHouseAddComfirmStep03.tsx";
+import LoanHouseAddComfirmStep04 from "@components/loan/LoanHouseAddComfirmStep04.tsx";
+import LoanHouseAddComfirmStep05 from "@components/loan/LoanHouseAddComfirmStep05.tsx";
+import LoanHouseAddComfirmStep06 from "@components/loan/LoanHouseAddComfirmStep06.tsx";
+import LoanHouseComfirm from "@components/loan/LoanHouseComfirm.tsx";
 import LoanIdentityCheck from "@components/loan/LoanIdentityCheck.tsx";
 import LoanLimitCurrency from "@components/loan/LoanLimitCurrency.tsx";
+import LoanRecommendGuide from "@components/loan/LoanRecommendGuide.tsx";
 import LoanSearchHouse from "@components/loan/LoanSearchHouse.tsx";
+import LoanSelectCalendar from "@components/loan/LoanSelectCalendar.tsx";
 import { FC } from "react";
 
 const LoanChat: FC = () => {
@@ -24,6 +35,50 @@ const LoanChat: FC = () => {
         {/* S: 부동산담보대출 주택 시세정보 */}
         <LoanSearchHouse />
         {/* E: 부동산담보대출 주택 시세정보 */}
+
+        {/* S: 부동산담보대출 주택 시세확인 */}
+        <LoanHouseComfirm />
+        {/* E: 부동산담보대출 주택 시세확인 */}
+
+        {/* S: 부동산담보대출 주택 대출 목적 질문 */}
+        <LoanHouseAddComfirm />
+        {/* E: 부동산담보대출 주택 대출 목적 질문 */}
+
+        {/* S: 부동산담보대출 주택 지정할 명의 */}
+        <LoanHouseAddComfirmStep01 />
+        {/* E: 부동산담보대출 주택 지정할 명의 */}
+
+        {/* S: 부동산담보대출 보유한 주택 수*/}
+        <LoanHouseAddComfirmStep02 />
+        {/* E: 부동산담보대출 보유한 주택 수 */}
+
+        {/* S: 부동산담보대출 직업정보*/}
+        <LoanHouseAddComfirmStep03 />
+        {/* E: 부동산담보대출 직업정보 */}
+
+        {/* S: 부동산담보대출 입력한 정보 요약*/}
+        <LoanHouseAddComfirmStep04 />
+        {/* E: 부동산담보대출 입력한 정보 요약 */}
+
+        {/* S: 부동산담보대출 대출 추천*/}
+        <LoanHouseAddComfirmStep05 />
+        {/* E: 부동산담보대출 대출 추천 */}
+
+        {/* S: 부동산담보대출 대출 신청 진행*/}
+        <LoanHouseAddComfirmStep06 />
+        {/* E: 부동산담보대출 대출 신청 진행 */}
+
+        {/* S: 부동산담보대출 신청정보로 최대 한도 제시*/}
+        <LoanRecommendGuide />
+        {/* E: 부동산담보대출 신청정보로 최대 한도 제시 */}
+
+        {/* S: 부동산담보대출 대출 받고자 하는 날짜*/}
+        <LoanSelectCalendar />
+        {/* E: 부동산담보대출 대출 받고자 하는 날짜*/}
+
+        {/* S: 부동산담보대출 대출 신청금액 입력*/}
+        <LoanApplicationAmount />
+        {/* E: 부동산담보대출 대출 신청금액 입력*/}
       </KBContainer>
     </>
   );

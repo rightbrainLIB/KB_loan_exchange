@@ -14,7 +14,7 @@
     margin: 40px 24px 0;
 
     .checkAll {
-      font-family: 'KBL';
+      font-family: 'KBL', sans-serif;
       font-size: 18px;
       font-weight: 700;
       line-height: 25px;
@@ -29,7 +29,7 @@
       border-bottom: 1px solid #DDE1E4;
 
       label {
-        font-family: 'KBL';
+        font-family: 'KBL', sans-serif;
         font-size: 16px;
         font-weight: 700;
         line-height: 23px;
@@ -121,110 +121,129 @@
       background-size: 24px;
     }
   }
-.LoanImportCheckWrap{
-    background-color: #fff;
-    height:calc(100vh - 57px);
+
+  .LoanImportCheckWrap {
+    height: calc(100vh - 57px);
     padding-top: 48px;
+    background-color: #fff;
+
     h4 {
-        padding:24px 0 0 24px;
-        font-size: 24px;
-        font-weight: 700;
-        line-height: 33px;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 33px;
+      padding: 24px 0 0 24px;
     }
+
     .checkBox {
-        margin: 40px 24px 0;
-        .checkAll {
-            padding-bottom: 14px;
-            font-family: 'KBB';
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 25px;
-            border-bottom: 1px solid #484B51;
+      margin: 40px 24px 0;
+
+      .checkAll {
+        font-family: 'KBB', sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 25px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid #484B51;
+      }
+
+      .checkList {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 0;
+        border-bottom: 1px solid #DDE1E4;
+
+        label {
+          font-family: 'KBB', sans-serif;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 23px;
+
+          & + label {
+            margin-top: 16px;
+          }
         }
-        .checkList {
-            padding: 20px 0;
-            display: flex;
-            flex-direction: column;
-            border-bottom: 1px solid  #DDE1E4;
-            label{
-                font-family: 'KBB';
-                font-size: 16px;
-                font-weight: 700;
-                line-height: 23px;
-                & + label {
-                    margin-top: 16px;
-                }
-            }
-        }
+      }
     }
+
     .img {
-        padding:20px 24px;
-        line-height: 0;
+      line-height: 0;
+      padding: 20px 24px;
     }
+
     .btn {
-        position: fixed;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+
+      button {
+        font-family: 'KBB', sans-serif;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
-        bottom:0;
-        left: 0;
-        button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 57px;
-            padding: 0;
-            background-color: #FFD338;
-            color: #26282C;
-            font-family: 'KBB';
-            font-size: 20px;
-            letter-spacing: -0.2em;
-            border: none;
-            -webkit-border-radius: 0;
-            -moz-border-radius: 0;
-            border-radius: 0;
-            &:disabled {
-                background-color: #DDE1E4;
-                span {
-                    color: #AAB0B8;
-                }
-            }
-            &:hover,
-            &:active
-              {
-                color: #26282C !important;
-              }
+        height: 57px;
+        padding: 0;
+        letter-spacing: -0.2em;
+        color: #26282C;
+        border: none;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        background-color: #FFD338;
+
+        &:disabled {
+          background-color: #DDE1E4;
+
+          span {
+            color: #AAB0B8;
+          }
         }
+
+        &:hover,
+        &:active {
+          color: #26282C !important;
+        }
+      }
     }
+
     [class~="ant-checkbox-inner"] {
-        border:0;
+      width: 24px;
+      height: 24px;
+      border: 0;
+      background-color: transparent;
+      background-image: url("@imgs/loan/LoanChack.png");
+      background-position: center;
+      background-size: 24px;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+
+    [class~="ant-checkbox-wrapper"]:not([class~="ant-checkbox-wrapper-disabled"]):hover [class~="ant-checkbox-checked"]:not([class~="ant-checkbox-disabled"]) [class~="ant-checkbox-inner"] {
+      background-color: transparent;
+    }
+
+    [class~="ant-checkbox-checked"]:not([class~="ant-checkbox-disabled"]):hover [class~="ant-checkbox-inner"] {
+      background-color: transparent;
+    }
+
+    [class~="ant-checkbox-checked"] {
+      [class~="ant-checkbox-inner"] {
         width: 24px;
         height: 24px;
-        background-image: url("@imgs/loan/LoanChack.png");
-        background-size: 24px;
+        border: 0;
+        background-color: transparent;
+        background-image: url("@imgs/loan/LoanChack_on.png");
         background-position: center;
-        background-color: transparent;
-        &:hover{
-            background-color: transparent;
-        }
-        &::after {
-            display: none;
-        }
+        background-size: 24px;
+      }
     }
-    [class~="ant-checkbox-wrapper"]:not([class~="ant-checkbox-wrapper-disabled"]):hover [class~="ant-checkbox-checked"]:not([class~="ant-checkbox-disabled"]) [class~="ant-checkbox-inner"] {
-        background-color: transparent;
-    }
-    [class~="ant-checkbox-checked"]:not([class~="ant-checkbox-disabled"]):hover [class~="ant-checkbox-inner"]{
-        background-color: transparent;
-    }
-    [class~="ant-checkbox-checked"]{
-        [class~="ant-checkbox-inner"] {
-            background-color: transparent;
-            border:0;
-            width: 24px;
-            height: 24px;
-            background-image: url("@imgs/loan/LoanChack_on.png");
-            background-size: 24px;
-            background-position: center;
-        }
-    }
+  }
 }

@@ -112,7 +112,7 @@ const ExecuteCurrency: FC = () => {
     } else {
       setShowUserStepPositive(false);
     }
-  }, [compUserSelect]);
+  }, [compUserSelect, dispatch]);
 
   useEffect(() => {
     isCurrencySelected

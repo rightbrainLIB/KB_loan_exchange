@@ -56,7 +56,7 @@ const CheckNotificationExchangeRate: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 52 }}>
+        <div style={{ marginTop: 34 }}>
           <MotionList
             aniCondition={checkNotificationExchangeRate}
             showHeight={366}>

@@ -50,7 +50,9 @@ const ReceiveBankBranch: FC = () => {
 
   useEffect(() => {
     if (joinInsurance) {
-      setShowBotStep(true);
+      setTimeout(() => {
+        setShowBotStep(true);
+      }, 300);
       setTimeout(() => {
         dispatch(setReceiveBankBranch(true));
       }, 600);

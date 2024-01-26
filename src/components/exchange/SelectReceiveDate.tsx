@@ -65,7 +65,7 @@ const SelectReceiveDate: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 94 }}>
+        <div style={{ marginTop: 51 }}>
           <MotionList aniCondition={selectReceiveDate} showHeight={309}>
             <BotProfile />
             <KBTalk>

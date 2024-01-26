@@ -19,22 +19,8 @@ const MotionListWrap: FC<IMotionListWrap> = ({ children }) => {
     }
   };
 
-  const onAnimationStart = () => {
-    const scr = document.body.scrollHeight > document.body.clientHeight;
-    if (scr) {
-      window.scrollTo({
-        top: document.body.scrollHeight - 50,
-        behavior: "smooth"
-      });
-    }
-  };
-
   return (
-    <motion.div
-      onAnimationStart={onAnimationStart}
-      variants={list}
-      initial={"hidden"}
-      animate={"visible"}>
+    <motion.div variants={list} initial={"hidden"} animate={"visible"}>
       {children}
     </motion.div>
   );

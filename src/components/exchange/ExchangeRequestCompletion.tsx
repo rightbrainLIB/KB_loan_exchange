@@ -14,7 +14,7 @@ import {
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { ExchangeState } from "@src/store";
-import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
+// import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -23,7 +23,7 @@ const ExchangeRequestCompletion: FC = () => {
 
   const [showBotStep, setShowBotStep] = useState(false);
   const [showUserStep, setShowUserStep] = useState(false);
-  const [isLastChoice, setIsLastChoice] = useState(false);
+  // const [isLastChoice, setIsLastChoice] = useState(false);
 
   const { requestExchange, confirmRequestInfo } = useSelector(
     (state: ExchangeState) => state.exchange.userStep
@@ -40,11 +40,11 @@ const ExchangeRequestCompletion: FC = () => {
   }, [dispatch]);
 
   // 마지막 step 체크하기
-  const lastStr = LastTrueUserStep();
-
-  useEffect(() => {
-    setIsLastChoice(lastStr === "confirmRequestInfo");
-  }, [lastStr]);
+  // const lastStr = LastTrueUserStep();
+  //
+  // useEffect(() => {
+  //   setIsLastChoice(lastStr === "confirmRequestInfo");
+  // }, [lastStr]);
 
   useEffect(() => {
     if (requestExchange) {
@@ -84,9 +84,7 @@ const ExchangeRequestCompletion: FC = () => {
 
       {showUserStep && (
         <MotionList aniCondition={confirmRequestInfo} showHeight={54}>
-          <SelectedUserBox isLastSelect={isLastChoice}>
-            환전 신청 내역
-          </SelectedUserBox>
+          <SelectedUserBox>환전 신청 내역</SelectedUserBox>
         </MotionList>
       )}
     </>

@@ -12,23 +12,26 @@ import LoanSubmitComplete from "@components/loan/LoanSubmitComplete.tsx";
 import LoanSuitableConfirm from "@components/loan/LoanSuitableConfirm.tsx";
 import LoanTelecomInputPop from "@components/loan/LoanTelecomInputPop.tsx";
 import LoanTelecomSelectPop from "@components/loan/LoanTelecomSelectPop.tsx";
-import ExchangeChatBot from "@pages/exchange/ChatBot.tsx";
 import ExchangeMain from "@pages/exchange/Main.tsx";
+import Index from "@src/pages";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter(
   [
+    // index - page select
     {
       path: "/",
-      element: <ExchangeMain />
+      element: <Index />
     },
+
+    // 환전
     {
-      path: "/ExchangeChatBot",
-      element: <ExchangeChatBot />
+      path: "/exchange",
+      element: <ExchangeMain />
     },
     // 대출
     {
-      path: "/Loan",
+      path: "/loan",
       element: <LoanCreditLimitProduct />
     },
     {

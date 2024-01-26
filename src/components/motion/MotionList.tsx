@@ -34,7 +34,9 @@ const MotionList: FC<IMotionList> = ({
       initial={"hidden"}
       animate={aniCondition ? "visible" : "hideAndRemove"}
       transition={{
-        duration: 0.5,
+        duration: 0.6,
+        type: "spring",
+        bounce: 0.5,
         onComplete: () => {
           exitAnim();
           document.body.scrollTo({

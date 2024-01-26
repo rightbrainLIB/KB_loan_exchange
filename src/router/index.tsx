@@ -1,18 +1,18 @@
 import LoanAgreeCheck from "@components/loan/LoanAgreeCheck.tsx";
 import LoanApplicationAmountPop from "@components/loan/LoanApplicationAmountPop.tsx";
-import LoanChat from "@components/loan/LoanChat.tsx";
-import LoanCreditLimitProduct from "@components/loan/LoanCreditLimitProduct.tsx";
-import LoanFacePop from "@components/loan/LoanFacePop.tsx";
 import LoanFirstRatePop from "@components/loan/LoanFirstRatePop.tsx";
 import LoanImgSubmitPop from "@components/loan/LoanImgSubmitPop.tsx";
-import LoanImportCheck from "@components/loan/LoanImportCheck.tsx";
 import LoanInfoTotalComplete from "@components/loan/LoanInfoTotalComplete.tsx";
 import LoanSelectCalendarPop from "@components/loan/LoanSelectCalendarPop.tsx";
 import LoanSubmitComplete from "@components/loan/LoanSubmitComplete.tsx";
-import LoanSuitableConfirm from "@components/loan/LoanSuitableConfirm.tsx";
 import LoanTelecomInputPop from "@components/loan/LoanTelecomInputPop.tsx";
 import LoanTelecomSelectPop from "@components/loan/LoanTelecomSelectPop.tsx";
 import ExchangeMain from "@pages/exchange/Main.tsx";
+import LoanChat from "@pages/loan/LoanChat.tsx";
+import LoanCreditLimitProduct from "@pages/loan/LoanCreditLimitProduct.tsx";
+import LoanFacePop from "@pages/loan/LoanFacePop.tsx";
+import LoanImportCheck from "@pages/loan/LoanImportCheck.tsx";
+import LoanSuitableConfirm from "@pages/loan/LoanSuitableConfirm.tsx";
 import Index from "@src/pages";
 import { createBrowserRouter } from "react-router-dom";
 

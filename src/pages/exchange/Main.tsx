@@ -1,26 +1,26 @@
 import KBContainer from "@components/common/KBContainer.tsx";
 import KBHeader from "@components/common/KBHeader.tsx";
-// import AllExchangeInquiry from "@components/exchange/AllExchangeInquiry.tsx";
+import AllExchangeInquiry from "@components/exchange/AllExchangeInquiry.tsx";
 import CheckAccount from "@components/exchange/CheckAccount.tsx";
 import CheckExchangeInfo from "@components/exchange/CheckExchangeInfo.tsx";
 import CheckNotificationExchangeRate from "@components/exchange/CheckNotificationExchangeRate.tsx";
 import CheckPhoneNumber from "@components/exchange/CheckPhoneNumber.tsx";
 import CompletionNotificationExchangeRate from "@components/exchange/CompletionNotificationExchangeRate.tsx";
-// import ExchangeListPeriodSelect from "@components/exchange/ExchangeListPeriodSelect.tsx";
+import ExchangeListPeriodSelect from "@components/exchange/ExchangeListPeriodSelect.tsx";
 import ExchangeRequestCompletion from "@components/exchange/ExchangeRequestCompletion.tsx";
 import ExchangeRequestHistory from "@components/exchange/ExchangeRequestHistory.tsx";
 import NeedfulExchangeMoney from "@components/exchange/NeedfulExchangeMoney.tsx";
 import NotificationUSD from "@components/exchange/NotificationUSD.tsx";
 import NotifyWhenExchangeRate from "@components/exchange/NotifyWhenExchangeRate.tsx";
-// import OneMonthExchangeList from "@components/exchange/OneMonthExchangeList.tsx";
+import OneMonthExchangeList from "@components/exchange/OneMonthExchangeList.tsx";
 import ReasonExchangeSelect from "@components/exchange/ReasonExchangeSelect.tsx";
 import ReceiveBankBranch from "@components/exchange/ReceiveBankBranch.tsx";
 import RecommendedEmployee from "@components/exchange/RecommendedEmployee.tsx";
 import SelectReceiveDate from "@components/exchange/SelectReceiveDate.tsx";
 import TermsAgree from "@components/exchange/TermsAgree.tsx";
-// import ThreeMonthExchangeList from "@components/exchange/ThreeMonthExchangeList.tsx";
+import ThreeMonthExchangeList from "@components/exchange/ThreeMonthExchangeList.tsx";
 import TravelInsurance from "@components/exchange/TravelInsurance.tsx";
-// import WaitingReceive from "@components/exchange/WaitingReceive.tsx";
+import WaitingReceive from "@components/exchange/WaitingReceive.tsx";
 import WriteCurrency from "@components/exchange/WriteCurrency.tsx";
 import ChoiceCurrency from "@components/step_exchange/ChoiceCurrency.tsx";
 import ExecuteCurrency from "@components/step_exchange/ExecuteCurrency.tsx";
@@ -99,23 +99,23 @@ const ExchangeMain = () => {
         {/* E: 환전 신청 내역을 확인해주세요 */}
 
         {/* S: 김국민님의 전체 환전 내역을 알려드릴게요 */}
-        {/*<AllExchangeInquiry />*/}
+        <AllExchangeInquiry />
         {/* E: 김국민님의 전체 환전 내역을 알려드릴게요 */}
 
         {/* S: 최근 3개월 내 환전 내역이에요 */}
-        {/*<ThreeMonthExchangeList />*/}
+        <ThreeMonthExchangeList />
         {/* E: 최근 3개월 내 환전 내역이에요 */}
 
         {/* S: 환전 내역 기간을 설정해주세요 */}
-        {/*<ExchangeListPeriodSelect />*/}
+        <ExchangeListPeriodSelect />
         {/* E: 환전 내역 기간을 설정해주세요 */}
 
         {/* S: 김국민님의 1개월 내 환전 내역이에요 */}
-        {/*<OneMonthExchangeList />*/}
+        <OneMonthExchangeList />
         {/* E: 김국민님의 1개월 내 환전 내역이에요 */}
 
         {/* S: 자세히보기 - 수령대기 */}
-        {/*<WaitingReceive />*/}
+        <WaitingReceive />
         {/* E: 자세히보기 - 수령대기 */}
 
         {/* S: 환율이 1,300.8원 이하 일때 알림을 드릴까요? */}

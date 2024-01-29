@@ -12,7 +12,7 @@ import {
 // import iconArrow20 from "@imgs/icons/icon_arrow_20.png";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
-import { ExchangeState } from "@src/store";
+import { KBState } from "@src/store";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,10 +25,10 @@ const ExchangeListPeriodSelect: FC = () => {
   const [isLastChoice, setIsLastChoice] = useState(false);
 
   const { requestedDate, selectOneMonth } = useSelector(
-    (state: ExchangeState) => state.exchange.userStep
+    (state: KBState) => state.exchange.userStep
   );
   const { exchangeListPeriodSelect } = useSelector(
-    (state: ExchangeState) => state.exchange.botStep
+    (state: KBState) => state.exchange.botStep
   );
 
   const goNextTask = useCallback(() => {

@@ -20,7 +20,7 @@ import {
   setSaveAlarm,
   setTakenPlace
 } from "@slices/exchangeSlices.ts";
-import { AppDispatch, ExchangeState } from "@src/store";
+import { AppDispatch, KBState } from "@src/store";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,15 +42,15 @@ const ExecuteCurrency: FC = () => {
   const [showUserStepNegative, setShowUserStepNegative] = useState(false);
 
   const { isCurrencySelected, isTakenPlace, saveAlarm } = useSelector(
-    (state: ExchangeState) => state.exchange.userStep
+    (state: KBState) => state.exchange.userStep
   );
 
   const { prsExchangeRate } = useSelector(
-    (state: ExchangeState) => state.exchange.botStep
+    (state: KBState) => state.exchange.botStep
   );
 
   const { openTakenWaySheet, openTakenPlaceSheet, compUserSelect } =
-    useSelector((state: ExchangeState) => state.exchangeCurrency);
+    useSelector((state: KBState) => state.exchangeCurrency);
 
   const onClickExecute = useCallback(() => {
     if (showUserStepPositive || showUserStepNegative) return;

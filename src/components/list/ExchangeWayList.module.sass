@@ -53,9 +53,9 @@
     margin-right: 20px
     //border-color: #AAB0B8
     //border-color: #7D6C59
-    img
-      width: 24px
-      height: 24px
+    //img
+    //  width: 24px
+    //  height: 24px
 
   .textBox
     display: inline-flex
@@ -67,8 +67,20 @@
       font-family: 'KBB', sans-serif
       line-height: 23px
 
+      & + .listSubText
+        padding-top: 4px
+        font-size: 14px
+
     .listSubText
-      font-size: 14px
+      font-size: 16px
       font-family: 'KBL', sans-serif
-      padding-top: 4px
       letter-spacing: -0.025em
+
+  // 통신사 선택
+  &[class*="telList"]
+    label
+      border-top: none
+      padding: 0
+
+      & + label
+        padding-top: 20px

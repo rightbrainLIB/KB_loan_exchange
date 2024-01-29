@@ -12,7 +12,7 @@ import KBHeader from "@components/common/KBHeader.tsx";
 // import LoanHouseAddComfirmStep05 from "@components/loan/LoanHouseAddComfirmStep05.tsx";
 // import LoanHouseAddComfirmStep06 from "@components/loan/LoanHouseAddComfirmStep06.tsx";
 // import LoanHouseComfirm from "@components/loan/LoanHouseComfirm.tsx";
-// import LoanIdentityCheck from "@components/loan/LoanIdentityCheck.tsx";
+import LoanIdentityCheck from "@components/loan/LoanIdentityCheck.tsx";
 // import LoanInfoComfirm from "@components/loan/LoanInfoComfirm.tsx";
 // import LoanInfoSimpleSubmit from "@components/loan/LoanInfoSimpleSubmit.tsx";
 // import LoanInfoSubmitComplete from "@components/loan/LoanInfoSubmitComplete.tsx";
@@ -22,7 +22,7 @@ import LoanLimitCurrency from "@components/loan/LoanLimitCurrency.tsx";
 // import LoanPaybackSelectStep03 from "@components/loan/LoanPaybackSelectStep03.tsx";
 // import LoanPeriodSelect from "@components/loan/LoanPeriodSelect.tsx";
 // import LoanRecommendGuide from "@components/loan/LoanRecommendGuide.tsx";
-// import LoanSearchHouse from "@components/loan/LoanSearchHouse.tsx";
+import LoanSearchHouse from "@components/loan/LoanSearchHouse.tsx";
 // import LoanSelectCalendar from "@components/loan/LoanSelectCalendar.tsx";
 // import LoanSubmitComplete from "@components/loan/LoanSubmitComplete.tsx";
 // import LoanSubmitInfo from "@components/loan/LoanSubmitInfo.tsx";
@@ -34,7 +34,7 @@ const LoanChat: FC = () => {
       <KBHeader>부동산담보대출</KBHeader>
       <KBContainer>
         {/* S: 부동산담보대출 조회하기 위한 동의 */}
-        <LoanLimitCurrency />
+        {/*<LoanLimitCurrency />*/}
         {/* E: 부동산담보대출 조회하기 위한 동의 */}
 
         {/* S: 부동산담보대출 본인인증 */}
@@ -42,7 +42,7 @@ const LoanChat: FC = () => {
         {/* E: 부동산담보대출 본인인증 */}
 
         {/* S: 부동산담보대출 주택 시세정보 */}
-        {/*<LoanSearchHouse />*/}
+        <LoanSearchHouse />
         {/* E: 부동산담보대출 주택 시세정보 */}
 
         {/* S: 부동산담보대출 주택 시세확인 */}

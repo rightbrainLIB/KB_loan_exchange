@@ -13,7 +13,7 @@ import {
 } from "@slices/exchangeSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
-import { ExchangeState } from "@src/store";
+import { KBState } from "@src/store";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,10 +26,10 @@ const CheckAccount: FC = () => {
   const [isLastChoice, setIsLastChoice] = useState(false);
 
   const { exchangeReason, checkUserAccount } = useSelector(
-    (state: ExchangeState) => state.exchange.userStep
+    (state: KBState) => state.exchange.userStep
   );
   const { checkAccount } = useSelector(
-    (state: ExchangeState) => state.exchange.botStep
+    (state: KBState) => state.exchange.botStep
   );
 
   const goNextTask = useCallback(() => {
@@ -66,7 +66,6 @@ const CheckAccount: FC = () => {
               <SelectableListWrap>
                 <li>
                   <SelectableBtn
-                    bgBtn={!checkUserAccount}
                     disabled={checkUserAccount}
                     onClickBtn={goNextTask}>
                     출금계좌 확인

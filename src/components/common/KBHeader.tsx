@@ -1,9 +1,10 @@
 import StopExchangeProcessSheet from "@components/bottomSheet/StopExchangeProcessSheet.tsx";
 import StopExchangeSheet from "@components/bottomSheet/StopExchangeSheet.tsx";
 import headerBackBtn from "@imgs/icons/icon_back_24.png";
-import { ExchangeState } from "@src/store";
+import { KBState } from "@src/store";
 import { FC, ReactNode, useCallback, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import $style from "./KBHeader.module.sass";
 
@@ -12,10 +13,12 @@ interface IKBHeader {
 }
 
 const KBHeader: FC<IKBHeader> = ({ children }) => {
+  const navigate = useNavigate();
+
   const [stopExchange, setStopExchange] = useState(false); // 환전 신청 취소 (step6 전까지)
   const [stopExchangeProcess, setStopExchangeProcess] = useState(false); // 환전 진행 취소 (step6 부터)
   const { isCompleteExchange } = useSelector(
-    (state: ExchangeState) => state.globalUI
+    (state: KBState) => state.globalUI
   );
 
   const closeStopExchange = useCallback(() => {
@@ -39,7 +42,7 @@ const KBHeader: FC<IKBHeader> = ({ children }) => {
      */
     if (isCompleteExchange) setStopExchangeProcess(true);
     else setStopExchange(true);
-  }, [stopExchange]);
+  }, [isCompleteExchange]);
 
   return (
     <>
@@ -47,7 +50,10 @@ const KBHeader: FC<IKBHeader> = ({ children }) => {
         {/* S: leftSide */}
         <div className={$style.leftSide}>
           {/* S: backBtn */}
-          <button type="button" className={$style.backBtn}>
+          <button
+            type="button"
+            className={$style.backBtn}
+            onClick={() => navigate("/")}>
             <div className={$style.imgBox}>
               <img src={`${headerBackBtn}`} alt="뒤로가기" />
             </div>

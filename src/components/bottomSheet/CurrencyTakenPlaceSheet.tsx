@@ -29,7 +29,7 @@ const CurrencyTakenPlaceSheet: FC<ICurrencyTakenPlaceSheet> = ({
   }, [dispatch]);
 
   const onClickConfirmBtn = useCallback(() => {
-    if (selectedWay === "은행에서 직접 받기") {
+    if (selectedWay.includes("은행에서 직접 받기")) {
       dispatch(setOpenTakenPlaceSheet(false));
       dispatch(setCompUserSelect(true)); // 모두 선택 되었는지 체크하여 '은행지점에서 받기 보이기를 useEffect로 체크
       setTimeout(() => {
@@ -51,6 +51,8 @@ const CurrencyTakenPlaceSheet: FC<ICurrencyTakenPlaceSheet> = ({
     },
     {
       imgSrc: `${way_2_airport}`,
+      imgWidth: 27,
+      imgHeight: 19,
       title: "인천공항에서 받기",
       subText: "최소 환전금액 USD 10부터 가능해요"
     }
@@ -71,7 +73,7 @@ const CurrencyTakenPlaceSheet: FC<ICurrencyTakenPlaceSheet> = ({
       title={
         <DrawerTitle
           title={"환전 수령 방법"}
-          subText={"받는 방법에 따라서 최소 환전 가능금액이 달라져요"}
+          subText={"은행이나 외환 ATM, 인천공항에서 직접 받을 수 있어요"}
           useCloseBtn
           closeDrawerBtn={closeSheet}
         />

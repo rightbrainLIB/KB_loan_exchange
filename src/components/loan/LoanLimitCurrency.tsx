@@ -3,20 +3,45 @@
  */
 import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
+import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
 import SelectableListWrap from "@components/list/SelectableListWrap.tsx";
+import LoanAgreeCheck from "@components/loan/LoanAgreeCheck.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
+import { setConsentToTermsCond } from "@slices/loanSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
-import { FC, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { KBState } from "@src/store";
+import { FC, useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const LoanLimitCurrency: FC = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [showUserStep, setShowUserStep] = useState(false);
+
   const [choiceCurrency, setChoiceCurrency] = useState(false);
-  const clickCurrencyPop = () => {
-    navigate("/LoanAgreeCheck");
-  };
+  const [openAgreeChk, setOpenAgreeChk] = useState(false);
+
+  const { consentToTermsCond } = useSelector(
+    (state: KBState) => state.loan.userStep
+  );
+
+  // 심사 약관 동의 팝업 열기
+  const clickCurrencyPop = useCallback(() => {
+    setOpenAgreeChk(true);
+  }, []);
+
+  // 심사 약관 동의 팝업 닫기
+  const closeAgreeChkSheet = useCallback(() => {
+    setOpenAgreeChk(false);
+  }, []);
+
+  const goNextTask = useCallback(() => {
+    closeAgreeChkSheet();
+    setShowUserStep(true);
+    dispatch(setConsentToTermsCond(true));
+  }, [closeAgreeChkSheet, dispatch]);
 
   return (
     <>
@@ -39,7 +64,10 @@ const LoanLimitCurrency: FC = () => {
               <h2>금리와 한도를 조회하기 위해 심사약관에 동의가 필요해요</h2>
               <SelectableListWrap>
                 <li>
-                  <SelectableBtn bgBtn onClickBtn={clickCurrencyPop}>
+                  <SelectableBtn
+                    bgBtn
+                    disabled={consentToTermsCond}
+                    onClickBtn={clickCurrencyPop}>
                     심사 약관 동의
                   </SelectableBtn>
                 </li>
@@ -48,6 +76,21 @@ const LoanLimitCurrency: FC = () => {
           </MotionList>
         </BotBox>
       </MotionListWrap>
+
+      <LoanAgreeCheck
+        openSheet={openAgreeChk}
+        openAgreeSheet={clickCurrencyPop}
+        closeAgreeSheet={closeAgreeChkSheet}
+        clickPositiveAgree={goNextTask}
+      />
+
+      {showUserStep && (
+        <MotionListWrap>
+          <MotionList aniCondition={consentToTermsCond}>
+            <SelectedUserBox>심사 약관 동의</SelectedUserBox>
+          </MotionList>
+        </MotionListWrap>
+      )}
     </>
   );
 };

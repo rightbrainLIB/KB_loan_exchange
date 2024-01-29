@@ -13,7 +13,7 @@ import {
   setShowMoreDetailInfo
 } from "@slices/exchangeSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
-import { ExchangeState } from "@src/store";
+import { KBState } from "@src/store";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,11 +28,11 @@ const OneMonthExchangeList: FC = () => {
   const [isLastChoiceDetail, setIsLastChoiceDetail] = useState(false);
 
   const [showDetailList, setShowDetailList] = useState(false);
-  const { selectOneMonth, requestedDate, showMoreDetailInfo } = useSelector(
-    (state: ExchangeState) => state.exchange.userStep
+  const { selectOneMonth, showMoreDetailInfo } = useSelector(
+    (state: KBState) => state.exchange.userStep
   );
   const { oneMonthExchangeList } = useSelector(
-    (state: ExchangeState) => state.exchange.botStep
+    (state: KBState) => state.exchange.botStep
   );
 
   // 자세히 보기
@@ -81,26 +81,26 @@ const OneMonthExchangeList: FC = () => {
                 <img src={OneMonthExchange_list} />
                 <SelectableBtn
                   size="small"
-                  disabled={requestedDate}
+                  disabled={showMoreDetailInfo}
                   onClickBtn={goDetailContent}>
                   자세히 보기
                 </SelectableBtn>
               </div>
               <div className={$style.exchangeList}>
                 <img src={OneMonthExchange_list} />
-                <SelectableBtn size="small" disabled={requestedDate}>
+                <SelectableBtn size="small" disabled={showMoreDetailInfo}>
                   자세히 보기
                 </SelectableBtn>
               </div>
               <div className={$style.exchangeList}>
                 <img src={OneMonthExchange_list} />
-                <SelectableBtn size="small" disabled={requestedDate}>
+                <SelectableBtn size="small" disabled={showMoreDetailInfo}>
                   자세히 보기
                 </SelectableBtn>
               </div>
               <div className={$style.exchangeList}>
                 <img src={OneMonthExchange_list} />
-                <SelectableBtn size="small" disabled={requestedDate}>
+                <SelectableBtn size="small" disabled={showMoreDetailInfo}>
                   자세히 보기
                 </SelectableBtn>
               </div>

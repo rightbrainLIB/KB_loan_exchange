@@ -4,23 +4,38 @@
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import img01 from "@imgs/loan/LoanTelecomInputPop_01.png";
 import { Button, Drawer, Input } from "antd";
-import { useState } from "react";
-import { FC } from "react";
-import { useNavigate } from "react-router-dom";
+import { ChangeEvent, FC, useCallback, useEffect, useState } from "react";
 
 import $style from "./LoanTelecomInputPop.module.scss";
 
-const LoanTelecomInputPop: FC = () => {
-  const navigate = useNavigate();
-  const [sheetImgOpen, setsheetImgOpen] = useState(true);
+interface ILoanTelecomInputPop {
+  openSheet: boolean;
+  closeSheet: () => void;
+  showNextStep: () => void;
+}
 
-  const closeImgSheet = () => {
-    setsheetImgOpen(false);
-  };
+const LoanTelecomInputPop: FC<ILoanTelecomInputPop> = ({
+  openSheet = false,
+  closeSheet,
+  showNextStep
+}) => {
+  const [userVarifNum, setUserVarifNum] = useState("");
 
-  const clickBtnPop = () => {
-    navigate("/LoanChat");
-  };
+  const onChangeVarifNum = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      setUserVarifNum(e.target.value);
+    },
+    [userVarifNum]
+  );
+
+  useEffect(() => {
+    if (!openSheet) {
+      setTimeout(() => {
+        setUserVarifNum("");
+      }, 300);
+    }
+  }, [openSheet]);
+
   return (
     <>
       <Drawer
@@ -30,8 +45,8 @@ const LoanTelecomInputPop: FC = () => {
           body: { padding: 24 },
           footer: { borderTop: 0, padding: 0 }
         }}
-        open={sheetImgOpen}
-        onClose={closeImgSheet}
+        open={openSheet}
+        onClose={closeSheet}
         closeIcon={false}
         height={427}
         title={
@@ -39,19 +54,27 @@ const LoanTelecomInputPop: FC = () => {
             title={"인증번호 입력"}
             subText={""}
             useCloseBtn
-            closeDrawerBtn={closeImgSheet}
+            closeDrawerBtn={closeSheet}
           />
         }
         placement={"bottom"}
         key={"LoanTelecomInputPop"}
         footer={
-          <Button className={$style.btn} onClick={clickBtnPop}>
+          <Button
+            className={$style.btn}
+            disabled={userVarifNum.length < 6}
+            onClick={showNextStep}>
             다음
           </Button>
         }
         className={$style.LoanTelecomInputPop}>
         <div className={$style.inputbox}>
-          <Input placeholder="숫자 6자리 입력" />
+          <Input
+            placeholder="숫자 6자리 입력"
+            maxLength={6}
+            value={userVarifNum}
+            onChange={onChangeVarifNum}
+          />
         </div>
         <div className={$style.img}>
           <img src={img01} width="100%" />

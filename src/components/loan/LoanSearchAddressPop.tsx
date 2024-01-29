@@ -1,6 +1,6 @@
 /**
  * Step 2. 심사정보입력1,2,3(Progress bar 2/6)
- * 주택 시세 정보 검색 바텀시트
+ * 주택 시세 정보 검색 (바텀시트)
  */
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import { Drawer, Input, InputRef } from "antd";
@@ -9,25 +9,36 @@ import { FC, useRef, useState } from "react";
 import $style from "./LoanSearchAddressPop.module.scss";
 
 interface ILoanSearchAddressPop {
-  sheetOpen: boolean;
+  openSheet: boolean;
+  closeSheet: () => void;
+  showNextTask: () => void;
 }
 
-const LoanSearchAddressPop: FC<ILoanSearchAddressPop> = ({ sheetOpen }) => {
+const LoanSearchAddressPop: FC<ILoanSearchAddressPop> = ({
+  openSheet,
+  closeSheet,
+  showNextTask
+}) => {
   const inputRef = useRef<InputRef>(null);
   const [searchValue, setSearchValue] = useState("");
   const [resultVisible, setResultVisible] = useState(false);
   const [clickResultVisible, setClickResultVisible] = useState(false);
 
   const InputSetValue = () => {
-    setSearchValue("대치동 은마아파트");
     const inputEl = inputRef.current;
     if (inputEl) {
       inputEl.focus();
+    }
+    if (searchValue.length < 1) {
+      setSearchValue("대치동 은마아파트");
+    } else {
+      setResultVisible(true);
     }
   };
 
   const onKeyPressInput = () => {
     setResultVisible(true);
+    // setSearchValue("대치동 은마아파트");
     if (inputRef.current) {
       inputRef.current.blur();
     }
@@ -53,26 +64,31 @@ const LoanSearchAddressPop: FC<ILoanSearchAddressPop> = ({ sheetOpen }) => {
           body: { padding: 24 },
           footer: { borderTop: 0, padding: 0 }
         }}
-        open={sheetOpen}
+        open={openSheet}
         closeIcon={false}
-        height={"100vh"}
-        title={<DrawerTitle title={"주택 시세정보 검색"} useCloseBtn />}
+        height={"calc(100vh - 30px)"}
+        title={
+          <DrawerTitle
+            title={"주택 시세정보 검색"}
+            useCloseBtn
+            closeDrawerBtn={closeSheet}
+          />
+        }
         placement={"bottom"}
         key={"LoanTelecomInputPop"}
         className={$style.LoanSearchAddressPop}>
         <div className={$style.inputbox}>
-          <Input
-            className={$style.fakeInput}
-            ref={inputRef}
-            value={""}
-            onPressEnter={onKeyPressInput}
-          />
+          {/*<Input*/}
+          {/*  className={$style.fakeInput}*/}
+          {/*  ref={inputRef}*/}
+          {/*  value={""}*/}
+          {/*  onPressEnter={onKeyPressInput}*/}
+          {/*/>*/}
           <Input
             className={$style.input}
             placeholder="예) 대치동 은마아파트 입력"
-            // inputMode="none"
-            readOnly
             value={searchValue}
+            onPressEnter={onKeyPressInput}
           />
           <button
             type="button"
@@ -126,7 +142,7 @@ const LoanSearchAddressPop: FC<ILoanSearchAddressPop> = ({ sheetOpen }) => {
             </div>
             <p className={$style.desc}>층을 선택해주세요</p>
             <ul className={$style.resultListWrap}>
-              <li className={$style.resultList}>
+              <li className={$style.resultList} onClick={showNextTask}>
                 1층
                 <div className={$style.price}>
                   <div>180,000,000 원</div>

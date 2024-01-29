@@ -2,16 +2,29 @@ import "./ExchangeWayList.sass";
 
 import { ConfigProvider, Radio, RadioChangeEvent } from "antd";
 import cx from "classnames";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 
 import $style from "./ExchangeWayList.module.sass";
 
 interface IExchangeWayList {
-  wayList: { imgSrc: string; title: string; subText: string }[];
+  klassNames?: string;
+  defaultWay?: string;
+  wayList: {
+    imgSrc: string;
+    imgWidth?: number;
+    imgHeight?: number;
+    title: string;
+    subText: string;
+  }[];
   clickWay?: (str: string) => void;
 }
 
-const ExchangeWayList: FC<IExchangeWayList> = ({ wayList, clickWay }) => {
+const ExchangeWayList: FC<IExchangeWayList> = ({
+  klassNames = "",
+  defaultWay,
+  wayList,
+  clickWay
+}) => {
   const [currency, setCurrency] = useState<string>("");
 
   // 통화값 저장
@@ -23,13 +36,21 @@ const ExchangeWayList: FC<IExchangeWayList> = ({ wayList, clickWay }) => {
     [clickWay]
   );
 
+  useEffect(() => {
+    if (defaultWay) setCurrency(defaultWay);
+  }, [defaultWay]);
+
   return (
     <>
       <Radio.Group
         onChange={onCurrencyChange}
         value={currency}
-        defaultValue={""}
-        className={cx($style.exchangeWayList, "exchangeWayList")}>
+        defaultValue={defaultWay || ""}
+        className={cx(
+          $style.exchangeWayList,
+          "exchangeWayList",
+          klassNames ?? klassNames
+        )}>
         {wayList.map((list, idx) => (
           <ConfigProvider
             // theme={{
@@ -42,14 +63,29 @@ const ExchangeWayList: FC<IExchangeWayList> = ({ wayList, clickWay }) => {
             //     }
             //   }
             // }}
-            key={list.title + idx}>
-            <Radio value={list.title} className={$style.radioArea}>
-              <div className={$style.imgBox}>
-                <img src={`${list.imgSrc}`} alt="" />
-              </div>
+            key={list.subText + idx}>
+            <Radio
+              value={list.title + list.subText}
+              className={$style.radioArea}>
+              {list.imgSrc && (
+                <div className={$style.imgBox}>
+                  <img
+                    src={`${list.imgSrc}`}
+                    alt=""
+                    {...(list.imgWidth
+                      ? { width: `${list.imgWidth}px` }
+                      : { width: "24px" })}
+                    {...(list.imgHeight
+                      ? { height: `${list.imgHeight}px` }
+                      : { height: "24px" })}
+                  />
+                </div>
+              )}
               <div className={$style.textBox}>
-                <p className={$style.listTitle}>{list.title}</p>
-                <p className={$style.listSubText}>{list.subText}</p>
+                {list.title && <p className={$style.listTitle}>{list.title}</p>}
+                {list.subText && (
+                  <p className={$style.listSubText}>{list.subText}</p>
+                )}
               </div>
             </Radio>
           </ConfigProvider>

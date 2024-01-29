@@ -35,7 +35,8 @@ const CurrencySelectSheet: FC<ICurrencySelectSheet> = ({ sheetOpen }) => {
 
   // 확인 버튼
   const onClickNext = useCallback(() => {
-    if (selectedWay === "직접 받으로 가기") {
+    // 은행/ATM/인천공항에서 받기
+    if (selectedWay.includes("은행/ATM/인천공항에서 받기")) {
       dispatch(setOpenTakenWaySheet(false));
       setTimeout(() => {
         dispatch(setOpenTakenPlaceSheet(true));
@@ -49,18 +50,20 @@ const CurrencySelectSheet: FC<ICurrencySelectSheet> = ({ sheetOpen }) => {
   const wayList = [
     {
       imgSrc: `${way_1_direct}`,
-      title: "직접 받으로 가기",
-      subText: "최소 환전금액 USD 50부터 가능해요"
+      title: "은행/ATM/인천공항에서 받기",
+      subText: "최소 환전금액 USD 10부터 가능해요"
     },
     {
       imgSrc: `${way_1_gift}`,
-      title: "외화 선물하기 (기프티콘)",
-      subText: "최소 환전금액 USD 50부터 가능해요"
+      imgWidth: 33,
+      imgHeight: 27,
+      title: "우편으로 받기",
+      subText: "최소 환전금액 USD 400부터 가능해요"
     },
     {
       imgSrc: `${way_1_post}`,
-      title: "우편으로 받기",
-      subText: "최소 환전금액 USD 400부터 가능해요"
+      title: "외화 선물하기 (기프티콘)",
+      subText: "최소 환전금액 USD 50부터 가능해요"
     },
     {
       imgSrc: `${way_1_keep}`,

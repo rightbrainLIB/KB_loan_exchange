@@ -8,7 +8,7 @@ import MotionList from "@components/motion/MotionList.tsx";
 import { setCompletionNotificationExchangeRate } from "@slices/exchangeSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
-import { ExchangeState } from "@src/store";
+import { KBState } from "@src/store";
 import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,10 +18,10 @@ const CompletionNotificationExchangeRate: FC = () => {
   const [showBotStep, setShowBotStep] = useState(false);
 
   const { completionNotificationExchangeRate } = useSelector(
-    (state: ExchangeState) => state.exchange.botStep
+    (state: KBState) => state.exchange.botStep
   );
   const { confirmAlarm } = useSelector(
-    (state: ExchangeState) => state.exchange.userStep
+    (state: KBState) => state.exchange.userStep
   );
 
   useEffect(() => {

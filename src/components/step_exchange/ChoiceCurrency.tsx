@@ -18,7 +18,7 @@ import {
   setPrsExchangeRate
 } from "@slices/exchangeSlices.ts";
 import { setIsCompleteExchange } from "@slices/globalUISlice.ts";
-import { AppDispatch, ExchangeState } from "@src/store";
+import { AppDispatch, KBState } from "@src/store";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 // import { Input } from "antd";
 import { FC, useCallback, useEffect, useState } from "react";
@@ -34,7 +34,7 @@ const ChoiceCurrency: FC = () => {
   const [eurFlag, setEurFlag] = useState(eur);
 
   const { isCurrencySelected } = useSelector(
-    (state: ExchangeState) => state.exchange.userStep
+    (state: KBState) => state.exchange.userStep
   );
 
   const [showUserStep, setShowUserStep] = useState(false);

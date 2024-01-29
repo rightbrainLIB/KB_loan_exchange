@@ -57,7 +57,7 @@ const ExchangeRateInputSheet: FC<IExchangeRateInputSheet> = ({
       title={
         <DrawerTitle
           title={"환율 지정"}
-          subText={"소수점 앞자리를 입력해주세요"}
+          subText={"소수점 앞자리와 뒷자리를 입력해주세요"}
           useCloseBtn
           closeDrawerBtn={closeSheet}
         />
@@ -73,7 +73,7 @@ const ExchangeRateInputSheet: FC<IExchangeRateInputSheet> = ({
         </div>
         <span>원</span>
       </div>
-      <Keypad />
+      <Keypad type={"dot"} />
     </Drawer>
   );
 };

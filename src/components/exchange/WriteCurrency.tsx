@@ -10,7 +10,7 @@ import {
   setPrsNeedfulExchangeMoney,
   setRequestCurrencyValue
 } from "@slices/exchangeSlices.ts";
-import { ExchangeState } from "@src/store";
+import { KBState } from "@src/store";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,11 +26,11 @@ const WriteCurrency: FC = () => {
   const [isLastChoice, setIsLastChoice] = useState(false);
 
   const { requestCurrencyValue, agreeForeignCurrency } = useSelector(
-    (state: ExchangeState) => state.exchange.userStep
+    (state: KBState) => state.exchange.userStep
   );
 
   const { prsInputCurrencyValue, prsNeedfulExchangeMoney } = useSelector(
-    (state: ExchangeState) => state.exchange.botStep
+    (state: KBState) => state.exchange.botStep
   );
 
   // 환전 신청금액 입력 버튼

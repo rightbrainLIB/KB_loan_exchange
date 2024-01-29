@@ -1,4 +1,4 @@
-import { ExchangeState } from "@src/store";
+import { KBState } from "@src/store";
 import React, { ReactNode } from "react";
 import { isMobile } from "react-device-detect";
 import { useSelector } from "react-redux";
@@ -11,7 +11,7 @@ interface IKBContainer {
 
 const KBContainer: React.FC<IKBContainer> = ({ children }) => {
   const { containerBootmSize } = useSelector(
-    (state: ExchangeState) => state.globalUI
+    (state: KBState) => state.globalUI
   );
   const containerStyles = {
     ...(isMobile ? { paddingBottom: "50%" } : { paddingBottom: "150px" }),

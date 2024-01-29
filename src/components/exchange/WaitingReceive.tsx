@@ -9,7 +9,7 @@ import icGoLink from "@imgs/icons/ic_go_link.png";
 import { setWaitingReceive } from "@slices/exchangeSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
-import { ExchangeState } from "@src/store";
+import { KBState } from "@src/store";
 import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -21,10 +21,10 @@ const WaitingReceive: FC = () => {
   const [showBotStep, setShowBotStep] = useState(false);
 
   const { showMoreDetailInfo } = useSelector(
-    (state: ExchangeState) => state.exchange.userStep
+    (state: KBState) => state.exchange.userStep
   );
   const { waitingReceive } = useSelector(
-    (state: ExchangeState) => state.exchange.botStep
+    (state: KBState) => state.exchange.botStep
   );
 
   useEffect(() => {

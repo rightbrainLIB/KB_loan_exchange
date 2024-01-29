@@ -11,9 +11,10 @@ import {
   setCheckExchangeInfo,
   setConfirmRequestInfo
 } from "@slices/exchangeSlices.ts";
+import { setIsCompleteExchange } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
-import { ExchangeState } from "@src/store";
+import { KBState } from "@src/store";
 // import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,10 +27,10 @@ const ExchangeRequestCompletion: FC = () => {
   // const [isLastChoice, setIsLastChoice] = useState(false);
 
   const { requestExchange, confirmRequestInfo } = useSelector(
-    (state: ExchangeState) => state.exchange.userStep
+    (state: KBState) => state.exchange.userStep
   );
   const { checkExchangeInfo } = useSelector(
-    (state: ExchangeState) => state.exchange.botStep
+    (state: KBState) => state.exchange.botStep
   );
 
   const goNextTask = useCallback(() => {
@@ -48,6 +49,7 @@ const ExchangeRequestCompletion: FC = () => {
 
   useEffect(() => {
     if (requestExchange) {
+      dispatch(setIsCompleteExchange(true));
       setTimeout(() => {
         setShowBotStep(true);
       }, 300);

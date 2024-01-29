@@ -19,7 +19,7 @@ import {
 import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
-import { ExchangeState } from "@src/store";
+import { KBState } from "@src/store";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,10 +37,10 @@ const TravelInsurance: FC = () => {
   const [openNoticeSheet, setOpenNoticeSheet] = useState(false); // 여행자보험 안내 팝업
 
   const { checkRequestValue, joinInsurance } = useSelector(
-    (state: ExchangeState) => state.exchange.userStep
+    (state: KBState) => state.exchange.userStep
   );
   const { travelInsurance } = useSelector(
-    (state: ExchangeState) => state.exchange.botStep
+    (state: KBState) => state.exchange.botStep
   );
 
   // 꼭 확인해주세요! open
@@ -119,7 +119,7 @@ const TravelInsurance: FC = () => {
   // 초기 렌더링 조건, 이전 userStep이 true가 되면 진행
   useEffect(() => {
     if (checkRequestValue) {
-      dispatch(setContainerBottomSize(60));
+      dispatch(setContainerBottomSize(100));
       setShowBotStep(true);
       setTimeout(() => {
         dispatch(setTravelInsurance(true));

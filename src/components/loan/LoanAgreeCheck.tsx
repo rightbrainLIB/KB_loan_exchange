@@ -6,40 +6,58 @@ import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import img01 from "@imgs/loan/arrow_up.png";
 import img02 from "@imgs/loan/LoanAgreeCheck_01.png";
 import { Button, Checkbox, CheckboxProps, Drawer } from "antd";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanAgreeCheck.module.scss";
 
-const LoanAgreeCheck: FC = () => {
-  const navigate = useNavigate();
-  const [sheetOpen, setsheetOpen] = useState(true);
+interface ILoanAgreeCheck {
+  openSheet: boolean;
+  openAgreeSheet: () => void;
+  closeAgreeSheet: () => void;
+  clickPositiveAgree: () => void;
+}
+
+const LoanAgreeCheck: FC<ILoanAgreeCheck> = ({
+  openSheet = false,
+  openAgreeSheet,
+  closeAgreeSheet,
+  clickPositiveAgree
+}) => {
   const [sheetImgOpen, setsheetImgOpen] = useState(false);
 
   const [popCheck, setpopCheck] = useState(false);
 
+  const onClickAgreeCloseBtn = useCallback(() => {
+    closeAgreeSheet && closeAgreeSheet();
+    setTimeout(() => {
+      setpopCheck(false);
+    }, 300);
+  }, [closeAgreeSheet]);
+
   const onCheckAllChange: CheckboxProps["onChange"] = () => {
-    setsheetOpen(false);
+    // setsheetOpen(false);
+    closeAgreeSheet();
     setsheetImgOpen(true);
   };
 
-  const closeSheet = () => {
-    setsheetOpen(false);
-  };
   const closeImgSheet = () => {
     setsheetImgOpen(false);
-    setpopCheck(true);
-  };
-  const imgCloseClick = () => {
-    setsheetOpen(true);
-    setsheetImgOpen(false);
-    setpopCheck(true);
+    // setpopCheck(true);
   };
 
-  const clickBtnAgreePop = () => {
-    navigate("/LoanChat");
+  // 대출 신청서 동의 버튼
+  const imgCloseClick = () => {
+    closeImgSheet();
+    setpopCheck(true);
+    openAgreeSheet();
   };
+
+  // 심사 약관 동의 - 동의 버튼
+  const clickBtnAgreePop = useCallback(() => {
+    clickPositiveAgree && clickPositiveAgree();
+  }, [clickPositiveAgree]);
+
   return (
     <>
       {/* S: LoanAgreeCheckList PopUp */}
@@ -50,8 +68,8 @@ const LoanAgreeCheck: FC = () => {
           body: { padding: 24, paddingBottom: 110 },
           footer: { borderTop: 0, padding: 0 }
         }}
-        open={sheetOpen}
-        onClose={closeSheet}
+        open={openSheet}
+        onClose={onClickAgreeCloseBtn}
         closeIcon={false}
         height={"90%"}
         title={
@@ -59,7 +77,7 @@ const LoanAgreeCheck: FC = () => {
             title={"심사 약관 동의"}
             subText={"부동산담보대출 조회에 동의가 필요해요"}
             useCloseBtn
-            closeDrawerBtn={closeSheet}
+            closeDrawerBtn={onClickAgreeCloseBtn}
           />
         }
         placement={"bottom"}
@@ -68,14 +86,14 @@ const LoanAgreeCheck: FC = () => {
           <Button
             className={$style.btn}
             onClick={clickBtnAgreePop}
-            disabled={popCheck ? false : true}>
+            disabled={!popCheck}>
             동의
           </Button>
         }
         className={$style.LoanAgreeCheckPop}>
         <Checkbox
           onChange={onCheckAllChange}
-          checked={popCheck ? true : false}
+          checked={popCheck}
           className={$style.checkAll}>
           &#91;필수&#93; 약관 전체동의
           <div className={$style.arrowUp}>

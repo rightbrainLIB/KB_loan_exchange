@@ -2,24 +2,71 @@
  * Step 08. 통신사 선택 팝업
  */
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
-import img01 from "@imgs/loan/LoanTelecomSelectPop_01.png";
+import ExchangeWayList from "@components/list/ExchangeWayList.tsx";
+// import img01 from "@imgs/loan/LoanTelecomSelectPop_01.png";
 import { Button, Drawer } from "antd";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanTelecomSelectPop.module.scss";
 
-const LoanTelecomSelectPop: FC = () => {
-  const navigate = useNavigate();
-  const [sheetImgOpen, setsheetImgOpen] = useState(true);
+interface ILoanTelecomSelectPop {
+  openSheet: boolean;
+  closeSheet: () => void;
+  showNextTask: () => void;
+}
 
-  const closeImgSheet = () => {
-    setsheetImgOpen(false);
-  };
-  const clickNextPop = () => {
-    navigate("/LoanTelecomInputPop");
-  };
+const LoanTelecomSelectPop: FC<ILoanTelecomSelectPop> = ({
+  openSheet,
+  closeSheet,
+  showNextTask
+}) => {
+  const wayList = [
+    {
+      imgSrc: "",
+      title: "",
+      subText: "SKT"
+    },
+    {
+      imgSrc: "",
+      title: "",
+      subText: "KT"
+    },
+    {
+      imgSrc: "",
+      title: "",
+      subText: "LGU+"
+    },
+    {
+      imgSrc: "",
+      title: "",
+      subText: "SK알뜰폰"
+    },
+    {
+      imgSrc: "",
+      title: "",
+      subText: "KT알뜰폰"
+    },
+    {
+      imgSrc: "",
+      title: "",
+      subText: "LGU+알뜰폰"
+    }
+  ];
+
+  const [selectedWay, setSelectedWay] = useState("SKT");
+
+  const closeImgSheet = useCallback(() => {
+    closeSheet && closeSheet();
+  }, [closeSheet]);
+  const clickNextPop = useCallback(() => {
+    showNextTask && showNextTask();
+  }, [showNextTask]);
+
+  useEffect(() => {
+    // console.log(selectedWay);
+  }, [selectedWay]);
+
   return (
     <>
       <Drawer
@@ -29,7 +76,7 @@ const LoanTelecomSelectPop: FC = () => {
           body: { padding: 24 },
           footer: { borderTop: 0, padding: 0 }
         }}
-        open={sheetImgOpen}
+        open={openSheet}
         onClose={closeImgSheet}
         closeIcon={false}
         height={417}
@@ -42,16 +89,22 @@ const LoanTelecomSelectPop: FC = () => {
           />
         }
         placement={"bottom"}
-        key={"CurrencySelectSheet"}
+        key={"loanTelecomSelectSheet"}
         footer={
           <Button className={$style.btn} onClick={clickNextPop}>
             인증번호 전송
           </Button>
         }
         className={$style.LoanTelecomSelectPop}>
-        <div className={$style.img}>
-          <img src={img01} width="100%" />
-        </div>
+        {/*<div className={$style.img}>*/}
+        {/*  <img src={img01} width="100%" />*/}
+        {/*</div>*/}
+        <ExchangeWayList
+          klassNames={"telList"}
+          defaultWay={selectedWay}
+          wayList={wayList}
+          clickWay={(str) => setSelectedWay(str)}
+        />
       </Drawer>
     </>
   );

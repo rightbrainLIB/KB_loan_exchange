@@ -31,3 +31,10 @@ const [isLastChoice, setIsLastChoice] = useState(false);
       : setTimeout(() => dispatch(다음state true setter()), )
 
 8. 마지막 step 체크 - 다음 userStep 값을 지정   
+   // 마지막 step 체크하기
+   const lastStr = LastTrueUserStep();
+
+useEffect(() => {
+setIsLastChoiceNegative(lastStr === "saveAlarm");
+setIsLastChoicePositive(lastStr === "isTakenPlace");
+}, [lastStr]);

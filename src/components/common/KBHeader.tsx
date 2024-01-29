@@ -1,7 +1,9 @@
 import StopExchangeProcessSheet from "@components/bottomSheet/StopExchangeProcessSheet.tsx";
 import StopExchangeSheet from "@components/bottomSheet/StopExchangeSheet.tsx";
 import headerBackBtn from "@imgs/icons/icon_back_24.png";
+import { ExchangeState } from "@src/store";
 import { FC, ReactNode, useCallback, useState } from "react";
+import { useSelector } from "react-redux";
 
 import $style from "./KBHeader.module.sass";
 
@@ -12,24 +14,31 @@ interface IKBHeader {
 const KBHeader: FC<IKBHeader> = ({ children }) => {
   const [stopExchange, setStopExchange] = useState(false); // 환전 신청 취소 (step6 전까지)
   const [stopExchangeProcess, setStopExchangeProcess] = useState(false); // 환전 진행 취소 (step6 부터)
+  const { isCompleteExchange } = useSelector(
+    (state: ExchangeState) => state.globalUI
+  );
 
   const closeStopExchange = useCallback(() => {
     setStopExchange(false);
-  }, [stopExchange]);
+  }, []);
 
   const closeStopExchangeProcess = useCallback(() => {
     setStopExchangeProcess(false);
-  }, [stopExchangeProcess]);
+  }, []);
 
   const gotoProcess = useCallback(() => {
     setStopExchange(false);
+    setStopExchangeProcess(false);
   }, []);
 
   // 취소 버튼 클릭
   const callCancelSheet = useCallback(() => {
-    // 조건분기 필요
-    setStopExchange(true);
-    // setStopExchangeProcess(true);
+    /**
+     * step7 부터 진행 멈춤 - 내역은 남아 있는 걸로.
+     * step6 까지는 해당 신청 멈춤
+     */
+    if (isCompleteExchange) setStopExchangeProcess(true);
+    else setStopExchange(true);
   }, [stopExchange]);
 
   return (

@@ -22,7 +22,7 @@ const Index = () => {
             <Button onClick={() => onClickTask("exchange")}>환전</Button>
           </li>
           <li>
-            <Button onClick={() => onClickTask("loan")}>대출</Button>
+            <Button>대출</Button>
           </li>
         </ul>
       </div>

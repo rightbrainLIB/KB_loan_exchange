@@ -11,7 +11,10 @@ import {
   setCheckExchangeInfo,
   setRequestExchange
 } from "@slices/exchangeSlices.ts";
-import { setContainerBottomSize } from "@slices/globalUISlice.ts";
+import {
+  setContainerBottomSize,
+  setIsCompleteExchange
+} from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { ExchangeState } from "@src/store";
@@ -52,6 +55,7 @@ const CheckExchangeInfo: FC = () => {
 
   useEffect(() => {
     if (recommendStaff) {
+      dispatch(setIsCompleteExchange(true));
       setShowBotStep(true);
       setTimeout(() => {
         dispatch(setCheckExchangeInfo(true));

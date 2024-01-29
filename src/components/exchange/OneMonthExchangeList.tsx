@@ -92,6 +92,18 @@ const OneMonthExchangeList: FC = () => {
                   자세히 보기
                 </SelectableBtn>
               </div>
+              <div className={$style.exchangeList}>
+                <img src={OneMonthExchange_list} />
+                <SelectableBtn size="small" disabled={requestedDate}>
+                  자세히 보기
+                </SelectableBtn>
+              </div>
+              <div className={$style.exchangeList}>
+                <img src={OneMonthExchange_list} />
+                <SelectableBtn size="small" disabled={requestedDate}>
+                  자세히 보기
+                </SelectableBtn>
+              </div>
               <div className={$style.MoreBtn}>
                 <img src={MoreBtn} />
               </div>

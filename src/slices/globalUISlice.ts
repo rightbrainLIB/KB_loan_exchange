@@ -6,6 +6,8 @@ export interface IGlobalUI {
   exchangeTotalStep: number;
   loanProgressStep: number;
   loanTotalStep: number;
+  isCompleteExchange: boolean;
+  isCompleteLoan: boolean;
 }
 
 const initialState: IGlobalUI = {
@@ -13,7 +15,9 @@ const initialState: IGlobalUI = {
   exchangeProgressStep: 0,
   exchangeTotalStep: 0,
   loanProgressStep: 0,
-  loanTotalStep: 0
+  loanTotalStep: 0,
+  isCompleteExchange: false,
+  isCompleteLoan: false
 };
 
 const globalUISlice = createSlice({
@@ -37,6 +41,12 @@ const globalUISlice = createSlice({
     },
     setLoanTotalStep: (state, { payload }: PayloadAction<number>) => {
       state.loanTotalStep = payload;
+    },
+    setIsCompleteExchange: (state, { payload }: PayloadAction<boolean>) => {
+      state.isCompleteExchange = payload;
+    },
+    setIsCompleteLoan: (state, { payload }: PayloadAction<boolean>) => {
+      state.isCompleteLoan = payload;
     }
   }
 });
@@ -46,7 +56,9 @@ export const {
   setExchangeProgressStep,
   setExchangeTotalStep,
   setLoanProgressStep,
-  setLoanTotalStep
+  setLoanTotalStep,
+  setIsCompleteExchange,
+  setIsCompleteLoan
 } = globalUISlice.actions;
 
 export default globalUISlice.reducer;

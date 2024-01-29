@@ -17,6 +17,7 @@ import {
   setCurrencySelection,
   setPrsExchangeRate
 } from "@slices/exchangeSlices.ts";
+import { setIsCompleteExchange } from "@slices/globalUISlice.ts";
 import { AppDispatch, ExchangeState } from "@src/store";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 // import { Input } from "antd";
@@ -75,6 +76,7 @@ const ChoiceCurrency: FC = () => {
   }, [lastStr]);
 
   useEffect(() => {
+    dispatch(setIsCompleteExchange(false));
     if (isCurrencySelected) {
       setUsaFlag(usa_disabled);
       setJpFlag(jpy_disabled);

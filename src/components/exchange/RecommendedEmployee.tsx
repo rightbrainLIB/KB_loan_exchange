@@ -10,6 +10,7 @@ import {
   setRecommendedEmployee,
   setRecommendStaff
 } from "@slices/exchangeSlices.ts";
+import { setIsCompleteExchange } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { ExchangeState } from "@src/store";
@@ -30,6 +31,9 @@ const RecommendedEmployee: FC = () => {
   const { recommendedEmployee } = useSelector(
     (state: ExchangeState) => state.exchange.botStep
   );
+  const { isCompleteExchange } = useSelector(
+    (state: ExchangeState) => state.globalUI
+  );
 
   const goNextTask = useCallback(() => {
     setShowUserStep(true);
@@ -47,6 +51,7 @@ const RecommendedEmployee: FC = () => {
 
   useEffect(() => {
     if (checkUserAccount) {
+      if (isCompleteExchange) dispatch(setIsCompleteExchange(false));
       setShowBotStep(true);
       setTimeout(() => {
         dispatch(setRecommendedEmployee(true));

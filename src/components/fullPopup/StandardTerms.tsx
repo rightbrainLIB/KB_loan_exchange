@@ -35,7 +35,7 @@ const StandardTerms: FC<IStandardTerms> = ({
         footer: { borderTop: 0, padding: 0 }
       }}
       placement={"bottom"}
-      height={"100%"}
+      height={"calc(100vh - 30px)"}
       title={<DrawerTitle title={""} useCloseBtn closeDrawerBtn={closeSheet} />}
       footer={
         <KBConfirmBtn onClickConfirm={onClickConfirm}>동의</KBConfirmBtn>

@@ -69,7 +69,10 @@ const ExchangeRequestHistory: FC = () => {
     <>
       {showBotStep && (
         <div>
-          <MotionList aniCondition={exchangeRequestHistory} showHeight={780}>
+          <MotionList
+            aniCondition={exchangeRequestHistory}
+            showHeight={780}
+            moveScroll={60}>
             <BotProfile />
             <KBTalk>
               <h2>환전 신청 내역을 확인해주세요</h2>

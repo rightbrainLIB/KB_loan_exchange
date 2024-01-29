@@ -94,7 +94,8 @@ const ChoiceCurrency: FC = () => {
         <BotBox>
           <MotionList
             aniCondition={true}
-            afterAnim={() => setChoiceCurrency(true)}>
+            afterAnim={() => setChoiceCurrency(true)}
+            noScroll>
             <BotProfile />
             {/*<Input value={"대치동 은마아파트"} onPressEnter={onKeyPressInput} />*/}
             <KBTalk>
@@ -105,7 +106,7 @@ const ChoiceCurrency: FC = () => {
               </p>
             </KBTalk>
           </MotionList>
-          <MotionList aniCondition={choiceCurrency}>
+          <MotionList aniCondition={choiceCurrency} noScroll>
             <KBTalk>
               <h2>환전을 원하는 통화를 선택해주세요</h2>
               <SelectableListWrap>

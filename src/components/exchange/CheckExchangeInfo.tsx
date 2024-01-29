@@ -71,7 +71,10 @@ const CheckExchangeInfo: FC = () => {
     <>
       {showBotStep && (
         <div>
-          <MotionList aniCondition={checkExchangeInfo} showHeight={672}>
+          <MotionList
+            aniCondition={checkExchangeInfo}
+            showHeight={672}
+            moveScroll={60}>
             <BotProfile />
             <KBTalk>
               <img className={$style.img} src={img} />

@@ -134,7 +134,10 @@ const TravelInsurance: FC = () => {
     <>
       {showBotStep && (
         <div style={{ marginTop: 10 }}>
-          <MotionList aniCondition={travelInsurance} showHeight={613}>
+          <MotionList
+            aniCondition={travelInsurance}
+            showHeight={613}
+            moveScroll={70}>
             <BotProfile />
             <KBTalk>
               <img src={img} />

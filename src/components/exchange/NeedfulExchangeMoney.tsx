@@ -12,6 +12,7 @@ import {
   setPrsNeedfulExchangeMoney,
   setRequestCurrencyValue
 } from "@slices/exchangeSlices.ts";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
@@ -57,6 +58,7 @@ const NeedfulExchangeMoney: FC = () => {
   useEffect(() => {
     if (requestCurrencyValue) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(20));
       setTimeout(() => {
         dispatch(setPrsNeedfulExchangeMoney(true));
       }, 600);

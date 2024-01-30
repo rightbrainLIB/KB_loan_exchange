@@ -7,6 +7,7 @@ import $style from "./SelectedUserBox.module.sass";
 
 interface ISelectedUserBox {
   modifyUserSelect?: () => void;
+  marginTop?: number | null;
   isLastSelect?: boolean;
   useTaskModify?: boolean;
   children?: ReactNode;
@@ -14,6 +15,7 @@ interface ISelectedUserBox {
 
 const SelectedUserBox: FC<ISelectedUserBox> = ({
   modifyUserSelect,
+  marginTop,
   isLastSelect = false,
   useTaskModify = false,
   children
@@ -34,10 +36,16 @@ const SelectedUserBox: FC<ISelectedUserBox> = ({
       }, 300);
   }, [modifyUserSelect]);
 
+  const customStyle = {
+    marginTop: marginTop ? marginTop : 0
+  };
+
   return (
     <>
       <div className={$style.selectedUserBox}>
-        <div className={$style.userTalk}>{children}</div>
+        <div className={$style.userTalk} style={customStyle && customStyle}>
+          {children}
+        </div>
         {isLastSelect && (
           <Button
             className={$style.modifyBtn}

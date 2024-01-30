@@ -43,8 +43,6 @@ const MotionList: FC<IMotionList> = ({
         bounce: 0.5,
         onComplete: () => {
           exitAnim();
-          // console.log(document.body.scrollTop + 30);
-          console.log(noScroll);
           let top = 0;
           if (noScroll) {
             top = 0;

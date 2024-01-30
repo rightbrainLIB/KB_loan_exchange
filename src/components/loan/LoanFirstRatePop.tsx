@@ -4,24 +4,21 @@
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import img01 from "@imgs/loan/LoanFirstRatePop.png";
 import { Button, Drawer } from "antd";
-import { useState } from "react";
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanFirstRatePop.module.scss";
 
-const LoanFirstRatePop: FC = () => {
-  const [sheetImgOpen, setsheetImgOpen] = useState(true);
+interface ILoanFirstRatePop {
+  openSheet: boolean;
+  closeSheet: () => void;
+  showNextStep: () => void;
+}
 
-  const closeImgSheet = () => {
-    setsheetImgOpen(false);
-  };
-
-  const navigate = useNavigate();
-  const clickNextPop = () => {
-    navigate("/LoanChat");
-  };
-
+const LoanFirstRatePop: FC<ILoanFirstRatePop> = ({
+  openSheet,
+  closeSheet,
+  showNextStep
+}) => {
   return (
     <>
       <Drawer
@@ -31,8 +28,8 @@ const LoanFirstRatePop: FC = () => {
           body: { padding: 24 },
           footer: { borderTop: 0, padding: 0 }
         }}
-        open={sheetImgOpen}
-        onClose={closeImgSheet}
+        open={openSheet}
+        onClose={closeSheet}
         closeIcon={false}
         height={487}
         title={
@@ -40,13 +37,13 @@ const LoanFirstRatePop: FC = () => {
             title={"우대금리 적용"}
             subText={""}
             useCloseBtn
-            closeDrawerBtn={closeImgSheet}
+            closeDrawerBtn={closeSheet}
           />
         }
         placement={"bottom"}
         key={"LoanTelecomInputPop"}
         footer={
-          <Button className={$style.btn} onClick={clickNextPop}>
+          <Button className={$style.btn} onClick={showNextStep}>
             확인
           </Button>
         }

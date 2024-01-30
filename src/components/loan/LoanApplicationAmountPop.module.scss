@@ -1,103 +1,111 @@
 .LoanApplicationAmountPop {
-    .inputbox {
-        position: relative;
-        input {
-            padding-bottom: 6px;
-            padding-right: 30px;
-            height: 33px;
-            border:0;
-            border-bottom: 2px solid #26282c;
-            border-radius: 0;
-            font-family: 'KBB';
-            font-size: 19px;
-            line-height: 27px;
-            font-weight: 700;
-            color:#26282C;
-            &::placeholder {
-                font-family: 'KBB';
-                font-size: 19px;
-                line-height: 27px;
-                font-weight: 700;
-                color:#929292;
-            }
-        }
-        [class~="ant-input-affix-wrapper"]{
-            font-family: 'KBB';
-            padding:0;
-            border:0;
-            [class~="ant-input-suffix"]{
-                position:absolute;
-                bottom:4px;
-                right:0;
-                font-family: 'KBB';
-                font-size: 26px;
-                line-height: 33px;
-                font-weight: 700;
-            }
-        }
-        [class~="ant-input-outlined"]{
-            &:focus-within {
-                box-shadow: none;
-            }
-        }
+  .inputbox {
+    position: relative;
+
+    input {
+      font-family: 'KBB', sans-serif;
+      font-size: 19px;
+      line-height: 27px;
+      height: 33px;
+      padding-right: 30px;
+      padding-bottom: 6px;
+      color: #26282C;
+      border: 0;
+      border-bottom: 2px solid #26282c;
+      border-radius: 0;
+
+      &::placeholder {
+        font-family: 'KBB', sans-serif;
+        font-size: 19px;
+        line-height: 27px;
+        color: #929292;
+      }
     }
-    .btnBox {
-        display: flex;
-        flex-direction: row;
-        margin-top: 20px;
-        div {
-            width: 20%;
-            line-height: 34px;
-            text-align: center;
-            border: 1px solid #DDE1E4;
-            border-radius: 2px;
-            &+div {
-                margin-left: 4px;
-            }
-            span {
-                font-family: 'robotoL';
-                font-size: 15px;
-                line-height: 20px;
-                font-weight: 400;
-                span {
-                    font-family: 'KBL';
-                    font-size: 14px;
-                    line-height: 20px;
-                    font-weight: 400;
-                }
-            }
-        }
+
+    [class~="ant-input-affix-wrapper"] {
+      font-family: 'KBB';
+      padding: 0;
+      border: 0;
+
+      [class~="ant-input-suffix"] {
+        font-family: 'KBB', sans-serif;
+        font-size: 26px;
+        line-height: 33px;
+        position: absolute;
+        right: 0;
+        bottom: 4px;
+      }
     }
-    .btn {
-        position: fixed;
-        width: 100%;
-        bottom:0;
-        left: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 57px;
-        padding: 0;
-        background-color: #FFD338;
-        color: #26282C;
-        font-family: 'KBB';
-        font-size: 20px;
-        letter-spacing: -0.2em;
-        border: none;
-        -webkit-border-radius: 0;
-        -moz-border-radius: 0;
-        border-radius: 0;
-        &:disabled {
-            background-color: #DDE1E4;
-            span {
-                color: #AAB0B8;
-            }
-        }
-        &:hover,
-        &:active
-          {
-            color: #26282C !important;
-          }
+
+    [class~="ant-input-outlined"] {
+      &:focus-within {
+        box-shadow: none;
+      }
     }
+  }
+
+  .btnBox {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+
+    div {
+      line-height: 34px;
+      width: 20%;
+      text-align: center;
+      border: 1px solid #DDE1E4;
+      border-radius: 2px;
+
+      & + div {
+        margin-left: 4px;
+      }
+
+      span {
+        font-family: 'robotoL', sans-serif;
+        font-size: 15px;
+        line-height: 20px;
+
+        span {
+          font-family: 'KBL', sans-serif;
+          font-size: 14px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+
+  .btn {
+    font-family: 'KBB', sans-serif;
+    font-size: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    width: 100%;
+    height: 57px;
+    padding: 0;
+    letter-spacing: -0.2em;
+    color: #26282C;
+    border: none;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    background-color: #FFD338;
+
+    &:disabled {
+      background-color: #DDE1E4;
+
+      span {
+        color: #AAB0B8;
+      }
+    }
+
+    &:hover,
+    &:active {
+      color: #26282C !important;
+    }
+  }
 }

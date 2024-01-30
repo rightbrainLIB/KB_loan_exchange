@@ -3,8 +3,10 @@
  * 주택 시세 정보 검색 (바텀시트)
  */
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
-import { Drawer, Input, InputRef } from "antd";
-import { FC, useRef, useState } from "react";
+import iosKeypadImg from "@imgs/iosKeypad.png";
+// import { Drawer, InputRef } from "antd";
+import { Drawer } from "antd";
+import { FC, useCallback, useState } from "react";
 
 import $style from "./LoanSearchAddressPop.module.scss";
 
@@ -19,30 +21,39 @@ const LoanSearchAddressPop: FC<ILoanSearchAddressPop> = ({
   closeSheet,
   showNextTask
 }) => {
-  const inputRef = useRef<InputRef>(null);
+  // const inputRef = useRef<InputRef>(null);
   const [searchValue, setSearchValue] = useState("");
   const [resultVisible, setResultVisible] = useState(false);
   const [clickResultVisible, setClickResultVisible] = useState(false);
+  const [showKeypadSheet, setShowKeypadSheet] = useState(false);
 
+  // 돋보기 아이콘 클릭
   const InputSetValue = () => {
-    const inputEl = inputRef.current;
-    if (inputEl) {
-      inputEl.focus();
-    }
-    if (searchValue.length < 1) {
-      setSearchValue("대치동 은마아파트");
-    } else {
-      setResultVisible(true);
-    }
+    setShowKeypadSheet(true);
+    // const inputEl = inputRef.current;
+    // if (inputEl) {
+    //   inputEl.focus();
+    // }
+    // if (searchValue.length < 1) {
+    //   setSearchValue("대치동 은마아파트");
+    // } else {
+    //   setResultVisible(true);
+    // }
   };
 
-  const onKeyPressInput = () => {
+  const onClickKeypad = useCallback(() => {
     setResultVisible(true);
-    // setSearchValue("대치동 은마아파트");
-    if (inputRef.current) {
-      inputRef.current.blur();
-    }
-  };
+    setSearchValue("대치동 은마아파트");
+    setShowKeypadSheet(false);
+  }, []);
+
+  // const onKeyPressInput = () => {
+  //   setResultVisible(true);
+  //   // setSearchValue("대치동 은마아파트");
+  //   if (inputRef.current) {
+  //     inputRef.current.blur();
+  //   }
+  // };
 
   const resultClick = () => {
     setResultVisible(false);
@@ -54,6 +65,19 @@ const LoanSearchAddressPop: FC<ILoanSearchAddressPop> = ({
     setResultVisible(false);
     setClickResultVisible(false);
   };
+
+  const closeClearSheet = useCallback(() => {
+    clearValue();
+    closeSheet && closeSheet();
+  }, [closeSheet]);
+
+  // 1층 선택
+  const onClickEndStep = useCallback(() => {
+    setSearchValue("");
+    setResultVisible(false);
+    setClickResultVisible(false);
+    showNextTask && showNextTask();
+  }, [showNextTask]);
 
   return (
     <>
@@ -71,7 +95,7 @@ const LoanSearchAddressPop: FC<ILoanSearchAddressPop> = ({
           <DrawerTitle
             title={"주택 시세정보 검색"}
             useCloseBtn
-            closeDrawerBtn={closeSheet}
+            closeDrawerBtn={closeClearSheet}
           />
         }
         placement={"bottom"}
@@ -84,12 +108,13 @@ const LoanSearchAddressPop: FC<ILoanSearchAddressPop> = ({
           {/*  value={""}*/}
           {/*  onPressEnter={onKeyPressInput}*/}
           {/*/>*/}
-          <Input
-            className={$style.input}
-            placeholder="예) 대치동 은마아파트 입력"
-            value={searchValue}
-            onPressEnter={onKeyPressInput}
-          />
+          {/*<Input*/}
+          {/*  className={$style.input}*/}
+          {/*  placeholder="예) 대치동 은마아파트 입력"*/}
+          {/*  value={searchValue}*/}
+          {/*  onPressEnter={onKeyPressInput}*/}
+          {/*/>*/}
+          <div className={$style.input}>{searchValue}</div>
           <button
             type="button"
             className={`${$style.clearBtn} ${searchValue === "대치동 은마아파트" && $style.visible}`}
@@ -142,7 +167,7 @@ const LoanSearchAddressPop: FC<ILoanSearchAddressPop> = ({
             </div>
             <p className={$style.desc}>층을 선택해주세요</p>
             <ul className={$style.resultListWrap}>
-              <li className={$style.resultList} onClick={showNextTask}>
+              <li className={$style.resultList} onClick={onClickEndStep}>
                 1층
                 <div className={$style.price}>
                   <div>180,000,000 원</div>
@@ -161,6 +186,24 @@ const LoanSearchAddressPop: FC<ILoanSearchAddressPop> = ({
         ) : (
           ""
         )}
+      </Drawer>
+
+      <Drawer
+        styles={{
+          header: { borderBottom: 0, padding: 0 },
+          body: { padding: 0 },
+          footer: { borderTop: 0, padding: 0 }
+        }}
+        className={$style.keypadSheet}
+        open={showKeypadSheet}
+        onClose={() => setShowKeypadSheet(false)}
+        maskClosable={true}
+        closeIcon={false}
+        placement={"bottom"}
+        height={295}>
+        <div className={$style.keypadImg} onClick={onClickKeypad}>
+          <img src={iosKeypadImg} alt="" />
+        </div>
       </Drawer>
     </>
   );

@@ -13,9 +13,8 @@ import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import img from "@imgs/loan/LoanRecommendGuide.png";
 import {
-  setChangeUserInput,
   setKeepGoingLoan,
-  setLoanRecommendGuide
+  setLoanRecommendGuide2
 } from "@slices/loanSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import { KBState } from "@src/store";
@@ -23,40 +22,39 @@ import LastTrueUserStepLoan from "@src/utils/LastUserStepLoanProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const LoanRecommendGuide: FC = () => {
+const LoanRecommendGuide2: FC = () => {
   const dispatch = useDispatch();
 
   const [showBotStep, setShowBotStep] = useState(false);
   const [showUserStepPositive, setShowUserStepPositive] = useState(false);
-  const [showUserStepNegative, setShowUserStepNegative] = useState(false);
-  const [isLastChoiceNegative, setIsLastChoiceNegative] = useState(false);
-  const [isLastChoicePositive, setIsLastChoicePositive] = useState(false);
+  const [isLastChoice, setIsLastChoice] = useState(false);
 
-  const [openRateKnowSheet, setOpenRateKnowSheet] = useState(false);
+  const [openRateKnowSheet2, setOpenRateKnowSheet2] = useState(false);
 
-  const { primeRate, keepGoingLoan, changeUserInput, cofix } = useSelector(
+  const { keepGoingLoan, cofix } = useSelector(
     (state: KBState) => state.loan.userStep
   );
-  const { loanRecommendGuide } = useSelector(
+  const { loanRecommendGuide2 } = useSelector(
     (state: KBState) => state.loan.botStep
   );
 
   const btnUnderList = [
     {
-      disabled: keepGoingLoan || changeUserInput,
+      disabled: keepGoingLoan,
       text: "갚는방법 안내"
     },
     {
-      disabled: keepGoingLoan || changeUserInput,
+      disabled: keepGoingLoan,
       text: "금리방식 안내",
       onClickBtn: () => {
-        setOpenRateKnowSheet(true);
+        console.log(123);
+        setOpenRateKnowSheet2(true);
       }
     }
   ];
 
   const closeRateKnowSheet = useCallback(() => {
-    setOpenRateKnowSheet(false);
+    setOpenRateKnowSheet2(false);
   }, []);
 
   const onClickOK = useCallback(() => {
@@ -67,31 +65,28 @@ const LoanRecommendGuide: FC = () => {
   }, [dispatch]);
 
   // 조건 변경하기 버튼
-  const onChangeUserState = useCallback(() => {
-    setShowUserStepNegative(true);
-    setTimeout(() => {
-      dispatch(setChangeUserInput(true));
-    });
-  }, [dispatch]);
+  // const onChangeUserState = useCallback(() => {
+  //   setShowUserStepNegative(true);
+  //   setTimeout(() => {
+  //     dispatch(setChangeUserInput(true));
+  //   });
+  // }, [dispatch]);
 
   // 마지막 step 체크하기
   const lastStr = LastTrueUserStepLoan();
 
   useEffect(() => {
-    setIsLastChoicePositive(lastStr === "keepGoingLoan");
-    setIsLastChoiceNegative(lastStr === "changeUserInput");
+    setIsLastChoice(lastStr === "keepGoingLoan");
   }, [lastStr]);
 
   useEffect(() => {
-    if (primeRate || cofix) {
-      dispatch(setKeepGoingLoan(false));
-      dispatch(setChangeUserInput(false));
+    if (cofix) {
       setShowBotStep(true);
       setTimeout(() => {
-        dispatch(setLoanRecommendGuide(true));
+        dispatch(setLoanRecommendGuide2(true));
       }, 900);
     }
-  }, [primeRate, dispatch]);
+  }, [cofix, dispatch]);
 
   return (
     <>
@@ -100,7 +95,7 @@ const LoanRecommendGuide: FC = () => {
           <MotionListWrap>
             <MotionList
               showHeight={660}
-              aniCondition={loanRecommendGuide}
+              aniCondition={loanRecommendGuide2}
               moveScroll={370}>
               <BotBox>
                 <BotProfile />
@@ -110,15 +105,13 @@ const LoanRecommendGuide: FC = () => {
                     <li>
                       <SelectableBtn
                         bgBtn
-                        disabled={keepGoingLoan || changeUserInput}
+                        disabled={keepGoingLoan}
                         onClickBtn={onClickOK}>
                         이대로 대출진행
                       </SelectableBtn>
                     </li>
                     <li>
-                      <SelectableBtn
-                        onClickBtn={onChangeUserState}
-                        disabled={keepGoingLoan || changeUserInput}>
+                      <SelectableBtn disabled={keepGoingLoan}>
                         조건 변경하기
                       </SelectableBtn>
                     </li>
@@ -134,29 +127,19 @@ const LoanRecommendGuide: FC = () => {
       {showUserStepPositive && (
         <MotionListWrap>
           <MotionList aniCondition={keepGoingLoan}>
-            <SelectedUserBox isLastSelect={isLastChoicePositive}>
+            <SelectedUserBox isLastSelect={isLastChoice}>
               이대로 대출진행
             </SelectedUserBox>
           </MotionList>
         </MotionListWrap>
       )}
 
-      {showUserStepNegative && (
-        <MotionListWrap>
-          <MotionList aniCondition={changeUserInput}>
-            <SelectedUserBox isLastSelect={isLastChoiceNegative}>
-              조건 변경하기
-            </SelectedUserBox>
-          </MotionList>
-        </MotionListWrap>
-      )}
-
       <LoanRateKnowSheet
-        openSheet={openRateKnowSheet}
+        openSheet={openRateKnowSheet2}
         closeSheet={closeRateKnowSheet}
       />
     </>
   );
 };
 
-export default LoanRecommendGuide;
+export default LoanRecommendGuide2;

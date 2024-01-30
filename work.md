@@ -17,6 +17,13 @@ const [isLastChoice, setIsLastChoice] = useState(false);
    userStep = 이전 task 속성
    botStep = 파일명과 같은 slice 속성 등록
 
+const { changeUserInput, selected10Years } = useSelector(
+(state: KBState) => state.loan.userStep
+);
+const { loanPeriodSelect } = useSelector(
+(state: KBState) => state.loan.botStep
+);
+
 5. 이전 userStep 에서 활성화시킨 값을 통해 botStep 활성화하기
     - setTimeout, 600으로 botStep값 dispatch 하기 -> useEffect 활용
 
@@ -32,7 +39,7 @@ const [isLastChoice, setIsLastChoice] = useState(false);
 
 8. 마지막 step 체크 - 다음 userStep 값을 지정   
    // 마지막 step 체크하기
-   const lastStr = LastTrueUserStep();
+   const lastStr = LastTrueUserStepLoan();
 
 useEffect(() => {
 setIsLastChoiceNegative(lastStr === "saveAlarm");

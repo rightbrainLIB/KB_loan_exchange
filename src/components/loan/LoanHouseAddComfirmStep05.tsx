@@ -89,13 +89,13 @@ const LoanHouseAddComfirmStep05: FC = () => {
     if (loanHouseAddConfirm05) {
       setTimeout(() => {
         setChkStep1(true);
-      }, 1200);
-      setTimeout(() => {
-        setChkStep2(true);
       }, 1600);
       setTimeout(() => {
+        setChkStep2(true);
+      }, 2000);
+      setTimeout(() => {
         setChkStep3(true);
-      }, 1800);
+      }, 2200);
     } else {
       setChkStep1(false);
       setChkStep2(false);
@@ -201,7 +201,7 @@ const LoanHouseAddComfirmStep05: FC = () => {
             <MotionList
               showHeight={522}
               aniCondition={recommendInfo}
-              moveScroll={370}>
+              moveScroll={407}>
               <div style={{ marginTop: 10 }}>
                 <KBTalk>
                   <img src={img03} />

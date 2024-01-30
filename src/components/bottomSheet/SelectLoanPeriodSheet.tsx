@@ -5,23 +5,23 @@
  */
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import { Drawer } from "antd";
-import { FC, useCallback } from "react";
+import { FC } from "react";
 
 import $style from "./SelectLoanPeriodSheet.module.scss";
+
 // import { useDispatch } from "react-redux";
 
 interface ISelectLoanPeriodSheet {
-  sheetOpen: boolean;
+  openSheet: boolean;
+  closeSheet: () => void;
+  showNextStep: () => void;
 }
 
-const SelectLoanPeriodSheet: FC<ISelectLoanPeriodSheet> = ({ sheetOpen }) => {
-  // const dispatch = useDispatch();
-  
-  // 시트 닫기
-  const closeSheet = useCallback(() => {
-    // dispatch(setOpenTakenWaySheet(false));
-  }, []);
-  
+const SelectLoanPeriodSheet: FC<ISelectLoanPeriodSheet> = ({
+  openSheet,
+  closeSheet,
+  showNextStep
+}) => {
   return (
     <Drawer
       style={{ borderRadius: "12px 12px 0 0" }}
@@ -30,7 +30,7 @@ const SelectLoanPeriodSheet: FC<ISelectLoanPeriodSheet> = ({ sheetOpen }) => {
         body: { padding: 24 },
         footer: { borderTop: 0, padding: 0 }
       }}
-      open={sheetOpen}
+      open={openSheet}
       onClose={closeSheet}
       closeIcon={false}
       height={"auto"}
@@ -44,7 +44,7 @@ const SelectLoanPeriodSheet: FC<ISelectLoanPeriodSheet> = ({ sheetOpen }) => {
       placement={"bottom"}
       key={"SelectLoanPeriodSheet"}>
       <ul className={$style.loanPeriodList}>
-        <li>10년</li>
+        <li onClick={showNextStep}>10년</li>
         <li>15년</li>
         <li>25년</li>
         <li>30년</li>

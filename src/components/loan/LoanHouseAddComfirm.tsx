@@ -37,10 +37,12 @@ const LoanHouseAddComfirm: FC = () => {
   // 주택 구입 수정 - 다시 선택하시겠어요? > 예 버튼
   const modifyUserSelect = useCallback(() => {
     dispatch(setLoanHouseAddConfirm01(false)); // 공동명의, 단독명의 제거
-    dispatch(setBuyHouse(false)); // 주택구입 - 사용자 선택 제거
+    setTimeout(() => {
+      dispatch(setBuyHouse(false)); // 주택구입 - 사용자 선택 제거
+    }, 500);
     setTimeout(() => {
       setShowUserStep(false); // 주택구입 - 사용자 선택 제거 영역 제거
-    }, 900);
+    }, 600);
     setTimeout(() => {}, 1200);
   }, [dispatch]);
 

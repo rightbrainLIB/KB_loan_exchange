@@ -16,6 +16,11 @@ export interface ILoanState {
     keepGoingLoan: boolean; // 이대로 대출진행
     changeUserInput: boolean; // 조건 변경하기
     reKeepGoingLoan: boolean; // 이대로 대출진행 - 조건 변경하기 이후
+    selected10Years: boolean; // 10년
+    fullyAmortized: boolean; // 원리금균등상환
+    variableInterestRate: boolean; // 변동금리
+    cofix: boolean; // 신잔액기준 COFIX
+    reKeepGoing: boolean; // 이대로 대출진행
   };
   lastUserSte: string | null; // 마지막 선택 값
   botStep: {
@@ -31,6 +36,11 @@ export interface ILoanState {
     loanHouseAddConfirm06: boolean; // 네, KB 주택담보대출을 진행해드릴게요!
     loanRecommendGuide: boolean; // 입력해주신 신청정보에 맞는 최저금리와 최대한도로 제시해드려요
     questionForChange1: boolean; // 신청정보를 확인하기 위해 몇가지 질문을 할게요. 대출 기간을 정해주세요
+    loanPeriodSelect: boolean; // 신청정보를 확인하기 위해 몇가지 질문을 할게요, 대출 기간을 정해주세요
+    loanPaybackSelectStep01: boolean; // 어떤 방법으로 갚으실 예정인가요?
+    loanPaybackSelectStep02: boolean; // 금리방식을 선택해주세요
+    loanPaybackSelectStep03: boolean; // 기준금리종류를 선택해주세요
+    loanRecommendGuide2: boolean; // 입력해주신 신청정보에 맞는 최저금리와 최대한도로 제시해드려요
   };
 }
 
@@ -48,7 +58,12 @@ const initialState: ILoanState = {
     primeRate: false,
     keepGoingLoan: false,
     changeUserInput: false,
-    reKeepGoingLoan: false
+    reKeepGoingLoan: false,
+    selected10Years: false,
+    fullyAmortized: false,
+    variableInterestRate: false,
+    cofix: false,
+    reKeepGoing: false
   },
   lastUserSte: "",
   botStep: {
@@ -63,7 +78,12 @@ const initialState: ILoanState = {
     loanHouseAddConfirm05: false,
     loanHouseAddConfirm06: false,
     loanRecommendGuide: false,
-    questionForChange1: false
+    questionForChange1: false,
+    loanPeriodSelect: false,
+    loanPaybackSelectStep01: false,
+    loanPaybackSelectStep02: false,
+    loanPaybackSelectStep03: false,
+    loanRecommendGuide2: false
   }
 };
 
@@ -111,6 +131,21 @@ const loanSlice = createSlice({
     setReKeepGoingLoan: (state, { payload }: PayloadAction<boolean>) => {
       state.userStep.reKeepGoingLoan = payload;
     },
+    setSelected10Years: (state, { payload }: PayloadAction<boolean>) => {
+      state.userStep.selected10Years = payload;
+    },
+    setFullyAmortized: (state, { payload }: PayloadAction<boolean>) => {
+      state.userStep.fullyAmortized = payload;
+    },
+    setVariableInterestRate: (state, { payload }: PayloadAction<boolean>) => {
+      state.userStep.variableInterestRate = payload;
+    },
+    setCofix: (state, { payload }: PayloadAction<boolean>) => {
+      state.userStep.cofix = payload;
+    },
+    setReKeepGoing: (state, { payload }: PayloadAction<boolean>) => {
+      state.userStep.reKeepGoing = payload;
+    },
 
     // botStep
     setLoanLimitCurrency: (state, { payload }: PayloadAction<boolean>) => {
@@ -148,6 +183,30 @@ const loanSlice = createSlice({
     },
     setQuestionForChange1: (state, { payload }: PayloadAction<boolean>) => {
       state.botStep.questionForChange1 = payload;
+    },
+    setLoanPeriodSelect: (state, { payload }: PayloadAction<boolean>) => {
+      state.botStep.loanPeriodSelect = payload;
+    },
+    setLoanPaybackSelectStep01: (
+      state,
+      { payload }: PayloadAction<boolean>
+    ) => {
+      state.botStep.loanPaybackSelectStep01 = payload;
+    },
+    setLoanPaybackSelectStep02: (
+      state,
+      { payload }: PayloadAction<boolean>
+    ) => {
+      state.botStep.loanPaybackSelectStep02 = payload;
+    },
+    setLoanPaybackSelectStep03: (
+      state,
+      { payload }: PayloadAction<boolean>
+    ) => {
+      state.botStep.loanPaybackSelectStep03 = payload;
+    },
+    setLoanRecommendGuide2: (state, { payload }: PayloadAction<boolean>) => {
+      state.botStep.loanRecommendGuide2 = payload;
     }
   }
 });
@@ -167,6 +226,11 @@ export const {
   setKeepGoingLoan,
   setChangeUserInput,
   setReKeepGoingLoan,
+  setSelected10Years,
+  setFullyAmortized,
+  setVariableInterestRate,
+  setCofix,
+  setReKeepGoing,
 
   // botStep
   setLoanLimitCurrency,
@@ -180,7 +244,12 @@ export const {
   setLoanHouseAddConfirm05,
   setLoanHouseAddConfirm06,
   setLoanRecommendGuide,
-  setQuestionForChange1
+  setQuestionForChange1,
+  setLoanPeriodSelect,
+  setLoanPaybackSelectStep01,
+  setLoanPaybackSelectStep02,
+  setLoanPaybackSelectStep03,
+  setLoanRecommendGuide2
 } = loanSlice.actions;
 
 export default loanSlice.reducer;

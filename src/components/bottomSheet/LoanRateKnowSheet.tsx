@@ -4,7 +4,6 @@
  */
 import KBConfirmBtn from "@components/buttons/KBConfirmBtn.tsx";
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
-import noticeImg from "@imgs/exchange/TraveInsuranceNotice.png";
 import LoanRateKnow from "@imgs/loan/LoanRateKnow.png";
 import { Drawer } from "antd";
 import { FC } from "react";

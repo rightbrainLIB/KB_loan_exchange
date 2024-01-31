@@ -20,7 +20,12 @@ export interface ILoanState {
     fullyAmortized: boolean; // 원리금균등상환
     variableInterestRate: boolean; // 변동금리
     cofix: boolean; // 신잔액기준 COFIX
-    reKeepGoing: boolean; // 이대로 대출진행
+    selectedUserDate: boolean; // 2024.02.28,
+    selectedUserLoanPrice: boolean; // 77,000,000
+    callRequestLoan: boolean; // 대출 신청
+    nationalPurse: boolean; // 국민지갑 간편제출
+    documentImage: boolean; // 서류 이미지로 제출
+    confirmUserRequest: boolean; // 대출 신청내역 확인
   };
   lastUserSte: string | null; // 마지막 선택 값
   botStep: {
@@ -41,6 +46,13 @@ export interface ILoanState {
     loanPaybackSelectStep02: boolean; // 금리방식을 선택해주세요
     loanPaybackSelectStep03: boolean; // 기준금리종류를 선택해주세요
     loanRecommendGuide2: boolean; // 입력해주신 신청정보에 맞는 최저금리와 최대한도로 제시해드려요
+    loanSelectCalendar: boolean; // 대출 받고자 하는 날짜를 선택해주세요
+    loanApplicationAmount: boolean; // 대출 신청금액을 알려주세요
+    loanInfoConfirm: boolean; // 대출 신청정보를 확인해주세요
+    loanInfoSimpleSubmit: boolean; // 대출신청에 필요한 서류를 제출해주세요
+    loanInfoSubmitComplete: boolean; // 국민지갑과 마이데이터를 통해 제출이 완료된 서류예요, 나머지 서류는 이미지로 제출해주세요
+    loanSubmitComplete: boolean; // 대출 신청을 완료했어요!
+    loanSubmitInfo: boolean; // 대출 신청 내역을 확인해주세요
   };
 }
 
@@ -58,12 +70,17 @@ const initialState: ILoanState = {
     primeRate: false,
     keepGoingLoan: false,
     changeUserInput: false,
-    reKeepGoingLoan: false,
     selected10Years: false,
     fullyAmortized: false,
     variableInterestRate: false,
     cofix: false,
-    reKeepGoing: false
+    reKeepGoingLoan: false,
+    selectedUserDate: false,
+    selectedUserLoanPrice: false,
+    callRequestLoan: false,
+    nationalPurse: false,
+    documentImage: false,
+    confirmUserRequest: false
   },
   lastUserSte: "",
   botStep: {
@@ -83,7 +100,14 @@ const initialState: ILoanState = {
     loanPaybackSelectStep01: false,
     loanPaybackSelectStep02: false,
     loanPaybackSelectStep03: false,
-    loanRecommendGuide2: false
+    loanRecommendGuide2: false,
+    loanSelectCalendar: false,
+    loanApplicationAmount: false,
+    loanInfoConfirm: false,
+    loanInfoSimpleSubmit: false,
+    loanInfoSubmitComplete: false,
+    loanSubmitComplete: false,
+    loanSubmitInfo: false
   }
 };
 
@@ -128,9 +152,6 @@ const loanSlice = createSlice({
     setChangeUserInput: (state, { payload }: PayloadAction<boolean>) => {
       state.userStep.changeUserInput = payload;
     },
-    setReKeepGoingLoan: (state, { payload }: PayloadAction<boolean>) => {
-      state.userStep.reKeepGoingLoan = payload;
-    },
     setSelected10Years: (state, { payload }: PayloadAction<boolean>) => {
       state.userStep.selected10Years = payload;
     },
@@ -143,8 +164,26 @@ const loanSlice = createSlice({
     setCofix: (state, { payload }: PayloadAction<boolean>) => {
       state.userStep.cofix = payload;
     },
-    setReKeepGoing: (state, { payload }: PayloadAction<boolean>) => {
-      state.userStep.reKeepGoing = payload;
+    setReKeepGoingLoan: (state, { payload }: PayloadAction<boolean>) => {
+      state.userStep.reKeepGoingLoan = payload;
+    },
+    setSelectedUserDate: (state, { payload }: PayloadAction<boolean>) => {
+      state.userStep.selectedUserDate = payload;
+    },
+    setSelectedUserLoanPrice: (state, { payload }: PayloadAction<boolean>) => {
+      state.userStep.selectedUserLoanPrice = payload;
+    },
+    setCallRequestLoan: (state, { payload }: PayloadAction<boolean>) => {
+      state.userStep.callRequestLoan = payload;
+    },
+    setNationalPurse: (state, { payload }: PayloadAction<boolean>) => {
+      state.userStep.nationalPurse = payload;
+    },
+    setDocumentImage: (state, { payload }: PayloadAction<boolean>) => {
+      state.userStep.documentImage = payload;
+    },
+    setConfirmUserRequest: (state, { payload }: PayloadAction<boolean>) => {
+      state.userStep.confirmUserRequest = payload;
     },
 
     // botStep
@@ -207,6 +246,27 @@ const loanSlice = createSlice({
     },
     setLoanRecommendGuide2: (state, { payload }: PayloadAction<boolean>) => {
       state.botStep.loanRecommendGuide2 = payload;
+    },
+    setLoanSelectCalendar: (state, { payload }: PayloadAction<boolean>) => {
+      state.botStep.loanSelectCalendar = payload;
+    },
+    setLoanApplicationAmount: (state, { payload }: PayloadAction<boolean>) => {
+      state.botStep.loanApplicationAmount = payload;
+    },
+    setLoanInfoConfirm: (state, { payload }: PayloadAction<boolean>) => {
+      state.botStep.loanInfoConfirm = payload;
+    },
+    setLoanInfoSimpleSubmit: (state, { payload }: PayloadAction<boolean>) => {
+      state.botStep.loanInfoSimpleSubmit = payload;
+    },
+    setLoanInfoSubmitComplete: (state, { payload }: PayloadAction<boolean>) => {
+      state.botStep.loanInfoSubmitComplete = payload;
+    },
+    setLoanSubmitComplete: (state, { payload }: PayloadAction<boolean>) => {
+      state.botStep.loanSubmitComplete = payload;
+    },
+    setLoanSubmitInfo: (state, { payload }: PayloadAction<boolean>) => {
+      state.botStep.loanSubmitInfo = payload;
     }
   }
 });
@@ -225,12 +285,17 @@ export const {
   setPrimeRate,
   setKeepGoingLoan,
   setChangeUserInput,
-  setReKeepGoingLoan,
   setSelected10Years,
   setFullyAmortized,
   setVariableInterestRate,
+  setReKeepGoingLoan,
   setCofix,
-  setReKeepGoing,
+  setSelectedUserDate,
+  setSelectedUserLoanPrice,
+  setCallRequestLoan,
+  setNationalPurse,
+  setDocumentImage,
+  setConfirmUserRequest,
 
   // botStep
   setLoanLimitCurrency,
@@ -249,7 +314,14 @@ export const {
   setLoanPaybackSelectStep01,
   setLoanPaybackSelectStep02,
   setLoanPaybackSelectStep03,
-  setLoanRecommendGuide2
+  setLoanRecommendGuide2,
+  setLoanSelectCalendar,
+  setLoanApplicationAmount,
+  setLoanInfoConfirm,
+  setLoanInfoSimpleSubmit,
+  setLoanInfoSubmitComplete,
+  setLoanSubmitComplete,
+  setLoanSubmitInfo
 } = loanSlice.actions;
 
 export default loanSlice.reducer;

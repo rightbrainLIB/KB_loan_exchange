@@ -34,7 +34,7 @@ const LoanRecommendGuide: FC = () => {
 
   const [openRateKnowSheet, setOpenRateKnowSheet] = useState(false);
 
-  const { primeRate, keepGoingLoan, changeUserInput, cofix } = useSelector(
+  const { primeRate, keepGoingLoan, changeUserInput } = useSelector(
     (state: KBState) => state.loan.userStep
   );
   const { loanRecommendGuide } = useSelector(
@@ -83,7 +83,7 @@ const LoanRecommendGuide: FC = () => {
   }, [lastStr]);
 
   useEffect(() => {
-    if (primeRate || cofix) {
+    if (primeRate) {
       dispatch(setKeepGoingLoan(false));
       dispatch(setChangeUserInput(false));
       setShowBotStep(true);
@@ -101,7 +101,7 @@ const LoanRecommendGuide: FC = () => {
             <MotionList
               showHeight={660}
               aniCondition={loanRecommendGuide}
-              moveScroll={370}>
+              moveScroll={400}>
               <BotBox>
                 <BotProfile />
                 <KBTalk>

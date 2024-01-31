@@ -86,7 +86,10 @@ const LoanHouseAddComfirmStep06: FC = () => {
                   <img src={img} />
                   <SelectableListWrap>
                     <li>
-                      <SelectableBtn bgBtn onClickBtn={showInteresetRateSheet}>
+                      <SelectableBtn
+                        bgBtn
+                        disabled={primeRate}
+                        onClickBtn={showInteresetRateSheet}>
                         우대금리 적용
                       </SelectableBtn>
                     </li>

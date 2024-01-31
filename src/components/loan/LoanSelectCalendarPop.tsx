@@ -4,24 +4,21 @@
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import img01 from "@imgs/loan/LoanSelectCalendarPop.png";
 import { Button, Drawer } from "antd";
-import { useState } from "react";
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanFirstRatePop.module.scss";
 
-const LoanSelectCalendarPop: FC = () => {
-  const [sheetImgOpen, setsheetImgOpen] = useState(true);
+interface ILoanSelectrCalendarPop {
+  openSheet: boolean;
+  closeSheet: () => void;
+  showNextStep: () => void;
+}
 
-  const closeImgSheet = () => {
-    setsheetImgOpen(false);
-  };
-
-  const navigate = useNavigate();
-  const clickNextPop = () => {
-    navigate("/LoanChat");
-  };
-
+const LoanSelectCalendarPop: FC<ILoanSelectrCalendarPop> = ({
+  openSheet,
+  closeSheet,
+  showNextStep
+}) => {
   return (
     <>
       <Drawer
@@ -31,8 +28,8 @@ const LoanSelectCalendarPop: FC = () => {
           body: { padding: 24 },
           footer: { borderTop: 0, padding: 0 }
         }}
-        open={sheetImgOpen}
-        onClose={closeImgSheet}
+        open={openSheet}
+        onClose={closeSheet}
         closeIcon={false}
         height={540}
         title={
@@ -40,18 +37,18 @@ const LoanSelectCalendarPop: FC = () => {
             title={"대출희망일 선택"}
             subText={""}
             useCloseBtn
-            closeDrawerBtn={closeImgSheet}
+            closeDrawerBtn={closeSheet}
           />
         }
         placement={"bottom"}
         key={"LoanSelectCalendarPop"}
         footer={
-          <Button className={$style.btn} onClick={clickNextPop}>
+          <Button className={$style.btn} onClick={showNextStep}>
             확인
           </Button>
         }
         className={$style.LoanFirstRatePop}>
-        <div className={$style.img}>
+        <div className={$style.img} onClick={showNextStep}>
           <img src={img01} width="100%" />
         </div>
       </Drawer>

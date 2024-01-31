@@ -112,7 +112,7 @@ const LoanHouseAddComfirm: FC = () => {
 
       {showUserStep && (
         <MotionListWrap>
-          <MotionList aniCondition={buyHouse}>
+          <MotionList aniCondition={buyHouse} showHeight={90}>
             <SelectedUserBox
               isLastSelect={isLastChoice}
               modifyUserSelect={modifyUserSelect}

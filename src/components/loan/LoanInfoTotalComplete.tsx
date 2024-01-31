@@ -18,7 +18,7 @@ const LoanInfoTotalComplete: FC = () => {
         <div className={$style.cont}>
           <img src={img02} width="100%" />
         </div>
-        <KBConfirmBtn>취소하기</KBConfirmBtn>
+        <KBConfirmBtn disabled>취소하기</KBConfirmBtn>
       </div>
     </>
   );

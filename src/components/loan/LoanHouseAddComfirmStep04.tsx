@@ -1,5 +1,6 @@
 /**
  * Step 14. 입력한 정보 요약
+ * 지금까지의 정보를 요약할게요
  */
 import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
@@ -55,7 +56,7 @@ const LoanHouseAddComfirmStep04: FC = () => {
             <MotionList
               aniCondition={loanHouseAddConfirm04}
               showHeight={448}
-              moveScroll={160}>
+              moveScroll={220}>
               <BotBox>
                 <BotProfile />
                 <KBTalk>

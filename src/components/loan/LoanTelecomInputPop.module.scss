@@ -1,5 +1,28 @@
 .LoanTelecomInputPop {
+  .container {
+    padding: 24px 24px 0;
+  }
+
   .inputbox {
+    padding-top: 24px;
+
+    &.typed {
+      .inputArea {
+        color: #123456;
+      }
+    }
+
+    .inputArea {
+      font-family: 'KBB', sans-serif;
+      font-size: 26px;
+      display: flex;
+      justify-content: flex-end;
+      height: 44px;
+      padding-bottom: 6px;
+      color: #929292;
+      border-bottom: 2px solid #26282C;
+    }
+
     input {
       font-family: 'KBB', sans-serif;
       font-size: 26px;
@@ -66,6 +89,15 @@
     &:hover,
     &:active {
       color: #26282C !important;
+    }
+  }
+
+  .keypadBox {
+    padding-top: 20px;
+
+    img {
+      width: 100%;
+      height: 100%;
     }
   }
 }

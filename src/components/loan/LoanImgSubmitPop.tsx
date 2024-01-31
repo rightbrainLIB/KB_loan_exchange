@@ -2,6 +2,7 @@
  * Step 26. 이미지로 제출 팝업
  */
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
+import galleryChk from "@imgs/loan/gallery_checked.png";
 import img04 from "@imgs/loan/LoanImgSelectSubmitPop_01.png";
 import img05 from "@imgs/loan/LoanImgSelectSubmitPop_02.png";
 import img01 from "@imgs/loan/LoanImgSubmitPop_01.png";
@@ -10,27 +11,35 @@ import img03 from "@imgs/loan/LoanImgSubmitPop_03.png";
 import { Button, Drawer } from "antd";
 import { useState } from "react";
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanImgSubmitPop.module.scss";
 
-const LoanImgSubmitPop: FC = () => {
-  const [sheetImgOpen, setsheetImgOpen] = useState(true);
+interface ILoanImgSubmitPop {
+  openSheet: boolean;
+  closeSheet: () => void;
+  showNextStep: () => void;
+}
+
+const LoanImgSubmitPop: FC<ILoanImgSubmitPop> = ({
+  openSheet,
+  closeSheet,
+  showNextStep
+}) => {
+  // const [sheetImgOpen, setsheetImgOpen] = useState(true);
   const [imgSelectOpen, setImgSelectOpen] = useState(false);
   const [imgSelectCheck, setimgSelectCheck] = useState(false);
   const [imgSubmitCheck, setimgSubmitCheck] = useState(false);
 
   const closeImgSheet = () => {
-    setsheetImgOpen(false);
-  };
-
-  const navigate = useNavigate();
-  const clickNextPop = () => {
-    navigate("/LoanChat");
+    // setsheetImgOpen(false);
+    closeSheet();
+    setTimeout(() => {
+      setimgSubmitCheck(false);
+    }, 300);
   };
 
   const imgClickSelectOpen = () => {
-    setsheetImgOpen(false);
+    // setsheetImgOpen(false);
     setImgSelectOpen(true);
   };
 
@@ -39,7 +48,7 @@ const LoanImgSubmitPop: FC = () => {
   };
 
   const imgSelectClose = () => {
-    setsheetImgOpen(true);
+    // setsheetImgOpen(true);
     setimgSubmitCheck(true);
     setImgSelectOpen(false);
     setimgSelectCheck(false);
@@ -59,8 +68,8 @@ const LoanImgSubmitPop: FC = () => {
           body: { padding: 24 },
           footer: { borderTop: 0, padding: 0 }
         }}
-        open={sheetImgOpen}
-        onClose={closeImgSheet}
+        open={openSheet}
+        onClose={closeSheet}
         closeIcon={false}
         height={430}
         title={
@@ -76,7 +85,7 @@ const LoanImgSubmitPop: FC = () => {
         footer={
           <Button
             className={$style.btn}
-            onClick={clickNextPop}
+            onClick={showNextStep}
             disabled={imgSubmitCheck ? false : true}>
             확인
           </Button>
@@ -142,6 +151,11 @@ const LoanImgSubmitPop: FC = () => {
         className={$style.LoanImgSubmitPop}>
         <div className={$style.img} onClick={imgClickCheck}>
           <img src={img05} width="100%" />
+          {imgSelectCheck && (
+            <span className={$style.chkBox}>
+              <img src={galleryChk} width="100%" />
+            </span>
+          )}
         </div>
       </Drawer>
       {/* S: 이미지 선택 팝업 */}

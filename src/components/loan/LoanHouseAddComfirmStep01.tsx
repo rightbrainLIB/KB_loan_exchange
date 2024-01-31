@@ -1,5 +1,6 @@
 /**
  * Step 11. 주택 구입 시 지정할 명의
+ * 주택 구입 시 지정할 명의를 알려주세요
  */
 import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
@@ -10,6 +11,7 @@ import UtilUnderTalkList from "@components/list/UtilUnderTalkList.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import img from "@imgs/loan/LoanHouseAddComfirmStep01.png";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import { setHouseOwner, setLoanHouseAddConfirm01 } from "@slices/loanSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import { KBState } from "@src/store";
@@ -46,12 +48,16 @@ const LoanHouseAddComfirmStep01: FC = () => {
   }, [lastStr]);
 
   useEffect(() => {
+    dispatch(setContainerBottomSize(60));
     if (buyHouse) {
       setShowBotStep(true);
       setTimeout(() => {
         dispatch(setLoanHouseAddConfirm01(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [buyHouse, dispatch]);
 
   // reverse, 주택 구입 에서 수정하기
@@ -66,7 +72,7 @@ const LoanHouseAddComfirmStep01: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 45 }}>
+        <div>
           <MotionListWrap>
             <MotionList aniCondition={loanHouseAddConfirm01} showHeight={304}>
               <BotBox>

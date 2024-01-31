@@ -10,6 +10,7 @@ import SelectableListWrap from "@components/list/SelectableListWrap.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import img from "@imgs/loan/LoanHouseAddComfirmStep02.png";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import {
   setLoanHouseAddConfirm02,
   setOneHouseOwner
@@ -49,6 +50,7 @@ const LoanHouseAddComfirmStep02: FC = () => {
   }, [lastStr]);
 
   useEffect(() => {
+    dispatch(setContainerBottomSize(null));
     if (houseOwner) {
       setShowBotStep(true);
       setTimeout(() => {

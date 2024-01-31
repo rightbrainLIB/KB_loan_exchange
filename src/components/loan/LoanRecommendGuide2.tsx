@@ -13,8 +13,8 @@ import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import img from "@imgs/loan/LoanRecommendGuide.png";
 import {
-  setKeepGoingLoan,
-  setLoanRecommendGuide2
+  setLoanRecommendGuide2,
+  setReKeepGoingLoan
 } from "@slices/loanSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import { KBState } from "@src/store";
@@ -26,12 +26,12 @@ const LoanRecommendGuide2: FC = () => {
   const dispatch = useDispatch();
 
   const [showBotStep, setShowBotStep] = useState(false);
-  const [showUserStepPositive, setShowUserStepPositive] = useState(false);
+  const [showUserStep, setShowUserStep] = useState(false);
   const [isLastChoice, setIsLastChoice] = useState(false);
 
   const [openRateKnowSheet2, setOpenRateKnowSheet2] = useState(false);
 
-  const { keepGoingLoan, cofix } = useSelector(
+  const { cofix, reKeepGoingLoan } = useSelector(
     (state: KBState) => state.loan.userStep
   );
   const { loanRecommendGuide2 } = useSelector(
@@ -40,14 +40,13 @@ const LoanRecommendGuide2: FC = () => {
 
   const btnUnderList = [
     {
-      disabled: keepGoingLoan,
+      disabled: reKeepGoingLoan,
       text: "갚는방법 안내"
     },
     {
-      disabled: keepGoingLoan,
+      disabled: reKeepGoingLoan,
       text: "금리방식 안내",
       onClickBtn: () => {
-        console.log(123);
         setOpenRateKnowSheet2(true);
       }
     }
@@ -57,11 +56,19 @@ const LoanRecommendGuide2: FC = () => {
     setOpenRateKnowSheet2(false);
   }, []);
 
-  const onClickOK = useCallback(() => {
-    setShowUserStepPositive(true);
+  // 이대로 대출진행 버튼 클릭
+  // const onClickOK = useCallback(() => {
+  //   // setShowUserStep(true);
+  //   setTimeout(() => {
+  //     dispatch(setReKeepGoingLoan(true));
+  //   }, 300);
+  // }, [showUserStep, dispatch]);
+
+  const goNextTask = useCallback(() => {
+    setShowUserStep(true);
     setTimeout(() => {
-      dispatch(setKeepGoingLoan(true));
-    });
+      dispatch(setReKeepGoingLoan(true));
+    }, 300);
   }, [dispatch]);
 
   // 조건 변경하기 버튼
@@ -76,7 +83,7 @@ const LoanRecommendGuide2: FC = () => {
   const lastStr = LastTrueUserStepLoan();
 
   useEffect(() => {
-    setIsLastChoice(lastStr === "keepGoingLoan");
+    setIsLastChoice(lastStr === "reKeepGoingLoan");
   }, [lastStr]);
 
   useEffect(() => {
@@ -96,7 +103,7 @@ const LoanRecommendGuide2: FC = () => {
             <MotionList
               showHeight={660}
               aniCondition={loanRecommendGuide2}
-              moveScroll={370}>
+              moveScroll={270}>
               <BotBox>
                 <BotProfile />
                 <KBTalk>
@@ -105,13 +112,13 @@ const LoanRecommendGuide2: FC = () => {
                     <li>
                       <SelectableBtn
                         bgBtn
-                        disabled={keepGoingLoan}
-                        onClickBtn={onClickOK}>
+                        disabled={reKeepGoingLoan}
+                        onClickBtn={goNextTask}>
                         이대로 대출진행
                       </SelectableBtn>
                     </li>
                     <li>
-                      <SelectableBtn disabled={keepGoingLoan}>
+                      <SelectableBtn disabled={reKeepGoingLoan}>
                         조건 변경하기
                       </SelectableBtn>
                     </li>
@@ -124,20 +131,20 @@ const LoanRecommendGuide2: FC = () => {
         </div>
       )}
 
-      {showUserStepPositive && (
+      <LoanRateKnowSheet
+        openSheet={openRateKnowSheet2}
+        closeSheet={closeRateKnowSheet}
+      />
+
+      {showUserStep && (
         <MotionListWrap>
-          <MotionList aniCondition={keepGoingLoan}>
+          <MotionList aniCondition={reKeepGoingLoan}>
             <SelectedUserBox isLastSelect={isLastChoice}>
               이대로 대출진행
             </SelectedUserBox>
           </MotionList>
         </MotionListWrap>
       )}
-
-      <LoanRateKnowSheet
-        openSheet={openRateKnowSheet2}
-        closeSheet={closeRateKnowSheet}
-      />
     </>
   );
 };

@@ -29,6 +29,6 @@ export default defineConfig({
   base: "/KB_loan_exchange/",
   server: {
     port: 8080,
-    open: "/KB_loan_exchange"
+    open: "/KB_loan_exchange/"
   }
 });

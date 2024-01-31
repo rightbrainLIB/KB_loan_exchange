@@ -1,5 +1,5 @@
 import { KBState } from "@src/store";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { isMobile } from "react-device-detect";
 import { useSelector } from "react-redux";
 
@@ -13,6 +13,9 @@ const KBContainer: React.FC<IKBContainer> = ({ children }) => {
   const { containerBootmSize } = useSelector(
     (state: KBState) => state.globalUI
   );
+  useEffect(() => {
+    console.log(containerBootmSize);
+  }, [containerBootmSize]);
   const containerStyles = {
     ...(isMobile ? { paddingBottom: "50%" } : { paddingBottom: "150px" }),
     ...(containerBootmSize && {

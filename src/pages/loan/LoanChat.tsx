@@ -3,7 +3,7 @@
  */
 import KBContainer from "@components/common/KBContainer.tsx";
 import KBHeader from "@components/common/KBHeader.tsx";
-// import LoanApplicationAmount from "@components/loan/LoanApplicationAmount.tsx";
+import LoanApplicationAmount from "@components/loan/LoanApplicationAmount.tsx";
 import LoanHouseAddComfirm from "@components/loan/LoanHouseAddComfirm.tsx";
 import LoanHouseAddComfirmStep01 from "@components/loan/LoanHouseAddComfirmStep01.tsx";
 import LoanHouseAddComfirmStep02 from "@components/loan/LoanHouseAddComfirmStep02.tsx";
@@ -13,9 +13,9 @@ import LoanHouseAddComfirmStep05 from "@components/loan/LoanHouseAddComfirmStep0
 import LoanHouseAddComfirmStep06 from "@components/loan/LoanHouseAddComfirmStep06.tsx";
 import LoanHouseComfirm from "@components/loan/LoanHouseComfirm.tsx";
 import LoanIdentityCheck from "@components/loan/LoanIdentityCheck.tsx";
-// import LoanInfoComfirm from "@components/loan/LoanInfoComfirm.tsx";
-// import LoanInfoSimpleSubmit from "@components/loan/LoanInfoSimpleSubmit.tsx";
-// import LoanInfoSubmitComplete from "@components/loan/LoanInfoSubmitComplete.tsx";
+import LoanInfoComfirm from "@components/loan/LoanInfoComfirm.tsx";
+import LoanInfoSimpleSubmit from "@components/loan/LoanInfoSimpleSubmit.tsx";
+import LoanInfoSubmitComplete from "@components/loan/LoanInfoSubmitComplete.tsx";
 import LoanLimitCurrency from "@components/loan/LoanLimitCurrency.tsx";
 import LoanPaybackSelectStep01 from "@components/loan/LoanPaybackSelectStep01.tsx";
 import LoanPaybackSelectStep02 from "@components/loan/LoanPaybackSelectStep02.tsx";
@@ -24,9 +24,9 @@ import LoanPeriodSelect from "@components/loan/LoanPeriodSelect.tsx";
 import LoanRecommendGuide from "@components/loan/LoanRecommendGuide.tsx";
 import LoanRecommendGuide2 from "@components/loan/LoanRecommendGuide2.tsx";
 import LoanSearchHouse from "@components/loan/LoanSearchHouse.tsx";
-// import LoanSelectCalendar from "@components/loan/LoanSelectCalendar.tsx";
-// import LoanSubmitComplete from "@components/loan/LoanSubmitComplete.tsx";
-// import LoanSubmitInfo from "@components/loan/LoanSubmitInfo.tsx";
+import LoanSelectCalendar from "@components/loan/LoanSelectCalendar.tsx";
+import LoanSubmitComplete from "@components/loan/LoanSubmitComplete.tsx";
+import LoanSubmitInfo from "@components/loan/LoanSubmitInfo.tsx";
 import { FC } from "react";
 
 const LoanChat: FC = () => {
@@ -82,36 +82,7 @@ const LoanChat: FC = () => {
         <LoanRecommendGuide />
         {/* E: 부동산담보대출 신청정보로 최대 한도 제시 */}
 
-        {/* S: 부동산담보대출 대출 받고자 하는 날짜*/}
-        {/*<LoanSelectCalendar />*/}
-        {/* E: 부동산담보대출 대출 받고자 하는 날짜*/}
-
-        {/* S: 부동산담보대출 대출 신청금액 입력*/}
-        {/*<LoanApplicationAmount />*/}
-        {/* E: 부동산담보대출 대출 신청금액 입력*/}
-
-        {/* S: 부동산담보대출 대출 신청 정보 확인*/}
-        {/*<LoanInfoComfirm />*/}
-        {/* E: 부동산담보대출 대출 신청 정보 확인*/}
-
-        {/* S: 부동산담보대출 대출 신청 간편제출*/}
-        {/*<LoanInfoSimpleSubmit />*/}
-        {/* E: 부동산담보대출 대출 신청 간편제출*/}
-
-        {/* S: 부동산담보대출 대출 서류 이미지로 제출하기*/}
-        {/*<LoanInfoSubmitComplete />*/}
-        {/* E: 부동산담보대출 대출 서류 이미지로 제출하기*/}
-
-        {/* S: 부동산담보대출 신청 완료*/}
-        {/*<LoanSubmitComplete />*/}
-        {/* E: 부동산담보대출 신청 완료*/}
-
-        {/* S: 부동산담보대출 신청 완료 내역*/}
-        {/*<LoanSubmitInfo />*/}
-        {/* E: 부동산담보대출 신청 완료 내역*/}
-
         {/* S: 부동산담보대출 조건 변경하기*/}
-
         {/* S: 부동산담보대출 대출기간 선택*/}
         <LoanPeriodSelect />
         {/* E: 부동산담보대출 대출기간 선택*/}
@@ -129,8 +100,35 @@ const LoanChat: FC = () => {
         {/* E: 부동산담보대출 대출 금리방식 step03*/}
 
         <LoanRecommendGuide2 />
-
         {/* E: 부동산담보대출 조건 변경하기*/}
+
+        {/* S: 부동산담보대출 대출 받고자 하는 날짜*/}
+        <LoanSelectCalendar />
+        {/* E: 부동산담보대출 대출 받고자 하는 날짜*/}
+
+        {/* S: 부동산담보대출 대출 신청금액 입력*/}
+        <LoanApplicationAmount />
+        {/* E: 부동산담보대출 대출 신청금액 입력*/}
+
+        {/* S: 부동산담보대출 대출 신청 정보 확인*/}
+        <LoanInfoComfirm />
+        {/* E: 부동산담보대출 대출 신청 정보 확인*/}
+
+        {/* S: 부동산담보대출 대출 신청 간편제출*/}
+        <LoanInfoSimpleSubmit />
+        {/* E: 부동산담보대출 대출 신청 간편제출*/}
+
+        {/* S: 부동산담보대출 대출 서류 이미지로 제출하기*/}
+        <LoanInfoSubmitComplete />
+        {/* E: 부동산담보대출 대출 서류 이미지로 제출하기*/}
+
+        {/* S: 부동산담보대출 신청 완료*/}
+        <LoanSubmitComplete />
+        {/* E: 부동산담보대출 신청 완료*/}
+
+        {/* S: 부동산담보대출 신청 완료 내역*/}
+        <LoanSubmitInfo />
+        {/* E: 부동산담보대출 신청 완료 내역*/}
       </KBContainer>
     </>
   );

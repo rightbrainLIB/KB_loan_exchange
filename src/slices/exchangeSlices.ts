@@ -116,6 +116,7 @@ const exchangeSlice = createSlice({
   name: "exchange",
   initialState,
   reducers: {
+    // userStep
     setCurrencySelection: (state, { payload }: PayloadAction<boolean>) => {
       state.userStep.isCurrencySelected = payload;
     },
@@ -191,11 +192,40 @@ const exchangeSlice = createSlice({
     setShowMoreDetailInfo: (state, { payload }: PayloadAction<boolean>) => {
       state.userStep.showMoreDetailInfo = payload;
     },
-
+    // 마지막 선택값 추적
     setLastUserStep: (state, { payload }: PayloadAction<string | null>) => {
       state.lastUserStep = payload;
     },
+    setResetExchangeUserStep: (state) => {
+      state.userStep.isCurrencySelected = false;
+      state.userStep.isTakenPlace = false;
+      state.userStep.agreeForeignCurrency = false;
+      state.userStep.requestCurrencyValue = false;
+      state.userStep.saveAlarm = false;
+      state.userStep.alarmCurrency = false;
+      state.userStep.writeExchangeRate = false;
+      state.userStep.confirmAlarm = false;
+      state.userStep.checkRequestValue = false;
+      state.userStep.joinInsurance = false;
+      state.userStep.receiveKeepGoing = false;
+      state.userStep.joinInsurancePlace = false;
+      state.userStep.skipGuidePlace = false;
+      state.userStep.userTakenDate = false;
+      state.userStep.checkUserPhoneNumber = false;
+      state.userStep.exchangeReason = false;
+      state.userStep.checkUserAccount = false;
+      state.userStep.recommendStaff = false;
+      state.userStep.requestExchange = false;
+      state.userStep.confirmRequestInfo = false;
+      state.userStep.totalRequestInfo = false;
+      state.userStep.eachRequestInfo = false;
+      state.userStep.requestedDate = false;
+      state.userStep.selectOneMonth = false;
+      state.userStep.showMoreDetailInfo = false;
+      state.lastUserStep = ""; // 마지막 선택값 reset
+    },
 
+    // botStep
     setPrsExchangeRate: (state, { payload }: PayloadAction<boolean>) => {
       state.botStep.prsExchangeRate = payload;
     },
@@ -276,11 +306,36 @@ const exchangeSlice = createSlice({
     },
     setWaitingReceive: (state, { payload }: PayloadAction<boolean>) => {
       state.botStep.waitingReceive = payload;
+    },
+    setResetExchangeBotSteps: (state) => {
+      state.botStep.prsExchangeRate = false;
+      state.botStep.prsTermsAgreeForExchange = false;
+      state.botStep.prsInputCurrencyValue = false;
+      state.botStep.prsNeedfulExchangeMoney = false;
+      state.botStep.notificationUSD = false;
+      state.botStep.notifyWhenExchangeRate = false;
+      state.botStep.checkNotificationExchangeRate = false;
+      state.botStep.completionNotificationExchangeRate = false;
+      state.botStep.travelInsurance = false;
+      state.botStep.receiveBankBranch = false;
+      state.botStep.selectReceiveDate = false;
+      state.botStep.checkPhoneNumber = false;
+      state.botStep.reasonExchangeSelect = false;
+      state.botStep.checkAccount = false;
+      state.botStep.recommendedEmployee = false;
+      state.botStep.checkExchangeInfo = false;
+      state.botStep.exchangeRequestHistory = false;
+      state.botStep.allExchangeInquiry = false;
+      state.botStep.threeMonthExchangeList = false;
+      state.botStep.exchangeListPeriodSelect = false;
+      state.botStep.oneMonthExchangeList = false;
+      state.botStep.waitingReceive = false;
     }
   }
 });
 
 export const {
+  // userStep
   setCurrencySelection,
   setTakenPlace,
   setAgreeForeignCurrency,
@@ -307,6 +362,10 @@ export const {
   setSelectOneMonth,
   setShowMoreDetailInfo,
   setLastUserStep,
+  // userStep reset
+  setResetExchangeUserStep,
+
+  // botStep
   setPrsExchangeRate,
   setPrsTermsAgreeForExchange,
   setPrsInputCurrencyValue,
@@ -328,7 +387,9 @@ export const {
   setThreeMonthExchangeList,
   setExchangeListPeriodSelect,
   setOneMonthExchangeList,
-  setWaitingReceive
+  setWaitingReceive,
+  // botStep reset
+  setResetExchangeBotSteps
 } = exchangeSlice.actions;
 
 export default exchangeSlice.reducer;

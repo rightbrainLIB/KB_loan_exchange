@@ -3,6 +3,7 @@
  * 환율이 얼마일때 알려드릴까요?
  */
 import ExchangeRateInputSheet from "@components/bottomSheet/ExchangeRateInputSheet.tsx";
+import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
@@ -42,10 +43,11 @@ const NotifyWhenExchangeRate: FC = () => {
 
   const confirmAlarmPrice = useCallback(() => {
     setOpenSheet(false);
+    setShowUserStep(true);
     setTimeout(() => {
       dispatch(setWriteExchangeRate(true));
-    });
-  }, []);
+    }, 300);
+  }, [dispatch]);
 
   // 마지막 step 체크하기
   const lastStr = LastTrueUserStep();
@@ -57,49 +59,50 @@ const NotifyWhenExchangeRate: FC = () => {
   useEffect(() => {
     if (alarmCurrency) {
       setShowBotStep(true);
-      setShowUserStep(true);
       setTimeout(() => {
         dispatch(setNotifyWhenExchangeRate(true));
-      });
+      }, 600);
     }
   }, [alarmCurrency, dispatch]);
 
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 46 }}>
-          <MotionList aniCondition={notifyWhenExchangeRate} showHeight={444}>
-            <BotProfile />
-            <KBTalk>
-              <img src={img} />
-              <SelectableListWrap>
-                <li>
-                  <SelectableBtn
-                    bgBtn
-                    onClickBtn={openCurrencySheet}
-                    disabled={writeExchangeRate}>
-                    원하는 환율 지정
-                  </SelectableBtn>
-                </li>
-              </SelectableListWrap>
-            </KBTalk>
+        <div>
+          <MotionList aniCondition={notifyWhenExchangeRate}>
+            <BotBox>
+              <BotProfile />
+              <KBTalk>
+                <img src={img} />
+                <SelectableListWrap>
+                  <li>
+                    <SelectableBtn
+                      bgBtn
+                      onClickBtn={openCurrencySheet}
+                      disabled={writeExchangeRate}>
+                      원하는 환율 지정
+                    </SelectableBtn>
+                  </li>
+                </SelectableListWrap>
+              </KBTalk>
+            </BotBox>
           </MotionList>
-
-          {showUserStep && (
-            <MotionList aniCondition={writeExchangeRate}>
-              <SelectedUserBox isLastSelect={isLastChoice}>
-                <div className={$style.userStep}>
-                  <div className={$style.priceStr}>
-                    <span>1,300</span>
-                    <span className={$style.dot}></span>
-                    <span>8</span>
-                  </div>
-                  <div className={$style.won}>원</div>
-                </div>
-              </SelectedUserBox>
-            </MotionList>
-          )}
         </div>
+      )}
+
+      {showUserStep && (
+        <MotionList aniCondition={writeExchangeRate}>
+          <SelectedUserBox isLastSelect={isLastChoice}>
+            <div className={$style.userStep}>
+              <div className={$style.priceStr}>
+                <span>1,300</span>
+                <span className={$style.dot}></span>
+                <span>8</span>
+              </div>
+              <div className={$style.won}>원</div>
+            </div>
+          </SelectedUserBox>
+        </MotionList>
       )}
 
       <ExchangeRateInputSheet

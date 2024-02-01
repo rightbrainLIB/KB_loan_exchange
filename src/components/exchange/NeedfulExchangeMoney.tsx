@@ -2,6 +2,7 @@
  * Step 03. 환전정보입력(Progress bar 3/7)
  * 환전에 필요한 금액을 알려드릴게요
  */
+import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
@@ -12,7 +13,7 @@ import {
   setPrsNeedfulExchangeMoney,
   setRequestCurrencyValue
 } from "@slices/exchangeSlices.ts";
-import { setContainerBottomSize } from "@slices/globalUISlice.ts";
+// import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
@@ -58,7 +59,7 @@ const NeedfulExchangeMoney: FC = () => {
   useEffect(() => {
     if (requestCurrencyValue) {
       setShowBotStep(true);
-      dispatch(setContainerBottomSize(20));
+      // dispatch(setContainerBottomSize(20));
       setTimeout(() => {
         dispatch(setPrsNeedfulExchangeMoney(true));
       }, 600);
@@ -70,28 +71,30 @@ const NeedfulExchangeMoney: FC = () => {
   return (
     <>
       {showBotStep && (
-        <MotionList aniCondition={prsNeedfulExchangeMoney} showHeight={470}>
-          <BotProfile />
-          <KBTalk>
-            <img src={img} />
-            <SelectableListWrap>
-              <li>
-                <SelectableBtn
-                  bgBtn
-                  onClickBtn={onClickNext}
-                  disabled={checkRequestValue}>
-                  환전 바로 진행
-                </SelectableBtn>
-              </li>
-              <li>
-                <SelectableBtn
-                  onClickBtn={onClickModifyTask}
-                  disabled={checkRequestValue}>
-                  환전 금액 수정
-                </SelectableBtn>
-              </li>
-            </SelectableListWrap>
-          </KBTalk>
+        <MotionList aniCondition={prsNeedfulExchangeMoney}>
+          <BotBox>
+            <BotProfile />
+            <KBTalk>
+              <img src={img} />
+              <SelectableListWrap>
+                <li>
+                  <SelectableBtn
+                    bgBtn
+                    onClickBtn={onClickNext}
+                    disabled={checkRequestValue}>
+                    환전 바로 진행
+                  </SelectableBtn>
+                </li>
+                <li>
+                  <SelectableBtn
+                    onClickBtn={onClickModifyTask}
+                    disabled={checkRequestValue}>
+                    환전 금액 수정
+                  </SelectableBtn>
+                </li>
+              </SelectableListWrap>
+            </KBTalk>
+          </BotBox>
         </MotionList>
       )}
 

@@ -23,6 +23,7 @@ const CurrencySelectSheet: FC<ICurrencySelectSheet> = ({ sheetOpen }) => {
   const dispatch = useDispatch();
 
   const [selectedWay, setSelectedWay] = useState("");
+  const [confirmBtnDisabled, setConfirmBtnDisabled] = useState(true);
 
   // 시트 닫기
   const closeSheet = useCallback(() => {
@@ -94,9 +95,16 @@ const CurrencySelectSheet: FC<ICurrencySelectSheet> = ({ sheetOpen }) => {
       }
       placement={"bottom"}
       key={"CurrencySelectSheet"}
-      footer={<KBConfirmBtn onClickConfirm={onClickNext}>확인</KBConfirmBtn>}>
+      footer={
+        <KBConfirmBtn
+          disabled={confirmBtnDisabled}
+          onClickConfirm={onClickNext}>
+          확인
+        </KBConfirmBtn>
+      }>
       <ExchangeWayList
         wayList={wayList}
+        chkClickedList={() => setConfirmBtnDisabled(false)}
         clickWay={(str) => setSelectedWay(str)}
       />
     </Drawer>

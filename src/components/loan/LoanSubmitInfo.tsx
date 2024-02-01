@@ -21,7 +21,7 @@ const LoanSubmitInfo: FC = () => {
 
   const navigate = useNavigate();
 
-  const [showBotStep, setShowBotStep] = useState(true);
+  const [showBotStep, setShowBotStep] = useState(false);
 
   const { confirmUserRequest } = useSelector(
     (state: KBState) => state.loan.userStep
@@ -52,7 +52,7 @@ const LoanSubmitInfo: FC = () => {
       {showBotStep && (
         <div style={{ marginTop: 30 }}>
           <MotionListWrap>
-            <MotionList showHeight={643} aniCondition={true}>
+            <MotionList showHeight={643} aniCondition={loanSubmitInfo}>
               <BotBox>
                 <BotProfile />
                 <KBTalk>

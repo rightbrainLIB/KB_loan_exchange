@@ -1,5 +1,6 @@
 import CurrencySelectSheet from "@components/bottomSheet/CurrencySelectSheet.tsx";
 import CurrencyTakenPlaceSheet from "@components/bottomSheet/CurrencyTakenPlaceSheet.tsx";
+import BotBox from "@components/box/BotBox.tsx";
 import EmphasisContent from "@components/box/EmphasisContent.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
@@ -87,11 +88,6 @@ const ExecuteCurrency: FC = () => {
     }, 800);
   }, [dispatch]);
 
-  const wrapperStyle = {
-    marginTop: 53
-    // ...(!prsTermsAgreeForExchange ? { paddingBottom: 200 } : {})
-  };
-
   // 마지막 step 체크하기
   const lastStr = LastTrueUserStep();
 
@@ -125,9 +121,9 @@ const ExecuteCurrency: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={wrapperStyle}>
-          <MotionListWrap>
-            <MotionList aniCondition={prsExchangeRate}>
+        <MotionListWrap>
+          <MotionList aniCondition={prsExchangeRate}>
+            <BotBox>
               <BotProfile />
               <KBTalk>
                 <h2>지금 바로 환전을 도와드릴까요?</h2>
@@ -160,38 +156,38 @@ const ExecuteCurrency: FC = () => {
                   </li>
                 </SelectableListWrap>
               </KBTalk>
-              <UtilUnderTalkList btnList={["환율 차트", "환율 계산기"]} />
-            </MotionList>
-          </MotionListWrap>
-
-          {showUserStepPositive && (
-            <MotionListWrap>
-              <MotionList aniCondition={isTakenPlace} showHeight={45}>
-                <SelectedUserBox
-                  modifyUserSelect={modifyTakenPlace}
-                  isLastSelect={isLastChoicePositive}>
-                  은행지점에서 받기
-                </SelectedUserBox>
-              </MotionList>
-            </MotionListWrap>
-          )}
-
-          {showUserStepNegative && (
-            <MotionListWrap>
-              <MotionList aniCondition={saveAlarm}>
-                <SelectedUserBox
-                  modifyUserSelect={modifySaveAlarm}
-                  isLastSelect={isLastChoiceNegative}>
-                  원하는 환율일 때 알림받기
-                </SelectedUserBox>
-              </MotionList>
-            </MotionListWrap>
-          )}
-
-          <CurrencySelectSheet sheetOpen={openTakenWaySheet} />
-          <CurrencyTakenPlaceSheet sheetOpen={openTakenPlaceSheet} />
-        </div>
+            </BotBox>
+            <UtilUnderTalkList btnList={["환율 차트", "환율 계산기"]} />
+          </MotionList>
+        </MotionListWrap>
       )}
+
+      {showUserStepPositive && (
+        <MotionListWrap>
+          <MotionList aniCondition={isTakenPlace}>
+            <SelectedUserBox
+              modifyUserSelect={modifyTakenPlace}
+              isLastSelect={isLastChoicePositive}>
+              은행지점에서 받기
+            </SelectedUserBox>
+          </MotionList>
+        </MotionListWrap>
+      )}
+
+      {showUserStepNegative && (
+        <MotionListWrap>
+          <MotionList aniCondition={saveAlarm}>
+            <SelectedUserBox
+              modifyUserSelect={modifySaveAlarm}
+              isLastSelect={isLastChoiceNegative}>
+              원하는 환율일 때 알림받기
+            </SelectedUserBox>
+          </MotionList>
+        </MotionListWrap>
+      )}
+
+      <CurrencySelectSheet sheetOpen={openTakenWaySheet} />
+      <CurrencyTakenPlaceSheet sheetOpen={openTakenPlaceSheet} />
     </>
   );
 };

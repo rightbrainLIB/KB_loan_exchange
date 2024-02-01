@@ -1,6 +1,6 @@
 /**
  * Step 03. 환전정보입력(Progress bar 3/7)
- * 여행자 보험에 가입하실 수 있어요!
+ * 여행자보험에 가입하실 수 있어요!
  */
 import AdditionalServicesSheet from "@components/bottomSheet/AdditionalServicesSheet.tsx";
 import EssentialConfirmationSheet from "@components/bottomSheet/EssentialConfirmationSheet.tsx";
@@ -143,15 +143,14 @@ const TravelInsurance: FC = () => {
               <img src={img} />
               <SelectableListWrap>
                 <li>
-                  <SelectableBtn
-                    bgBtn
-                    disabled={joinInsurance}
-                    onClickBtn={activeEssentialSheet}>
+                  <SelectableBtn bgBtn disabled={joinInsurance}>
                     환전만 진행
                   </SelectableBtn>
                 </li>
                 <li>
-                  <SelectableBtn disabled={joinInsurance}>
+                  <SelectableBtn
+                    disabled={joinInsurance}
+                    onClickBtn={activeEssentialSheet}>
                     여행자 보험 가입
                   </SelectableBtn>
                 </li>

@@ -40,10 +40,10 @@ const CheckExchangeInfo: FC = () => {
 
   const goNextTask = useCallback(() => {
     setShowUserStep(true);
-    dispatch(setRequestExchange(true));
     setTimeout(() => {
+      dispatch(setRequestExchange(true));
       dispatch(setContainerBottomSize(null));
-    });
+    }, 300);
   }, [dispatch]);
 
   // 마지막 step 체크하기
@@ -59,12 +59,12 @@ const CheckExchangeInfo: FC = () => {
       setShowBotStep(true);
       setTimeout(() => {
         dispatch(setCheckExchangeInfo(true));
-        dispatch(setContainerBottomSize(60));
+        // dispatch(setContainerBottomSize(60));
       }, 600);
     }
-    return () => {
-      dispatch(setContainerBottomSize(null));
-    };
+    // return () => {
+    //   dispatch(setContainerBottomSize(null));
+    // };
   }, [recommendStaff, dispatch]);
 
   return (

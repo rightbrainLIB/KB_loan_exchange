@@ -1,4 +1,5 @@
 import CurrencyPriceInput from "@components/bottomSheet/CurrencyPriceInput.tsx";
+import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import SelectableBtn from "@components/buttons/SelectableBtn.tsx";
@@ -99,26 +100,28 @@ const WriteCurrency: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 36 }}>
+        <div>
           <MotionListWrap>
             <MotionList aniCondition={prsInputCurrencyValue}>
-              <BotProfile />
-              <KBTalk>
-                <h2>환전 신청 금액을 입력해주세요</h2>
-                <p className={$style.subTitle}>최소 환전 금액은 10달러예요</p>
-                <p className={$style.subText}>
-                  * KB여행자 보험을 가입하려면 대미환산 300달러 이상 환전신청을
-                  해야합니다.
-                </p>
-                <div style={{ marginTop: 23 }}>
-                  <SelectableBtn
-                    bgBtn
-                    onClickBtn={onClickCTABtn}
-                    disabled={requestCurrencyValue}>
-                    환전 신청금액 입력
-                  </SelectableBtn>
-                </div>
-              </KBTalk>
+              <BotBox>
+                <BotProfile />
+                <KBTalk>
+                  <h2>환전 신청 금액을 입력해주세요</h2>
+                  <p className={$style.subTitle}>최소 환전 금액은 10달러예요</p>
+                  <p className={$style.subText}>
+                    * KB여행자 보험을 가입하려면 대미환산 300달러 이상
+                    환전신청을 해야합니다.
+                  </p>
+                  <div style={{ marginTop: 23 }}>
+                    <SelectableBtn
+                      bgBtn
+                      onClickBtn={onClickCTABtn}
+                      disabled={requestCurrencyValue}>
+                      환전 신청금액 입력
+                    </SelectableBtn>
+                  </div>
+                </KBTalk>
+              </BotBox>
             </MotionList>
 
             {showUserStep && (

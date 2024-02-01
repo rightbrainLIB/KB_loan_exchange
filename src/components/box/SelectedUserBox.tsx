@@ -43,25 +43,27 @@ const SelectedUserBox: FC<ISelectedUserBox> = ({
   return (
     <>
       <div className={$style.selectedUserBox}>
-        <div className={$style.userTalk} style={customStyle && customStyle}>
-          {children}
+        <div className={$style.contentsArea}>
+          <div className={$style.userTalk} style={customStyle && customStyle}>
+            {children}
+          </div>
+          {isLastSelect && (
+            <Button
+              className={$style.modifyBtn}
+              htmlType="button"
+              onClick={callModifySheet}>
+              <div className={$style.imgBox}>
+                <img src={`${modifyPencil}`} alt="" />
+              </div>
+            </Button>
+          )}
         </div>
-        {isLastSelect && (
-          <Button
-            className={$style.modifyBtn}
-            htmlType="button"
-            onClick={callModifySheet}>
-            <div className={$style.imgBox}>
-              <img src={`${modifyPencil}`} alt="" />
-            </div>
-          </Button>
-        )}
+        <RemindReverseSheet
+          sheetOpen={openRemindSheet}
+          closeSheet={() => setOpenRemindSheet(false)}
+          execConfirm={() => onClickModifyBtn()}
+        />
       </div>
-      <RemindReverseSheet
-        sheetOpen={openRemindSheet}
-        closeSheet={() => setOpenRemindSheet(false)}
-        execConfirm={() => onClickModifyBtn()}
-      />
     </>
   );
 };

@@ -8,6 +8,8 @@ export interface IGlobalUI {
   loanTotalStep: number;
   isCompleteExchange: boolean;
   isCompleteLoan: boolean;
+  lastElHeight: number; // 마지막 요소 높이값
+  reachedScrollPos: number; // 마지막 스크롤 위치
 }
 
 const initialState: IGlobalUI = {
@@ -17,7 +19,9 @@ const initialState: IGlobalUI = {
   loanProgressStep: 0,
   loanTotalStep: 0,
   isCompleteExchange: false,
-  isCompleteLoan: false
+  isCompleteLoan: false,
+  lastElHeight: 0,
+  reachedScrollPos: 0
 };
 
 const globalUISlice = createSlice({
@@ -47,6 +51,12 @@ const globalUISlice = createSlice({
     },
     setIsCompleteLoan: (state, { payload }: PayloadAction<boolean>) => {
       state.isCompleteLoan = payload;
+    },
+    setLastElHeight: (state, { payload }: PayloadAction<number>) => {
+      state.lastElHeight = payload;
+    },
+    setReachedScrollPos: (state, { payload }: PayloadAction<number>) => {
+      state.reachedScrollPos = payload;
     }
   }
 });
@@ -58,7 +68,9 @@ export const {
   setLoanProgressStep,
   setLoanTotalStep,
   setIsCompleteExchange,
-  setIsCompleteLoan
+  setIsCompleteLoan,
+  setLastElHeight,
+  setReachedScrollPos
 } = globalUISlice.actions;
 
 export default globalUISlice.reducer;

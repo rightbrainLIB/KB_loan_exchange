@@ -16,6 +16,7 @@ interface IExchangeWayList {
     title: string;
     subText: string;
   }[];
+  chkClickedList?: () => void;
   clickWay?: (str: string) => void;
 }
 
@@ -23,6 +24,7 @@ const ExchangeWayList: FC<IExchangeWayList> = ({
   klassNames = "",
   defaultWay,
   wayList,
+  chkClickedList,
   clickWay
 }) => {
   const [currency, setCurrency] = useState<string>("");
@@ -31,9 +33,10 @@ const ExchangeWayList: FC<IExchangeWayList> = ({
   const onCurrencyChange = useCallback(
     (e: RadioChangeEvent) => {
       setCurrency(e.target.value as string);
+      chkClickedList && chkClickedList();
       clickWay && clickWay(e.target.value as string);
     },
-    [clickWay]
+    [chkClickedList, clickWay]
   );
 
   useEffect(() => {

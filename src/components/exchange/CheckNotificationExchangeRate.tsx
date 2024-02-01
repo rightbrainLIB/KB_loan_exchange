@@ -2,6 +2,7 @@
  * 원하는 환율일 때 알림받기
  * 환율이 xxx원 이하 일때 알림을 드릴까요?
  */
+import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
@@ -49,31 +50,31 @@ const CheckNotificationExchangeRate: FC = () => {
       setShowBotStep(true);
       setTimeout(() => {
         dispatch(setCheckNotificationExchangeRate(true));
-      });
+      }, 600);
     }
   }, [writeExchangeRate, dispatch]);
 
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 34 }}>
-          <MotionList
-            aniCondition={checkNotificationExchangeRate}
-            showHeight={366}>
-            <BotProfile />
-            <KBTalk>
-              <img src={img} />
-              <SelectableListWrap>
-                <li>
-                  <SelectableBtn bgBtn onClickBtn={onClickNext}>
-                    이대로 알림 설정
-                  </SelectableBtn>
-                </li>
-                <li>
-                  <SelectableBtn>다시 설정</SelectableBtn>
-                </li>
-              </SelectableListWrap>
-            </KBTalk>
+        <div>
+          <MotionList aniCondition={checkNotificationExchangeRate}>
+            <BotBox>
+              <BotProfile />
+              <KBTalk>
+                <img src={img} />
+                <SelectableListWrap>
+                  <li>
+                    <SelectableBtn bgBtn onClickBtn={onClickNext}>
+                      이대로 알림 설정
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn>다시 설정</SelectableBtn>
+                  </li>
+                </SelectableListWrap>
+              </KBTalk>
+            </BotBox>
           </MotionList>
         </div>
       )}

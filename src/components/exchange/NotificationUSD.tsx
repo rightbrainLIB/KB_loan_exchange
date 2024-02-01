@@ -2,6 +2,7 @@
  * 원하는 환율일 때 알림받기
  * 미국달러로 계속 진행할까요?
  */
+import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
@@ -56,8 +57,8 @@ const NotificationUSD: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 37 }}>
-          <MotionList aniCondition={notificationUSD} showHeight={327}>
+        <MotionList aniCondition={notificationUSD} showHeight={"100%"}>
+          <BotBox>
             <BotProfile />
             <KBTalk>
               <img src={img} alt="" />
@@ -77,16 +78,16 @@ const NotificationUSD: FC = () => {
                 </li>
               </SelectableListWrap>
             </KBTalk>
-          </MotionList>
+          </BotBox>
+        </MotionList>
+      )}
 
-          {showUserStep && (
-            <MotionList aniCondition={alarmCurrency}>
-              <SelectedUserBox isLastSelect={isLastChoice}>
-                계속 진행
-              </SelectedUserBox>
-            </MotionList>
-          )}
-        </div>
+      {showUserStep && (
+        <MotionList aniCondition={alarmCurrency}>
+          <SelectedUserBox isLastSelect={isLastChoice}>
+            계속 진행
+          </SelectedUserBox>
+        </MotionList>
       )}
     </>
   );

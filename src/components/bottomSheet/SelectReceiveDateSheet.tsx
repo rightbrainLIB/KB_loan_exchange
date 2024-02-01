@@ -50,7 +50,7 @@ const SelectReceiveDateSheet: FC<ISelectReceiveDateSheet> = ({
       placement={"bottom"}
       key={"SelectReceiveDateSheet"}
       footer={<KBConfirmBtn onClickConfirm={clickNext}>확인</KBConfirmBtn>}>
-      <img src={img} className={$style.img} />
+      <img src={img} className={$style.img} onClick={clickNext} />
     </Drawer>
   );
 };

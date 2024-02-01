@@ -27,7 +27,6 @@ export interface ILoanState {
     documentImage: boolean; // 서류 이미지로 제출
     confirmUserRequest: boolean; // 대출 신청내역 확인
   };
-  lastUserSte: string | null; // 마지막 선택 값
   botStep: {
     loanLimitCurrency: boolean; // 본인확인을 위해 인증이 필요해요
     loanIdentityCheck: boolean; // 주택 시세정보 검색을 위해 주소를 입력해주세요
@@ -82,7 +81,6 @@ const initialState: ILoanState = {
     documentImage: false,
     confirmUserRequest: false
   },
-  lastUserSte: "",
   botStep: {
     loanLimitCurrency: false,
     loanIdentityCheck: false,
@@ -185,6 +183,31 @@ const loanSlice = createSlice({
     setConfirmUserRequest: (state, { payload }: PayloadAction<boolean>) => {
       state.userStep.confirmUserRequest = payload;
     },
+    setResetLoanUserStep: (state) => {
+      state.userStep.consentToTermsCond = false; // 심사 약관 동의
+      state.userStep.userPhoneVarif = false; // 휴대폰 본인인증
+      state.userStep.userSearchedAPT = false; // 주소, 전용면적, 층수
+      state.userStep.buyHouse = false; // 주택 구입
+      state.userStep.houseOwner = false; // 단독 명의
+      state.userStep.oneHouseOwner = false; // 1주택
+      state.userStep.incomeByWork = false; // 근로소득자
+      state.userStep.interestRateAndLimit = false; // 금리와 한도
+      state.userStep.requestLoan = false; // 대출신청
+      state.userStep.primeRate = false; // 우대금리 -0.3%p 적용했어요
+      state.userStep.keepGoingLoan = false; // 이대로 대출진행
+      state.userStep.changeUserInput = false; // 조건 변경하기
+      state.userStep.reKeepGoingLoan = false; // 이대로 대출진행 - 조건 변경하기 이후
+      state.userStep.selected10Years = false; // 10년
+      state.userStep.fullyAmortized = false; // 원리금균등상환
+      state.userStep.variableInterestRate = false; // 변동금리
+      state.userStep.cofix = false; // 신잔액기준 COFIX
+      state.userStep.selectedUserDate = false; // 2024.02.28,
+      state.userStep.selectedUserLoanPrice = false; // 77,000,000
+      state.userStep.callRequestLoan = false; // 대출 신청
+      state.userStep.nationalPurse = false; // 국민지갑 간편제출
+      state.userStep.documentImage = false; // 서류 이미지로 제출
+      state.userStep.confirmUserRequest = false; // 대출 신청내역 확인
+    },
 
     // botStep
     setLoanLimitCurrency: (state, { payload }: PayloadAction<boolean>) => {
@@ -267,6 +290,32 @@ const loanSlice = createSlice({
     },
     setLoanSubmitInfo: (state, { payload }: PayloadAction<boolean>) => {
       state.botStep.loanSubmitInfo = payload;
+    },
+    setResetLoanBotStep: (state) => {
+      state.botStep.loanLimitCurrency = false; // 본인확인을 위해 인증이 필요해요
+      state.botStep.loanIdentityCheck = false; // 주택 시세정보 검색을 위해 주소를 입력해주세요
+      state.botStep.loanHouseConfirm = false; // 주택시세를 확인하세요
+      state.botStep.loanHouseAddConfirm = false; // 먼저 어던 목적으로 대출을 받으시나요?
+      state.botStep.loanHouseAddConfirm01 = false; // 주택 구입 시 지정할 명의를 알려주세요.
+      state.botStep.loanHouseAddConfirm02 = false; // 다음으로 보유한 주택 수를 알려주세요
+      state.botStep.loanHouseAddConfirm03 = false; // 직업정보를 알려주세요
+      state.botStep.loanHouseAddConfirm04 = false; // 지금까지의 정보를 요약할게요
+      state.botStep.loanHouseAddConfirm05 = false; // 심사정보를 기반으로 금리와 한도를 알아볼게요
+      state.botStep.loanHouseAddConfirm06 = false; // 네, KB 주택담보대출을 진행해드릴게요!
+      state.botStep.loanRecommendGuide = false; // 입력해주신 신청정보에 맞는 최저금리와 최대한도로 제시해드려요
+      state.botStep.questionForChange1 = false; // 신청정보를 확인하기 위해 몇가지 질문을 할게요. 대출 기간을 정해주세요
+      state.botStep.loanPeriodSelect = false; // 신청정보를 확인하기 위해 몇가지 질문을 할게요, 대출 기간을 정해주세요
+      state.botStep.loanPaybackSelectStep01 = false; // 어떤 방법으로 갚으실 예정인가요?
+      state.botStep.loanPaybackSelectStep02 = false; // 금리방식을 선택해주세요
+      state.botStep.loanPaybackSelectStep03 = false; // 기준금리종류를 선택해주세요
+      state.botStep.loanRecommendGuide2 = false; // 입력해주신 신청정보에 맞는 최저금리와 최대한도로 제시해드려요
+      state.botStep.loanSelectCalendar = false; // 대출 받고자 하는 날짜를 선택해주세요
+      state.botStep.loanApplicationAmount = false; // 대출 신청금액을 알려주세요
+      state.botStep.loanInfoConfirm = false; // 대출 신청정보를 확인해주세요
+      state.botStep.loanInfoSimpleSubmit = false; // 대출신청에 필요한 서류를 제출해주세요
+      state.botStep.loanInfoSubmitComplete = false; // 국민지갑과 마이데이터를 통해 제출이 완료된 서류예요, 나머지 서류는 이미지로 제출해주세요
+      state.botStep.loanSubmitComplete = false; // 대출 신청을 완료했어요!
+      state.botStep.loanSubmitInfo = false; // 대출 신청 내역을 확인해주세요
     }
   }
 });
@@ -296,6 +345,7 @@ export const {
   setNationalPurse,
   setDocumentImage,
   setConfirmUserRequest,
+  setResetLoanUserStep,
 
   // botStep
   setLoanLimitCurrency,
@@ -321,7 +371,8 @@ export const {
   setLoanInfoSimpleSubmit,
   setLoanInfoSubmitComplete,
   setLoanSubmitComplete,
-  setLoanSubmitInfo
+  setLoanSubmitInfo,
+  setResetLoanBotStep
 } = loanSlice.actions;
 
 export default loanSlice.reducer;

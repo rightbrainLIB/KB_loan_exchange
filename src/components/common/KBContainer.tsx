@@ -1,7 +1,6 @@
 import { KBState } from "@src/store";
-import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
-import React, { ReactNode, useEffect, useRef } from "react";
-// import { isMobile } from "react-device-detect";
+import React, { ReactNode, useRef } from "react";
+import { isMobile } from "react-device-detect";
 import { useSelector } from "react-redux";
 
 import $styles from "./KBContainer.module.sass";
@@ -17,25 +16,11 @@ const KBContainer: React.FC<IKBContainer> = ({ children }) => {
     (state: KBState) => state.globalUI
   );
   const containerStyles = {
-    // ...(isMobile ? { paddingBottom: "50%" } : { paddingBottom: "150px" }),
+    ...(isMobile ? { paddingBottom: "50%" } : { paddingBottom: "150px" }),
     ...(containerBootmSize && {
       paddingBottom: `${containerBootmSize}px`
     })
   };
-
-  const lastStr = LastTrueUserStep();
-
-  useEffect(() => {
-    // console.log(lastStr);
-    const containerBox: HTMLDivElement =
-      containerEl.current as unknown as HTMLDivElement;
-    const lastEl: HTMLDivElement = containerBox.lastChild as HTMLDivElement;
-    if (lastEl) {
-      setTimeout(() => {
-        // console.log("lastEl = ", lastEl, lastEl.clientHeight);
-      }, 1200);
-    }
-  }, [lastStr, containerEl]);
 
   return (
     <div

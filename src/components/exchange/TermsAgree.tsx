@@ -7,7 +7,11 @@ import UtilUnderTalkList from "@components/list/UtilUnderTalkList.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import termsContent from "@imgs/terms/exchange_standard.png";
-import { setAgreeForeignCurrency } from "@slices/exchangeSlices.ts";
+import {
+  setAgreeForeignCurrency,
+  setPrsTermsAgreeForExchange
+} from "@slices/exchangeSlices.ts";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
@@ -49,15 +53,17 @@ const TermsAgree: FC = () => {
 
   useEffect(() => {
     if (isTakenPlace) {
+      setShowBotStep(true);
+      dispatch(setContainerBottomSize(null));
       setTimeout(() => {
-        setShowBotStep(true);
-      }, 500);
+        dispatch(setPrsTermsAgreeForExchange(true));
+      }, 600);
     } else {
       setTimeout(() => {
         setShowBotStep(false);
       });
     }
-  }, [isTakenPlace]);
+  }, [isTakenPlace, dispatch]);
 
   return (
     <>

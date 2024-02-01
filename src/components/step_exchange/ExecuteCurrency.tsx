@@ -17,10 +17,12 @@ import {
 } from "@slices/exchangeCurrencySlices.ts";
 import {
   setNotificationUSD,
+  setPrsExchangeRate,
   setPrsTermsAgreeForExchange,
   setSaveAlarm,
   setTakenPlace
 } from "@slices/exchangeSlices.ts";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import { AppDispatch, KBState } from "@src/store";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
@@ -111,12 +113,21 @@ const ExecuteCurrency: FC = () => {
   }, [compUserSelect, dispatch]);
 
   useEffect(() => {
-    isCurrencySelected
-      ? setShowBotStep(true)
-      : setTimeout(() => {
-          setShowBotStep(false);
-        }, 500);
-  }, [isCurrencySelected]);
+    if (isCurrencySelected) {
+      setShowBotStep(true);
+      dispatch(setContainerBottomSize(375));
+      setTimeout(() => {
+        dispatch(setPrsExchangeRate(true));
+      }, 600);
+    } else {
+      setTimeout(() => {
+        setShowBotStep(false);
+      }, 500);
+    }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
+  }, [isCurrencySelected, dispatch]);
 
   return (
     <>

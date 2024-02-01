@@ -17,7 +17,10 @@ import {
   setCurrencySelection,
   setPrsExchangeRate
 } from "@slices/exchangeSlices.ts";
-import { setIsCompleteExchange } from "@slices/globalUISlice.ts";
+import {
+  // setContainerBottomSize,
+  setIsCompleteExchange
+} from "@slices/globalUISlice.ts";
 import { AppDispatch, KBState } from "@src/store";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 // import { Input } from "antd";
@@ -40,10 +43,12 @@ const ChoiceCurrency: FC = () => {
   const [showUserStep, setShowUserStep] = useState(false);
 
   const onClickCurrencyBtn = useCallback(() => {
-    if (showUserStep) return;
     setShowUserStep(true);
-    dispatch(setCurrencySelection(true));
-  }, [showUserStep, dispatch]);
+    // dispatch(setContainerBottomSize(375));
+    setTimeout(() => {
+      dispatch(setCurrencySelection(true));
+    }, 300);
+  }, [dispatch]);
 
   const modifyUserCurrency = useCallback(() => {
     dispatch(setPrsExchangeRate(false)); // 지금 바로 환전을 도와드릴까요 감추기
@@ -55,9 +60,9 @@ const ChoiceCurrency: FC = () => {
     }, 600);
   }, [dispatch]);
 
-  const execNextStep = useCallback(() => {
-    dispatch(setPrsExchangeRate(true));
-  }, [dispatch]);
+  // const execNextStep = useCallback(() => {
+  //   dispatch(setPrsExchangeRate(true));
+  // }, [dispatch]);
 
   // const onKeyPressInput = useCallback(
   //   (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -86,7 +91,7 @@ const ChoiceCurrency: FC = () => {
       setJpFlag(jpy);
       setEurFlag(eur);
     }
-  }, [isCurrencySelected]);
+  }, [isCurrencySelected, dispatch]);
 
   return (
     <>
@@ -151,9 +156,7 @@ const ChoiceCurrency: FC = () => {
 
       {showUserStep && (
         <MotionListWrap>
-          <MotionList
-            aniCondition={isCurrencySelected}
-            afterAnim={execNextStep}>
+          <MotionList aniCondition={isCurrencySelected}>
             <SelectedUserBox
               modifyUserSelect={modifyUserCurrency}
               isLastSelect={isLastChoice}>

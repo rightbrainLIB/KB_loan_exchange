@@ -2,6 +2,7 @@
  * Step 05. 출금정보입력(Progress bar 5/7)
  * 출금계좌가 맞는지 확인해주세요
  */
+import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
@@ -58,37 +59,39 @@ const CheckAccount: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 22 }}>
-          <MotionList aniCondition={checkAccount} showHeight={356}>
-            <BotProfile />
-            <KBTalk>
-              <img src={img} />
-              <SelectableListWrap>
-                <li>
-                  <SelectableBtn
-                    disabled={checkUserAccount}
-                    onClickBtn={goNextTask}>
-                    출금계좌 확인
-                  </SelectableBtn>
-                </li>
-                <li>
-                  <SelectableBtn disabled={checkUserAccount}>
-                    출금계좌 변경
-                  </SelectableBtn>
-                </li>
-                <li>
-                  <SelectableBtn disabled={checkUserAccount}>
-                    부족한 금액 모으기
-                  </SelectableBtn>
-                </li>
-              </SelectableListWrap>
-            </KBTalk>
+        <div>
+          <MotionList aniCondition={checkAccount}>
+            <BotBox>
+              <BotProfile />
+              <KBTalk>
+                <img src={img} />
+                <SelectableListWrap>
+                  <li>
+                    <SelectableBtn
+                      disabled={checkUserAccount}
+                      onClickBtn={goNextTask}>
+                      출금계좌 확인
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn disabled={checkUserAccount}>
+                      출금계좌 변경
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn disabled={checkUserAccount}>
+                      부족한 금액 모으기
+                    </SelectableBtn>
+                  </li>
+                </SelectableListWrap>
+              </KBTalk>
+            </BotBox>
           </MotionList>
         </div>
       )}
 
       {showUserStep && (
-        <MotionList aniCondition={checkUserAccount} showHeight={54}>
+        <MotionList aniCondition={checkUserAccount}>
           <SelectedUserBox isLastSelect={isLastChoice}>
             출금계좌 확인
           </SelectedUserBox>

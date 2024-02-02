@@ -3,6 +3,7 @@
  * 받고자 하는 날짜를 알려주세요
  */
 import SelectReceiveDateSheet from "@components/bottomSheet/SelectReceiveDateSheet.tsx";
+import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
@@ -65,28 +66,30 @@ const SelectReceiveDate: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 51 }}>
-          <MotionList aniCondition={selectReceiveDate} showHeight={309}>
-            <BotProfile />
-            <KBTalk>
-              <img src={img} />
-              <SelectableListWrap>
-                <li>
-                  <SelectableBtn
-                    bgBtn
-                    onClickBtn={showCalendar}
-                    disabled={userTakenDate}>
-                    날짜 선택
-                  </SelectableBtn>
-                </li>
-              </SelectableListWrap>
-            </KBTalk>
+        <div>
+          <MotionList aniCondition={selectReceiveDate}>
+            <BotBox>
+              <BotProfile />
+              <KBTalk>
+                <img src={img} />
+                <SelectableListWrap>
+                  <li>
+                    <SelectableBtn
+                      bgBtn
+                      onClickBtn={showCalendar}
+                      disabled={userTakenDate}>
+                      날짜 선택
+                    </SelectableBtn>
+                  </li>
+                </SelectableListWrap>
+              </KBTalk>
+            </BotBox>
           </MotionList>
         </div>
       )}
 
       {showUserStep && (
-        <MotionList aniCondition={userTakenDate} showHeight={54}>
+        <MotionList aniCondition={userTakenDate}>
           <SelectedUserBox isLastSelect={isLastChoice}>
             2024.01.22
           </SelectedUserBox>

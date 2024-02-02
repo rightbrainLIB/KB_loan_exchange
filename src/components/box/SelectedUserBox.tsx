@@ -1,6 +1,7 @@
 import RemindReverseSheet from "@components/bottomSheet/RemindReverseSheet.tsx";
 import modifyPencil from "@imgs/icons/modify_pencil.png";
 import { Button } from "antd";
+import cx from "classnames";
 import { FC, ReactNode, useCallback, useState } from "react";
 
 import $style from "./SelectedUserBox.module.sass";
@@ -10,6 +11,7 @@ interface ISelectedUserBox {
   marginTop?: number | null;
   isLastSelect?: boolean;
   useTaskModify?: boolean;
+  type?: string;
   children?: ReactNode;
 }
 
@@ -18,6 +20,7 @@ const SelectedUserBox: FC<ISelectedUserBox> = ({
   marginTop,
   isLastSelect = false,
   useTaskModify = false,
+  type = "",
   children
 }) => {
   const [openRemindSheet, setOpenRemindSheet] = useState(false);
@@ -43,7 +46,12 @@ const SelectedUserBox: FC<ISelectedUserBox> = ({
   return (
     <>
       <div className={$style.selectedUserBox}>
-        <div className={$style.contentsArea}>
+        <div
+          className={cx(
+            $style.contentsArea,
+            type === "primeRate" && $style.primeRate,
+            type === "searchHouse" ? $style.searchHouse : ""
+          )}>
           <div className={$style.userTalk} style={customStyle && customStyle}>
             {children}
           </div>

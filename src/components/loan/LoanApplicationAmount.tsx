@@ -71,9 +71,9 @@ const LoanApplicationAmount: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 30 }}>
+        <div>
           <MotionListWrap>
-            <MotionList aniCondition={loanApplicationAmount} showHeight={233}>
+            <MotionList aniCondition={loanApplicationAmount}>
               <BotBox>
                 <BotProfile />
                 <KBTalk>

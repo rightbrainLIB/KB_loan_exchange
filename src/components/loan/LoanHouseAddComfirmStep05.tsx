@@ -1,6 +1,7 @@
 /**
  * Step 15. 맞춤정보 추천
  */
+import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
@@ -115,10 +116,9 @@ const LoanHouseAddComfirmStep05: FC = () => {
   return (
     <>
       {showBotStep1 && (
-        <div style={{ marginTop: 46 }}>
+        <div>
           <MotionListWrap>
             <MotionList
-              showHeight={310}
               aniCondition={loanHouseAddConfirm05}
               afterAnim={showLoanInfo}>
               <BotProfile />
@@ -181,11 +181,8 @@ const LoanHouseAddComfirmStep05: FC = () => {
       {showBotStep2 && (
         <div>
           <MotionListWrap>
-            <MotionList
-              showHeight={254}
-              aniCondition={loanInfo}
-              afterAnim={showRecommend}>
-              <div style={{ marginTop: 10 }}>
+            <MotionList aniCondition={loanInfo} afterAnim={showRecommend}>
+              <div style={{ marginTop: 17 }}>
                 <KBTalk>
                   <img src={img02} />
                 </KBTalk>
@@ -198,39 +195,38 @@ const LoanHouseAddComfirmStep05: FC = () => {
         <div>
           <MotionListWrap>
             {/* KB 맞춤상품을 추천드려요 */}
-            <MotionList
-              showHeight={522}
-              aniCondition={recommendInfo}
-              moveScroll={407}>
-              <div style={{ marginTop: 10 }}>
-                <KBTalk>
-                  <img src={img03} />
-                  <SelectableListWrap>
-                    <li>
-                      <SelectableBtn
-                        bgBtn
-                        disabled={requestLoan}
-                        onClickBtn={goNextTask}>
-                        대출 신청
-                      </SelectableBtn>
-                    </li>
-                    <li>
-                      <SelectableBtn disabled={requestLoan}>
-                        자세히 보기
-                        <img
-                          src={linkImg}
-                          width="15"
-                          style={{ marginLeft: 5 }}
-                        />
-                      </SelectableBtn>
-                    </li>
-                    <li>
-                      <SelectableBtn disabled={requestLoan}>
-                        처음부터 다시 조회
-                      </SelectableBtn>
-                    </li>
-                  </SelectableListWrap>
-                </KBTalk>
+            <MotionList aniCondition={recommendInfo}>
+              <div style={{ marginTop: 17 }}>
+                <BotBox>
+                  <KBTalk>
+                    <img src={img03} />
+                    <SelectableListWrap>
+                      <li>
+                        <SelectableBtn
+                          bgBtn
+                          disabled={requestLoan}
+                          onClickBtn={goNextTask}>
+                          대출 신청
+                        </SelectableBtn>
+                      </li>
+                      <li>
+                        <SelectableBtn disabled={requestLoan}>
+                          자세히 보기
+                          <img
+                            src={linkImg}
+                            width="15"
+                            style={{ marginLeft: 5 }}
+                          />
+                        </SelectableBtn>
+                      </li>
+                      <li>
+                        <SelectableBtn disabled={requestLoan}>
+                          처음부터 다시 조회
+                        </SelectableBtn>
+                      </li>
+                    </SelectableListWrap>
+                  </KBTalk>
+                </BotBox>
                 <UtilUnderTalkList btnList={["한도금리 유의사항"]} />
               </div>
             </MotionList>

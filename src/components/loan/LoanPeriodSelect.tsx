@@ -9,6 +9,7 @@ import BotProfile from "@components/imgs/BotProfile.tsx";
 import SelectableListWrap from "@components/list/SelectableListWrap.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import { setLoanPeriodSelect, setSelected10Years } from "@slices/loanSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import { KBState } from "@src/store";
@@ -70,6 +71,7 @@ const LoanPeriodSelect: FC = () => {
   useEffect(() => {
     if (changeUserInput) {
       setShowBotStep1(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 275 - 60));
       setTimeout(() => {
         dispatch(setLoanPeriodSelect(true));
       }, 600);
@@ -79,10 +81,9 @@ const LoanPeriodSelect: FC = () => {
   return (
     <>
       {showBotStep1 && (
-        <div style={{ marginTop: 43 }}>
+        <div>
           <MotionListWrap>
             <MotionList
-              showHeight={121}
               aniCondition={loanPeriodSelect}
               afterAnim={showNextChapter}>
               <BotBox>

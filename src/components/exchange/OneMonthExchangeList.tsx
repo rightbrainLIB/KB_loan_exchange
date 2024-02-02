@@ -66,7 +66,6 @@ const OneMonthExchangeList: FC = () => {
       {showBotStep && (
         <MotionListWrap>
           <MotionList
-            showHeight={113}
             aniCondition={oneMonthExchangeList}
             afterAnim={() => setShowDetailList(true)}>
             <BotProfile />
@@ -75,7 +74,7 @@ const OneMonthExchangeList: FC = () => {
               <p className={$style.subText}>2023.12.05~2024.01.05</p>
             </KBTalk>
           </MotionList>
-          <MotionList showHeight={264} aniCondition={showDetailList}>
+          <MotionList aniCondition={showDetailList}>
             <div className={$style.exchangeListWrap}>
               <div className={$style.exchangeList}>
                 <img src={OneMonthExchange_list} />
@@ -120,7 +119,7 @@ const OneMonthExchangeList: FC = () => {
 
       {showUserStep && (
         <MotionListWrap>
-          <MotionList aniCondition={showMoreDetailInfo} showHeight={54}>
+          <MotionList aniCondition={showMoreDetailInfo}>
             <SelectedUserBox isLastSelect={isLastChoiceDetail}>
               자세히 보기
             </SelectedUserBox>

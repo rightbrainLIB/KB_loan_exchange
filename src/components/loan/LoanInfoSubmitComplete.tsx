@@ -114,10 +114,10 @@ const LoanInfoSubmitComplete: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 30 }}>
+        <div>
           <MotionListWrap>
             <BotBox>
-              <MotionList aniCondition={loanInfoSimpleSubmit} showHeight={286}>
+              <MotionList aniCondition={loanInfoSimpleSubmit}>
                 <BotProfile />
                 <KBTalk>
                   <div>
@@ -177,7 +177,7 @@ const LoanInfoSubmitComplete: FC = () => {
                   </div>
                 </KBTalk>
               </MotionList>
-              <MotionList aniCondition={showNextBox} showHeight={348}>
+              <MotionList aniCondition={showNextBox}>
                 <KBTalk>
                   <img src={img02} />
                   <SelectableListWrap>
@@ -196,11 +196,11 @@ const LoanInfoSubmitComplete: FC = () => {
                     </li>
                   </SelectableListWrap>
                 </KBTalk>
-                <UtilUnderTalkList
-                  btnList={["발급처별 서류 안내", "서류제출 유의사항"]}
-                />
               </MotionList>
             </BotBox>
+            <UtilUnderTalkList
+              btnList={["발급처별 서류 안내", "서류제출 유의사항"]}
+            />
           </MotionListWrap>
         </div>
       )}

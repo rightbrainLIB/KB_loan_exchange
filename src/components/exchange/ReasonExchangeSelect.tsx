@@ -3,6 +3,7 @@
  * 환전사유 선택 / 바텀시트 아닌 경우
  * 환전 사유를 알려주세요
  */
+import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
@@ -57,42 +58,44 @@ const ReasonExchangeSelect: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 19 }}>
-          <MotionList aniCondition={reasonExchangeSelect} showHeight={418}>
-            <BotProfile />
-            <KBTalk>
-              <img src={img} />
-              <SelectableListWrap>
-                <li>
-                  <SelectableBtn
-                    onClickBtn={goNextTask}
-                    disabled={exchangeReason}>
-                    관광 등 일반해외여행경비
-                  </SelectableBtn>
-                </li>
-                <li>
-                  <SelectableBtn disabled={exchangeReason}>
-                    보유목적
-                  </SelectableBtn>
-                </li>
-                <li>
-                  <SelectableBtn disabled={exchangeReason}>
-                    유학경비
-                  </SelectableBtn>
-                </li>
-                <li>
-                  <SelectableBtn disabled={exchangeReason}>
-                    해외체재비
-                  </SelectableBtn>
-                </li>
-              </SelectableListWrap>
-            </KBTalk>
+        <div>
+          <MotionList aniCondition={reasonExchangeSelect}>
+            <BotBox>
+              <BotProfile />
+              <KBTalk>
+                <img src={img} />
+                <SelectableListWrap>
+                  <li>
+                    <SelectableBtn
+                      onClickBtn={goNextTask}
+                      disabled={exchangeReason}>
+                      관광 등 일반해외여행경비
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn disabled={exchangeReason}>
+                      보유목적
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn disabled={exchangeReason}>
+                      유학경비
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn disabled={exchangeReason}>
+                      해외체재비
+                    </SelectableBtn>
+                  </li>
+                </SelectableListWrap>
+              </KBTalk>
+            </BotBox>
           </MotionList>
         </div>
       )}
 
       {showUserStep && (
-        <MotionList aniCondition={exchangeReason} showHeight={54}>
+        <MotionList aniCondition={exchangeReason}>
           <SelectedUserBox isLastSelect={isLastChoice}>
             관광, 친지방문 등 일반해외여행경비
           </SelectedUserBox>

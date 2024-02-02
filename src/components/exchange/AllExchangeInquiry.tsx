@@ -1,6 +1,7 @@
 /**
  * 환전 미수령 내역 : 전체 환전내역 조회
  */
+import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
@@ -60,35 +61,37 @@ const AllExchangeInquiry: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 31 }}>
+        <div>
           <MotionList aniCondition={allExchangeInquiry}>
-            <BotProfile />
-            <KBTalk>
-              <h2>김국민님의 전체 환전 내역을 알려드릴게요</h2>
-              {/*<p className={$style.subText}>*/}
-              {/*  환전신청 또는 맞춤환전 체결 후 지점에서 찾아가지 않은 환전내역이에요*/}
-              {/*</p>*/}
-              <SelectableListWrap>
-                <li>
-                  <SelectableBtn
-                    disabled={eachRequestInfo}
-                    onClickBtn={goNextTask}>
-                    건별 조회
-                  </SelectableBtn>
-                </li>
-                <li>
-                  <SelectableBtn disabled={eachRequestInfo}>
-                    통화별 조회
-                  </SelectableBtn>
-                </li>
-              </SelectableListWrap>
-            </KBTalk>
+            <BotBox>
+              <BotProfile />
+              <KBTalk>
+                <h2>김국민님의 전체 환전 내역을 알려드릴게요</h2>
+                {/*<p className={$style.subText}>*/}
+                {/*  환전신청 또는 맞춤환전 체결 후 지점에서 찾아가지 않은 환전내역이에요*/}
+                {/*</p>*/}
+                <SelectableListWrap>
+                  <li>
+                    <SelectableBtn
+                      disabled={eachRequestInfo}
+                      onClickBtn={goNextTask}>
+                      건별 조회
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn disabled={eachRequestInfo}>
+                      통화별 조회
+                    </SelectableBtn>
+                  </li>
+                </SelectableListWrap>
+              </KBTalk>
+            </BotBox>
           </MotionList>
         </div>
       )}
 
       {showUserStep && (
-        <MotionList aniCondition={eachRequestInfo} showHeight={54}>
+        <MotionList aniCondition={eachRequestInfo}>
           <SelectedUserBox isLastSelect={isLastChoice}>
             건별 조회
           </SelectedUserBox>

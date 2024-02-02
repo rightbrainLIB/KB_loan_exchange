@@ -13,15 +13,12 @@ const FindLastElement = () => {
   const nowScrollPos = document.body.scrollTop;
   let newContainerPadding = 0;
 
-  console.log("lastEl = ", lastEl);
-
   if (lastElPos + lastElHeight > screenHeight - 100) {
-    console.log("true");
     newContainerPadding = screenHeight - lastElHeight;
   }
-  console.log("lastElPos = ", lastElPos);
-  console.log("lastElHeight = ", lastElHeight);
-  console.log("screenHeight = ", screenHeight);
+  // console.log("lastElPos = ", lastElPos);
+  // console.log("lastElHeight = ", lastElHeight);
+  // console.log("screenHeight = ", screenHeight);
 
   return {
     containerEl,

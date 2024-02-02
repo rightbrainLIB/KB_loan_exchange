@@ -2,6 +2,7 @@
  * Step 05. 출금정보입력(Progress bar 5/7)
  * 권유한 직원이 있나요?
  */
+import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
@@ -62,42 +63,44 @@ const RecommendedEmployee: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 22 }}>
-          <MotionList aniCondition={recommendedEmployee} showHeight={322}>
-            <BotProfile />
-            <KBTalk>
-              <h2>권유한 직원이 있나요?</h2>
-              <SelectableListWrap>
-                <li>
-                  <SelectableBtn disabled={recommendStaff}>
-                    지점명 검색
-                  </SelectableBtn>
-                </li>
-                <li>
-                  <SelectableBtn disabled={recommendStaff}>
-                    직원이름 검색
-                  </SelectableBtn>
-                </li>
-                <li>
-                  <SelectableBtn disabled={recommendStaff}>
-                    직원번호 검색
-                  </SelectableBtn>
-                </li>
-                <li>
-                  <SelectableBtn
-                    disabled={recommendStaff}
-                    onClickBtn={goNextTask}>
-                    없음
-                  </SelectableBtn>
-                </li>
-              </SelectableListWrap>
-            </KBTalk>
+        <div>
+          <MotionList aniCondition={recommendedEmployee}>
+            <BotBox>
+              <BotProfile />
+              <KBTalk>
+                <h2>권유한 직원이 있나요?</h2>
+                <SelectableListWrap>
+                  <li>
+                    <SelectableBtn disabled={recommendStaff}>
+                      지점명 검색
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn disabled={recommendStaff}>
+                      직원이름 검색
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn disabled={recommendStaff}>
+                      직원번호 검색
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn
+                      disabled={recommendStaff}
+                      onClickBtn={goNextTask}>
+                      없음
+                    </SelectableBtn>
+                  </li>
+                </SelectableListWrap>
+              </KBTalk>
+            </BotBox>
           </MotionList>
         </div>
       )}
 
       {showUserStep && (
-        <MotionList aniCondition={recommendStaff} showHeight={54}>
+        <MotionList aniCondition={recommendStaff}>
           <SelectedUserBox isLastSelect={isLastChoice}>없음</SelectedUserBox>
         </MotionList>
       )}

@@ -15,9 +15,11 @@ import {
   setShowMoreDetailInfo,
   setThreeMonthExchangeList
 } from "@slices/exchangeSlices.ts";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
+// import FindLastElement from "@src/utils/FindLastElement.tsx";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -56,6 +58,14 @@ const ThreeMonthExchangeList: FC = () => {
     });
   }, [dispatch]);
 
+  // const afterBotShow = useCallback(() => {
+  //   const { lastEl } = FindLastElement();
+  //   document.body.scrollTo({
+  //     top: window.innerHeight - lastEl.clientHeight - 60,
+  //     behavior: "smooth"
+  //   });
+  // }, []);
+
   // 마지막 step 체크하기
   const lastStr = LastTrueUserStep();
 
@@ -66,9 +76,9 @@ const ThreeMonthExchangeList: FC = () => {
 
   useEffect(() => {
     if (eachRequestInfo) {
-      setTimeout(() => {
-        setShowBotStep(true);
-      }, 300);
+      setShowBotStep(true);
+      // dispatch(setContainerBottomSize(window.innerHeight - 530 - 60));
+      dispatch(setContainerBottomSize(60));
       setTimeout(() => {
         dispatch(setThreeMonthExchangeList(true));
       }, 600);
@@ -78,13 +88,12 @@ const ThreeMonthExchangeList: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 31 }}>
+        <div>
           <MotionListWrap>
             <BotBox>
               <MotionList
                 aniCondition={threeMonthExchangeList}
-                afterAnim={() => setShowDetailList(true)}
-                showHeight={227}>
+                afterAnim={() => setShowDetailList(true)}>
                 <BotProfile />
                 <KBTalk>
                   <img src={img} />
@@ -99,7 +108,7 @@ const ThreeMonthExchangeList: FC = () => {
                   </SelectableListWrap>
                 </KBTalk>
               </MotionList>
-              <MotionList aniCondition={showDetailList} showHeight={264}>
+              <MotionList aniCondition={showDetailList}>
                 <div className={$style.exchangeListWrap}>
                   <div className={$style.exchangeList}>
                     <img src={ThreeMonthExchange_list} />
@@ -152,16 +161,20 @@ const ThreeMonthExchangeList: FC = () => {
 
       {showUserStep && (
         <MotionListWrap>
-          <MotionList aniCondition={requestedDate} showHeight={54}>
-            <SelectedUserBox isLastSelect={isLastChoice}>
-              조회기간 설정
-            </SelectedUserBox>
-          </MotionList>
-          <MotionList aniCondition={showMoreDetailInfo} showHeight={54}>
-            <SelectedUserBox isLastSelect={isLastChoiceDetail}>
-              자세히 보기
-            </SelectedUserBox>
-          </MotionList>
+          {requestedDate && (
+            <MotionList aniCondition={requestedDate}>
+              <SelectedUserBox isLastSelect={isLastChoice}>
+                조회기간 설정
+              </SelectedUserBox>
+            </MotionList>
+          )}
+          {showMoreDetailInfo && (
+            <MotionList aniCondition={showMoreDetailInfo}>
+              <SelectedUserBox isLastSelect={isLastChoiceDetail}>
+                자세히 보기
+              </SelectedUserBox>
+            </MotionList>
+          )}
         </MotionListWrap>
       )}
     </>

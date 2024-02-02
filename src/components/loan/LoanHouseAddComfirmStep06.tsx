@@ -74,12 +74,9 @@ const LoanHouseAddComfirmStep06: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 45 }}>
+        <div>
           <MotionListWrap>
-            <MotionList
-              showHeight={381}
-              aniCondition={loanHouseAddConfirm06}
-              moveScroll={460}>
+            <MotionList aniCondition={loanHouseAddConfirm06}>
               <BotBox>
                 <BotProfile />
                 <KBTalk>
@@ -95,18 +92,18 @@ const LoanHouseAddComfirmStep06: FC = () => {
                     </li>
                   </SelectableListWrap>
                 </KBTalk>
-                <UtilUnderTalkList btnList={["KB 납부 실적 우대금리"]} />
               </BotBox>
+              <UtilUnderTalkList btnList={["KB 납부 실적 우대금리"]} />
             </MotionList>
           </MotionListWrap>
         </div>
       )}
 
       {showUserStep && (
-        <div style={{ marginTop: 13 }}>
+        <div>
           <MotionListWrap>
-            <MotionList aniCondition={primeRate} showHeight={249}>
-              <SelectedUserBox isLastSelect={isLastChoice}>
+            <MotionList aniCondition={primeRate}>
+              <SelectedUserBox isLastSelect={isLastChoice} type={"primeRate"}>
                 <div className={$style.primeRateInfo}>
                   <h2>
                     우대금리 <span className={$style.value}>-0.3%p</span>

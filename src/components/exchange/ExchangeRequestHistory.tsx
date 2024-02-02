@@ -2,6 +2,7 @@
  * Step 07. 환전신청완료(Progress bar 7/7)
  * 환전 신청 내역을 확인해주세요
  */
+import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
@@ -15,6 +16,7 @@ import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
+import FindLastElement from "@src/utils/FindLastElement.tsx";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,6 +45,14 @@ const ExchangeRequestHistory: FC = () => {
     });
   }, [dispatch]);
 
+  const afterBotShow = useCallback(() => {
+    const { lastEl } = FindLastElement();
+    document.body.scrollTo({
+      top: lastEl.offsetTop - 60,
+      behavior: "smooth"
+    });
+  }, []);
+
   // 마지막 step 체크하기
   const lastStr = LastTrueUserStep();
 
@@ -52,12 +62,10 @@ const ExchangeRequestHistory: FC = () => {
 
   useEffect(() => {
     if (confirmRequestInfo) {
-      setTimeout(() => {
-        setShowBotStep(true);
-      }, 300);
+      setShowBotStep(true);
+      dispatch(setContainerBottomSize(null));
       setTimeout(() => {
         dispatch(setExchangeRequestHistory(true));
-        dispatch(setContainerBottomSize(100));
       }, 600);
     }
     return () => {
@@ -71,34 +79,36 @@ const ExchangeRequestHistory: FC = () => {
         <div>
           <MotionList
             aniCondition={exchangeRequestHistory}
-            showHeight={780}
-            moveScroll={60}>
-            <BotProfile />
-            <KBTalk>
-              <h2>환전 신청 내역을 확인해주세요</h2>
-              <img className={$style.img} src={img} />
-              <SelectableListWrap>
-                <li>
-                  <SelectableBtn
-                    bgBtn
-                    disabled={totalRequestInfo}
-                    onClickBtn={goNextTask}>
-                    전체 환전 내역
-                  </SelectableBtn>
-                </li>
-                <li>
-                  <SelectableBtn disabled={totalRequestInfo}>
-                    홈으로 가기
-                  </SelectableBtn>
-                </li>
-              </SelectableListWrap>
-            </KBTalk>
+            afterAnim={afterBotShow}
+            noScroll>
+            <BotBox>
+              <BotProfile />
+              <KBTalk>
+                <h2>환전 신청 내역을 확인해주세요</h2>
+                <img className={$style.img} src={img} />
+                <SelectableListWrap>
+                  <li>
+                    <SelectableBtn
+                      bgBtn
+                      disabled={totalRequestInfo}
+                      onClickBtn={goNextTask}>
+                      전체 환전 내역
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn disabled={totalRequestInfo}>
+                      홈으로 가기
+                    </SelectableBtn>
+                  </li>
+                </SelectableListWrap>
+              </KBTalk>
+            </BotBox>
           </MotionList>
         </div>
       )}
 
       {showUserStep && (
-        <MotionList aniCondition={totalRequestInfo} showHeight={54}>
+        <MotionList aniCondition={totalRequestInfo}>
           <SelectedUserBox isLastSelect={isLastChoice}>
             전체 환전 내역
           </SelectedUserBox>

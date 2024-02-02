@@ -2,6 +2,7 @@
  * Step 04. 수령정보입력(Progress bar 4/7)
  * 어느 지점에서 받으시겠어요?
  */
+import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
@@ -12,6 +13,7 @@ import {
   setReceiveBankBranch,
   setReceiveKeepGoing
 } from "@slices/exchangeSlices.ts";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
@@ -50,9 +52,8 @@ const ReceiveBankBranch: FC = () => {
 
   useEffect(() => {
     if (joinInsurance) {
-      setTimeout(() => {
-        setShowBotStep(true);
-      }, 300);
+      setShowBotStep(true);
+      dispatch(setContainerBottomSize(null));
       setTimeout(() => {
         dispatch(setReceiveBankBranch(true));
       }, 600);
@@ -62,34 +63,36 @@ const ReceiveBankBranch: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 10 }}>
-          <MotionList aniCondition={receiveBankBranch} showHeight={452}>
-            <BotProfile />
-            <KBTalk>
-              <img src={img} />
-              <SelectableListWrap>
-                <li>
-                  <SelectableBtn
-                    bgBtn
-                    disabled={receiveKeepGoing}
-                    onClickBtn={goNextTask}>
-                    바로 진행
-                  </SelectableBtn>
-                </li>
-                <li>
-                  <SelectableBtn disabled={receiveKeepGoing}>
-                    다른 지점 검색
-                  </SelectableBtn>
-                </li>
-              </SelectableListWrap>
-            </KBTalk>
+        <div>
+          <MotionList aniCondition={receiveBankBranch}>
+            <BotBox>
+              <BotProfile />
+              <KBTalk>
+                <img src={img} />
+                <SelectableListWrap>
+                  <li>
+                    <SelectableBtn
+                      bgBtn
+                      disabled={receiveKeepGoing}
+                      onClickBtn={goNextTask}>
+                      바로 진행
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn disabled={receiveKeepGoing}>
+                      다른 지점 검색
+                    </SelectableBtn>
+                  </li>
+                </SelectableListWrap>
+              </KBTalk>
+            </BotBox>
             <UtilUnderTalkList btnList={["지점 위치 안내"]} />
           </MotionList>
         </div>
       )}
 
       {showUserStep && (
-        <MotionList aniCondition={receiveKeepGoing} showHeight={54}>
+        <MotionList aniCondition={receiveKeepGoing}>
           <SelectedUserBox isLastSelect={isLastChoice}>
             바로 진행
           </SelectedUserBox>

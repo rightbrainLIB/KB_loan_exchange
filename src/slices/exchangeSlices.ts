@@ -48,6 +48,7 @@ export interface IExchangeState {
     checkAccount: boolean; // 출금계좌가 맞는지 확인해주세요
     recommendedEmployee: boolean; // 권유한 직원이 있나요?
     checkExchangeInfo: boolean; // 환전을 신청할게요
+    exchangeRequestCompletion: boolean; // 환전 신청을 완료했어요!
     exchangeRequestHistory: boolean; // 환전 신청 내역을 확인해주세요
     allExchangeInquiry: boolean; // 김국민님의 전체 환전 내역을 알려드릴게요
     threeMonthExchangeList: boolean; // 최근 3개월 내 환전 내역이에요
@@ -103,6 +104,7 @@ const initialState: IExchangeState = {
     checkAccount: false,
     recommendedEmployee: false,
     checkExchangeInfo: false,
+    exchangeRequestCompletion: false,
     exchangeRequestHistory: false,
     allExchangeInquiry: false,
     threeMonthExchangeList: false,
@@ -286,6 +288,12 @@ const exchangeSlice = createSlice({
     setCheckExchangeInfo: (state, { payload }: PayloadAction<boolean>) => {
       state.botStep.checkExchangeInfo = payload;
     },
+    setExchangeRequestCompletion: (
+      state,
+      { payload }: PayloadAction<boolean>
+    ) => {
+      state.botStep.exchangeRequestCompletion = payload;
+    },
     setExchangeRequestHistory: (state, { payload }: PayloadAction<boolean>) => {
       state.botStep.exchangeRequestHistory = payload;
     },
@@ -324,6 +332,7 @@ const exchangeSlice = createSlice({
       state.botStep.checkAccount = false;
       state.botStep.recommendedEmployee = false;
       state.botStep.checkExchangeInfo = false;
+      state.botStep.exchangeRequestCompletion = false;
       state.botStep.exchangeRequestHistory = false;
       state.botStep.allExchangeInquiry = false;
       state.botStep.threeMonthExchangeList = false;
@@ -382,6 +391,7 @@ export const {
   setCheckAccount,
   setRecommendedEmployee,
   setCheckExchangeInfo,
+  setExchangeRequestCompletion,
   setExchangeRequestHistory,
   setAllExchangeInquiry,
   setThreeMonthExchangeList,

@@ -101,7 +101,7 @@ const LoanTelecomInputPop: FC<ILoanTelecomInputPop> = ({
             <img src={img01} width="100%" />
           </div>
         </div>
-        <div className={$style.keypadBox}>
+        <div className={$style.keypadBox} onClick={onClickVarifNum}>
           <img src={iosKeypad} alt="" />
         </div>
       </Drawer>

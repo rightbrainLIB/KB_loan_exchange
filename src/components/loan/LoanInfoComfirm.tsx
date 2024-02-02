@@ -58,7 +58,7 @@ const LoanInfoComfirm: FC = () => {
     <>
       {showBotStep && (
         <MotionListWrap>
-          <MotionList showHeight={460} aniCondition={loanInfoConfirm}>
+          <MotionList aniCondition={loanInfoConfirm}>
             <BotBox>
               <BotProfile />
               <KBTalk>

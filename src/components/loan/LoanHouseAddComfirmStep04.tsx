@@ -51,12 +51,9 @@ const LoanHouseAddComfirmStep04: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 56 }}>
+        <div>
           <MotionListWrap>
-            <MotionList
-              aniCondition={loanHouseAddConfirm04}
-              showHeight={448}
-              moveScroll={220}>
+            <MotionList aniCondition={loanHouseAddConfirm04}>
               <BotBox>
                 <BotProfile />
                 <KBTalk>

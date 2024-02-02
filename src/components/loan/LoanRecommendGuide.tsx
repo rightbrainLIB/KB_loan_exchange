@@ -12,6 +12,7 @@ import UtilUnderTalkList from "@components/list/UtilUnderTalkList.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import img from "@imgs/loan/LoanRecommendGuide.png";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import {
   setChangeUserInput,
   setKeepGoingLoan,
@@ -84,24 +85,24 @@ const LoanRecommendGuide: FC = () => {
 
   useEffect(() => {
     if (primeRate) {
-      dispatch(setKeepGoingLoan(false));
-      dispatch(setChangeUserInput(false));
-      setShowBotStep(true);
+      setTimeout(() => {
+        dispatch(setKeepGoingLoan(false));
+        dispatch(setChangeUserInput(false));
+        setShowBotStep(true);
+        dispatch(setContainerBottomSize(window.innerHeight - 648 - 60));
+      }, 1200);
       setTimeout(() => {
         dispatch(setLoanRecommendGuide(true));
-      }, 900);
+      }, 1800);
     }
   }, [primeRate, dispatch]);
 
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 43 }}>
+        <div>
           <MotionListWrap>
-            <MotionList
-              showHeight={660}
-              aniCondition={loanRecommendGuide}
-              moveScroll={400}>
+            <MotionList aniCondition={loanRecommendGuide}>
               <BotBox>
                 <BotProfile />
                 <KBTalk>
@@ -124,8 +125,8 @@ const LoanRecommendGuide: FC = () => {
                     </li>
                   </SelectableListWrap>
                 </KBTalk>
-                <UtilUnderTalkList btnUnderList={btnUnderList} />
               </BotBox>
+              <UtilUnderTalkList btnUnderList={btnUnderList} />
             </MotionList>
           </MotionListWrap>
         </div>

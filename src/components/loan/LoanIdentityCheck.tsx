@@ -71,7 +71,7 @@ const LoanIdentityCheck: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 28 }}>
+        <div>
           <MotionListWrap>
             <BotBox>
               <MotionList aniCondition={loanLimitCurrency}>

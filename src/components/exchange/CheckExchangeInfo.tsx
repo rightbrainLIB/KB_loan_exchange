@@ -2,13 +2,14 @@
  * Step 06. 환전정보확인(Progress bar 6/7)
  * 환전을 신청할게요
  */
+import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import img from "@imgs/exchange/CheckExchangeInfo.png";
 import {
-  setCheckExchangeInfo,
+  setExchangeRequestCompletion,
   setRequestExchange
 } from "@slices/exchangeSlices.ts";
 import {
@@ -34,7 +35,7 @@ const CheckExchangeInfo: FC = () => {
   const { recommendStaff, requestExchange } = useSelector(
     (state: KBState) => state.exchange.userStep
   );
-  const { checkExchangeInfo } = useSelector(
+  const { exchangeRequestCompletion } = useSelector(
     (state: KBState) => state.exchange.botStep
   );
 
@@ -57,9 +58,9 @@ const CheckExchangeInfo: FC = () => {
     if (recommendStaff) {
       dispatch(setIsCompleteExchange(true));
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(812 - 658 - 60));
       setTimeout(() => {
-        dispatch(setCheckExchangeInfo(true));
-        // dispatch(setContainerBottomSize(60));
+        dispatch(setExchangeRequestCompletion(true));
       }, 600);
     }
     // return () => {
@@ -71,30 +72,29 @@ const CheckExchangeInfo: FC = () => {
     <>
       {showBotStep && (
         <div>
-          <MotionList
-            aniCondition={checkExchangeInfo}
-            showHeight={672}
-            moveScroll={60}>
-            <BotProfile />
-            <KBTalk>
-              <img className={$style.img} src={img} />
-              <SelectableListWrap>
-                <li>
-                  <SelectableBtn
-                    bgBtn
-                    disabled={requestExchange}
-                    onClickBtn={goNextTask}>
-                    환전 신청
-                  </SelectableBtn>
-                </li>
-              </SelectableListWrap>
-            </KBTalk>
+          <MotionList aniCondition={exchangeRequestCompletion}>
+            <BotBox>
+              <BotProfile />
+              <KBTalk>
+                <img className={$style.img} src={img} />
+                <SelectableListWrap>
+                  <li>
+                    <SelectableBtn
+                      bgBtn
+                      disabled={requestExchange}
+                      onClickBtn={goNextTask}>
+                      환전 신청
+                    </SelectableBtn>
+                  </li>
+                </SelectableListWrap>
+              </KBTalk>
+            </BotBox>
           </MotionList>
         </div>
       )}
 
       {showUserStep && (
-        <MotionList aniCondition={requestExchange} showHeight={54}>
+        <MotionList aniCondition={requestExchange}>
           <SelectedUserBox isLastSelect={isLastChoice}>
             환전 신청
           </SelectedUserBox>

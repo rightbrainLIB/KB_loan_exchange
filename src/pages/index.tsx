@@ -42,7 +42,8 @@ const Index = () => {
             <Button onClick={() => onClickTask("exchange")}>환전</Button>
           </li>
           <li>
-            <Button onClick={() => onClickTask("loanChat")}>대출</Button>
+            <Button onClick={() => onClickTask("loan")}>대출</Button>
+            {/*<Button onClick={() => onClickTask("loanChat")}>대출</Button>*/}
           </li>
         </ul>
       </div>

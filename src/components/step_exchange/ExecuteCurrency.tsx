@@ -104,9 +104,9 @@ const ExecuteCurrency: FC = () => {
       setTimeout(() => {
         dispatch(setTakenPlace(true));
       }, 500); // 은행지점에서 받기 애니메이션
-      setTimeout(() => {
-        dispatch(setPrsTermsAgreeForExchange(true)); // 동의하기 내용
-      }, 800);
+      // setTimeout(() => {
+      //   dispatch(setPrsTermsAgreeForExchange(true)); // 동의하기 내용
+      // }, 800);
     } else {
       setShowUserStepPositive(false);
     }
@@ -115,7 +115,8 @@ const ExecuteCurrency: FC = () => {
   useEffect(() => {
     if (isCurrencySelected) {
       setShowBotStep(true);
-      dispatch(setContainerBottomSize(375));
+      const bottomValue = window.innerHeight - 376 - 60;
+      dispatch(setContainerBottomSize(bottomValue));
       setTimeout(() => {
         dispatch(setPrsExchangeRate(true));
       }, 600);

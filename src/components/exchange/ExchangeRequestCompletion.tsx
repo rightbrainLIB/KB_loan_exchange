@@ -2,6 +2,7 @@
  * Step 07. 환전신청완료(Progress bar 7/7)
  * 환전 신청을 완료했어요!
  */
+import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
@@ -11,7 +12,10 @@ import {
   setCheckExchangeInfo,
   setConfirmRequestInfo
 } from "@slices/exchangeSlices.ts";
-import { setIsCompleteExchange } from "@slices/globalUISlice.ts";
+import {
+  setContainerBottomSize,
+  setIsCompleteExchange
+} from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
@@ -50,9 +54,8 @@ const ExchangeRequestCompletion: FC = () => {
   useEffect(() => {
     if (requestExchange) {
       dispatch(setIsCompleteExchange(true));
-      setTimeout(() => {
-        setShowBotStep(true);
-      }, 300);
+      setShowBotStep(true);
+      dispatch(setContainerBottomSize(null));
       setTimeout(() => {
         dispatch(setCheckExchangeInfo(true));
       }, 600);
@@ -62,30 +65,32 @@ const ExchangeRequestCompletion: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 27 }}>
-          <MotionList aniCondition={checkExchangeInfo} showHeight={368}>
-            <BotProfile />
-            <KBTalk>
-              <div style={{ marginBottom: 16 }}>
-                <img src={img} style={{ width: "100%", height: "100%" }} />
-              </div>
-              <SelectableListWrap>
-                <li>
-                  <SelectableBtn
-                    bgBtn
-                    disabled={confirmRequestInfo}
-                    onClickBtn={goNextTask}>
-                    환전 신청 내역
-                  </SelectableBtn>
-                </li>
-              </SelectableListWrap>
-            </KBTalk>
+        <div>
+          <MotionList aniCondition={checkExchangeInfo}>
+            <BotBox>
+              <BotProfile />
+              <KBTalk>
+                <div style={{ marginBottom: 16 }}>
+                  <img src={img} style={{ width: "100%", height: "100%" }} />
+                </div>
+                <SelectableListWrap>
+                  <li>
+                    <SelectableBtn
+                      bgBtn
+                      disabled={confirmRequestInfo}
+                      onClickBtn={goNextTask}>
+                      환전 신청 내역
+                    </SelectableBtn>
+                  </li>
+                </SelectableListWrap>
+              </KBTalk>
+            </BotBox>
           </MotionList>
         </div>
       )}
 
       {showUserStep && (
-        <MotionList aniCondition={confirmRequestInfo} showHeight={54}>
+        <MotionList aniCondition={confirmRequestInfo}>
           <SelectedUserBox>환전 신청 내역</SelectedUserBox>
         </MotionList>
       )}

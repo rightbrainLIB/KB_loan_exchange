@@ -6,6 +6,7 @@ interface IMotionList {
   afterAnim?: () => void;
   showHeight?: number | string;
   moveScroll?: number;
+  targetScroll?: number;
   noScroll?: boolean;
   children?: ReactNode;
 }
@@ -15,6 +16,7 @@ const MotionList: FC<IMotionList> = ({
   afterAnim,
   showHeight = "100%",
   moveScroll = 0,
+  targetScroll,
   noScroll = false,
   children
 }) => {
@@ -26,9 +28,6 @@ const MotionList: FC<IMotionList> = ({
 
   const exitAnim = useCallback(() => {
     if (aniCondition && afterAnim) {
-      // setTimeout(() => {
-      //   afterAnim();
-      // }, 300);
       afterAnim();
     }
   }, [afterAnim, aniCondition]);
@@ -55,17 +54,20 @@ const MotionList: FC<IMotionList> = ({
         onComplete: () => {
           exitAnim();
           let top = 0;
-          if (noScroll) {
-            top = 0;
-          } else if (moveScroll && moveScroll > 0) {
+          if (moveScroll && moveScroll > 0) {
             top = document.body.scrollTop + moveScroll;
+          } else if (targetScroll && targetScroll > 0) {
+            top = targetScroll;
           } else {
             top = 1000000;
           }
-          document.body.scrollTo({
-            top: top,
-            behavior: "smooth"
-          });
+
+          if (!noScroll) {
+            document.body.scrollTo({
+              top: top,
+              behavior: "smooth"
+            });
+          }
         }
       }}>
       {children}

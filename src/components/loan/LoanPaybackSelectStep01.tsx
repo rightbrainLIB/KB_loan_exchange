@@ -11,6 +11,7 @@ import UtilUnderTalkList from "@components/list/UtilUnderTalkList.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import img from "@imgs/loan/LoanPaybackSelectStep01.png";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import {
   setFullyAmortized,
   setLoanPaybackSelectStep01
@@ -53,6 +54,7 @@ const LoanPaybackSelectStep01: FC = () => {
   useEffect(() => {
     if (selected10Years) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(null));
       setTimeout(() => {
         dispatch(setLoanPaybackSelectStep01(true));
       }, 600);
@@ -62,9 +64,9 @@ const LoanPaybackSelectStep01: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 29 }}>
+        <div>
           <MotionListWrap>
-            <MotionList showHeight={320} aniCondition={loanPaybackSelectStep01}>
+            <MotionList aniCondition={loanPaybackSelectStep01}>
               <BotBox>
                 <BotProfile />
                 <KBTalk>
@@ -84,8 +86,8 @@ const LoanPaybackSelectStep01: FC = () => {
                     </li>
                   </SelectableListWrap>
                 </KBTalk>
-                <UtilUnderTalkList btnList={["상환 방법 안내"]} />
               </BotBox>
+              <UtilUnderTalkList btnList={["상환 방법 안내"]} />
             </MotionList>
           </MotionListWrap>
         </div>

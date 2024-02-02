@@ -72,7 +72,7 @@ const LoanHouseAddComfirm: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 41 }}>
+        <div style={{ marginTop: 34 }}>
           <MotionListWrap>
             <MotionList
               aniCondition={loanHouseAddConfirm}
@@ -89,7 +89,7 @@ const LoanHouseAddComfirm: FC = () => {
       )}
 
       {showNextBotStep && (
-        <div style={{ marginTop: 10 }}>
+        <div>
           <MotionList aniCondition={showNextBotStep}>
             <KBTalk>
               <h2>먼저 어떤 목적으로 대출을 받으시나요?</h2>
@@ -112,7 +112,7 @@ const LoanHouseAddComfirm: FC = () => {
 
       {showUserStep && (
         <MotionListWrap>
-          <MotionList aniCondition={buyHouse} showHeight={90}>
+          <MotionList aniCondition={buyHouse}>
             <SelectedUserBox
               isLastSelect={isLastChoice}
               modifyUserSelect={modifyUserSelect}

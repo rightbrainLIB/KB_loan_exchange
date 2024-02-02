@@ -60,7 +60,7 @@ const LoanHouseAddComfirmStep03: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 56 }}>
+        <div>
           <MotionListWrap>
             <MotionList aniCondition={loanHouseAddConfirm03}>
               <BotBox>
@@ -92,8 +92,8 @@ const LoanHouseAddComfirmStep03: FC = () => {
                     </li>
                   </SelectableListWrap>
                 </KBTalk>
-                <UtilUnderTalkList btnList={["소득구분 안내"]} />
               </BotBox>
+              <UtilUnderTalkList btnList={["소득구분 안내"]} />
             </MotionList>
           </MotionListWrap>
         </div>

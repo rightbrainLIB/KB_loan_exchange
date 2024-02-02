@@ -2,6 +2,7 @@
  * Step 05. 출금정보입력(Progress bar 5/7)
  * 휴대폰 번호가 맞는지 확인해주세요
  */
+import BotBox from "@components/box/BotBox.tsx";
 import EmphasisContent from "@components/box/EmphasisContent.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
@@ -58,35 +59,37 @@ const CheckPhoneNumber: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 13 }}>
-          <MotionList aniCondition={checkPhoneNumber} showHeight={277}>
-            <BotProfile />
-            <KBTalk>
-              <h2>휴대폰 번호가 맞는지 확인해주세요</h2>
-              <EmphasisContent>
-                <p>010 1234 1234</p>
-              </EmphasisContent>
-              <SelectableListWrap>
-                <li>
-                  <SelectableBtn
-                    disabled={checkUserPhoneNumber}
-                    onClickBtn={goNextTask}>
-                    번호 확인 완료
-                  </SelectableBtn>
-                </li>
-                <li>
-                  <SelectableBtn disabled={checkUserPhoneNumber}>
-                    번호 수정
-                  </SelectableBtn>
-                </li>
-              </SelectableListWrap>
-            </KBTalk>
+        <div>
+          <MotionList aniCondition={checkPhoneNumber}>
+            <BotBox>
+              <BotProfile />
+              <KBTalk>
+                <h2>휴대폰 번호가 맞는지 확인해주세요</h2>
+                <EmphasisContent>
+                  <p>010 1234 1234</p>
+                </EmphasisContent>
+                <SelectableListWrap>
+                  <li>
+                    <SelectableBtn
+                      disabled={checkUserPhoneNumber}
+                      onClickBtn={goNextTask}>
+                      번호 확인 완료
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn disabled={checkUserPhoneNumber}>
+                      번호 수정
+                    </SelectableBtn>
+                  </li>
+                </SelectableListWrap>
+              </KBTalk>
+            </BotBox>
           </MotionList>
         </div>
       )}
 
       {showUserStep && (
-        <MotionList aniCondition={checkUserPhoneNumber} showHeight={54}>
+        <MotionList aniCondition={checkUserPhoneNumber}>
           <SelectedUserBox isLastSelect={isLastChoice}>
             번호 확인 완료
           </SelectedUserBox>

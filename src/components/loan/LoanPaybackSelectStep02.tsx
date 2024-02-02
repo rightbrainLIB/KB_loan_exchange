@@ -60,9 +60,9 @@ const LoanPaybackSelectStep02: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 30 }}>
+        <div>
           <MotionListWrap>
-            <MotionList showHeight={243} aniCondition={loanPaybackSelectStep02}>
+            <MotionList aniCondition={loanPaybackSelectStep02}>
               <BotBox>
                 <BotProfile />
                 <KBTalk>
@@ -82,8 +82,8 @@ const LoanPaybackSelectStep02: FC = () => {
                     </li>
                   </SelectableListWrap>
                 </KBTalk>
-                <UtilUnderTalkList btnList={["금리방식 안내"]} />
               </BotBox>
+              <UtilUnderTalkList btnList={["금리방식 안내"]} />
             </MotionList>
           </MotionListWrap>
         </div>

@@ -6,6 +6,7 @@ import AdditionalServicesSheet from "@components/bottomSheet/AdditionalServicesS
 import EssentialConfirmationSheet from "@components/bottomSheet/EssentialConfirmationSheet.tsx";
 import TravelInsuranceAgreeSheet from "@components/bottomSheet/TravelInsuranceAgreeSheet.tsx";
 import TravelInsuranceNoticeSheet from "@components/bottomSheet/TravelInsuranceNoticeSheet.tsx";
+import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
@@ -119,8 +120,9 @@ const TravelInsurance: FC = () => {
   // 초기 렌더링 조건, 이전 userStep이 true가 되면 진행
   useEffect(() => {
     if (checkRequestValue) {
-      dispatch(setContainerBottomSize(100));
       setShowBotStep(true);
+      const arrBottom = window.innerHeight - 554 - 60;
+      dispatch(setContainerBottomSize(arrBottom));
       setTimeout(() => {
         dispatch(setTravelInsurance(true));
       }, 600);
@@ -133,36 +135,35 @@ const TravelInsurance: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 10 }}>
-          <MotionList
-            aniCondition={travelInsurance}
-            showHeight={613}
-            moveScroll={70}>
-            <BotProfile />
-            <KBTalk>
-              <img src={img} />
-              <SelectableListWrap>
-                <li>
-                  <SelectableBtn bgBtn disabled={joinInsurance}>
-                    환전만 진행
-                  </SelectableBtn>
-                </li>
-                <li>
-                  <SelectableBtn
-                    disabled={joinInsurance}
-                    onClickBtn={activeEssentialSheet}>
-                    여행자 보험 가입
-                  </SelectableBtn>
-                </li>
-              </SelectableListWrap>
-            </KBTalk>
+        <div>
+          <MotionList aniCondition={travelInsurance}>
+            <BotBox>
+              <BotProfile />
+              <KBTalk>
+                <img src={img} />
+                <SelectableListWrap>
+                  <li>
+                    <SelectableBtn bgBtn disabled={joinInsurance}>
+                      환전만 진행
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn
+                      disabled={joinInsurance}
+                      onClickBtn={activeEssentialSheet}>
+                      여행자 보험 가입
+                    </SelectableBtn>
+                  </li>
+                </SelectableListWrap>
+              </KBTalk>
+            </BotBox>
             <UtilUnderTalkList btnUnderList={utilUnderBtnList} />
           </MotionList>
         </div>
       )}
 
       {showUserStep && (
-        <MotionList aniCondition={joinInsurance} showHeight={54}>
+        <MotionList aniCondition={joinInsurance}>
           <SelectedUserBox isLastSelect={isLastChoice}>
             여행자 보험 가입
           </SelectedUserBox>

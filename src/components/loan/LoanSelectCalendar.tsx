@@ -76,9 +76,9 @@ const LoanSelectCalendar: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 30 }}>
+        <div>
           <MotionListWrap>
-            <MotionList showHeight={190} aniCondition={loanSelectCalendar}>
+            <MotionList aniCondition={loanSelectCalendar}>
               <BotBox>
                 <BotProfile />
                 <KBTalk>

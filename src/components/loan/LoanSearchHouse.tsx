@@ -79,13 +79,13 @@ const LoanSearchHouse: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 24 }}>
+        <div>
           <MotionListWrap>
             <MotionList aniCondition={loanIdentityCheck}>
               <BotBox>
                 <BotProfile />
                 <KBTalk>
-                  <h2>주택 시세정보 검을 위해 주소를 입력해주세요</h2>
+                  <h2>주택 시세정보 검색을 위해 주소를 입력해주세요</h2>
                   <ExclaminationList exclaList={exclaList} />
                   <SelectableListWrap>
                     <li>
@@ -113,7 +113,7 @@ const LoanSearchHouse: FC = () => {
       {showUserStep && (
         <MotionListWrap>
           <MotionList aniCondition={userSearchedAPT}>
-            <SelectedUserBox marginTop={10} isLastSelect={isLastChoice}>
+            <SelectedUserBox isLastSelect={isLastChoice} type={"searchHouse"}>
               <div className={$style.userSelectedValue}>
                 <ul>
                   <li>

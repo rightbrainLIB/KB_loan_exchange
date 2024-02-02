@@ -13,7 +13,7 @@ import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
-import FindLastElement from "@src/utils/FindLastElement.tsx";
+// import FindLastElement from "@src/utils/FindLastElement.tsx";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -48,8 +48,8 @@ const NotificationUSD: FC = () => {
   useEffect(() => {
     if (saveAlarm) {
       setShowBotStep(true);
-      const { screenHeight, lastElPos } = FindLastElement();
-      dispatch(setContainerBottomSize(screenHeight - lastElPos + 60));
+      // const arrValue = window.innerHeight - 331 - 60;
+      dispatch(setContainerBottomSize(null));
 
       setTimeout(() => {
         dispatch(setSaveAlarm(true));

@@ -36,9 +36,9 @@ const LoanHouseComfirm: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 30 }}>
+        <div>
           <MotionListWrap>
-            <MotionList aniCondition={loanHouseConfirm} showHeight={180}>
+            <MotionList aniCondition={loanHouseConfirm}>
               <BotBox>
                 <BotProfile />
                 <KBTalk>

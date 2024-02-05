@@ -24,6 +24,11 @@ const exchangeCurrencySlice = createSlice({
     },
     setCompUserSelect: (state, { payload }: PayloadAction<boolean>) => {
       state.compUserSelect = payload;
+    },
+    setResetCurrencySheet: (state) => {
+      state.openTakenWaySheet = false;
+      state.openTakenPlaceSheet = false;
+      state.compUserSelect = false;
     }
   }
 });
@@ -31,7 +36,8 @@ const exchangeCurrencySlice = createSlice({
 export const {
   setOpenTakenWaySheet,
   setOpenTakenPlaceSheet,
-  setCompUserSelect
+  setCompUserSelect,
+  setResetCurrencySheet
 } = exchangeCurrencySlice.actions;
 
 export default exchangeCurrencySlice.reducer;

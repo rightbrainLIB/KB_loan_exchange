@@ -1,3 +1,4 @@
+import { setResetCurrencySheet } from "@slices/exchangeCurrencySlices.ts";
 import {
   setResetExchangeBotSteps,
   setResetExchangeUserStep
@@ -29,6 +30,7 @@ const Index = () => {
   useEffect(() => {
     dispatch(setResetExchangeUserStep());
     dispatch(setResetExchangeBotSteps());
+    dispatch(setResetCurrencySheet());
     dispatch(setResetLoanUserStep());
     dispatch(setResetLoanBotStep());
     dispatch(setContainerBottomSize(null));

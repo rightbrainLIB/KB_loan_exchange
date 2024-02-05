@@ -26,7 +26,7 @@ const LoanFacePop: FC = () => {
         footer={null}
         closable={false}
         className={$style.LoanFaceModal}>
-        <img src={img01} width="100%" onClick={clickFacePop} />
+        <img src={img01} width="100%" onClick={clickFacePop} alt="" />
       </Modal>
     </>
   );

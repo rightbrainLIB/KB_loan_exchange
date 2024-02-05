@@ -47,7 +47,7 @@ const TravelInsuranceAgreeSheet: FC<ITravelInsuranceAgreeSheet> = ({
       placement={"bottom"}
       key={"TravelInsuranceAgreeSheet"}
       footer={<KBConfirmBtn onClickConfirm={clickNext}>동의</KBConfirmBtn>}>
-      <img src={img} className={$style.img} />
+      <img src={img} className={$style.img} alt="" />
     </Drawer>
   );
 };

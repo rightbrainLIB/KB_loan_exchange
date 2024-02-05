@@ -49,7 +49,7 @@ const AdditionalServicesSheet: FC<IAdditionalServicesSheet> = ({
       placement={"bottom"}
       key={"AdditionalServicesSheet"}
       footer={<KBConfirmBtn onClickConfirm={clickNext}>신청</KBConfirmBtn>}>
-      <img src={img} className={$style.img} />
+      <img src={img} className={$style.img} alt="" />
     </Drawer>
   );
 };

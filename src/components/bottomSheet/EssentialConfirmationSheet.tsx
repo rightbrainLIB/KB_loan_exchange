@@ -63,7 +63,7 @@ const EssentialConfirmationSheet: FC<IEssentialConfirmationSheet> = ({
           <KBConfirmBtn onClickConfirm={nextStep}>다음</KBConfirmBtn>
         </div>
       }>
-      <img src={img} className={$style.img} />
+      <img src={img} className={$style.img} alt="" />
     </Drawer>
   );
 };

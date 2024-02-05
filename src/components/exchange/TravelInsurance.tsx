@@ -60,12 +60,12 @@ const TravelInsurance: FC = () => {
     setTimeout(() => {
       setShowRegister(true);
     });
-  }, [showRegister]);
+  }, []);
 
   // KB 외화 환전/송금 부가서비스 신청서 close
   const hideRegisterSheet = useCallback(() => {
     setShowRegister(false);
-  }, [showRegister]);
+  }, []);
 
   // [선택] 개인(신용)정보 제3자 제공 동의서(여행자보험) open
   const showAgreeSheet = useCallback(() => {
@@ -73,12 +73,12 @@ const TravelInsurance: FC = () => {
     setTimeout(() => {
       setShowAgree(true);
     });
-  }, [showAgree]);
+  }, []);
 
   // [선택] 개인(신용)정보 제3자 제공 동의서(여행자보험) close
   const hideAgreeSheet = useCallback(() => {
     setShowAgree(false);
-  }, [showAgree]);
+  }, []);
 
   // 환전 진행 최종 확인 - 개인(신용)정보 제3자 제공 동의서 동의 버튼
   const goNextTask = useCallback(() => {
@@ -88,7 +88,7 @@ const TravelInsurance: FC = () => {
       dispatch(setJoinInsurance(true)); // 여행자 보험 가입 활성화
       dispatch(setContainerBottomSize(null)); // container paddingBottom값 삭제
     });
-  }, [showAgree]);
+  }, [dispatch]);
 
   // 여행자보험 안내 open
   const openGuideSheet = useCallback(() => {
@@ -98,7 +98,7 @@ const TravelInsurance: FC = () => {
   // 여행자보험 안내 close
   const closeNoticeSheet = useCallback(() => {
     setOpenNoticeSheet(false);
-  }, [openNoticeSheet]);
+  }, []);
 
   const utilUnderBtnList = [
     {
@@ -140,7 +140,7 @@ const TravelInsurance: FC = () => {
             <BotBox>
               <BotProfile />
               <KBTalk>
-                <img src={img} />
+                <img src={img} alt="" />
                 <SelectableListWrap>
                   <li>
                     <SelectableBtn bgBtn disabled={joinInsurance}>
@@ -151,7 +151,7 @@ const TravelInsurance: FC = () => {
                     <SelectableBtn
                       disabled={joinInsurance}
                       onClickBtn={activeEssentialSheet}>
-                      여행자 보험 가입
+                      여행자보험 가입
                     </SelectableBtn>
                   </li>
                 </SelectableListWrap>
@@ -165,7 +165,7 @@ const TravelInsurance: FC = () => {
       {showUserStep && (
         <MotionList aniCondition={joinInsurance}>
           <SelectedUserBox isLastSelect={isLastChoice}>
-            여행자 보험 가입
+            여행자보험 가입
           </SelectedUserBox>
         </MotionList>
       )}

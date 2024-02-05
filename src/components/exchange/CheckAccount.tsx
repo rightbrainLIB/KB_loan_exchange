@@ -64,13 +64,14 @@ const CheckAccount: FC = () => {
             <BotBox>
               <BotProfile />
               <KBTalk>
-                <img src={img} />
+                <img src={img} alt="" />
                 <SelectableListWrap>
                   <li>
                     <SelectableBtn
+                      bgBtn={!checkUserAccount}
                       disabled={checkUserAccount}
                       onClickBtn={goNextTask}>
-                      출금계좌 확인
+                      출금계좌 확인 완료
                     </SelectableBtn>
                   </li>
                   <li>

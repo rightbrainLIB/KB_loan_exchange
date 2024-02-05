@@ -71,6 +71,7 @@ const CheckPhoneNumber: FC = () => {
                 <SelectableListWrap>
                   <li>
                     <SelectableBtn
+                      bgBtn={!checkUserPhoneNumber}
                       disabled={checkUserPhoneNumber}
                       onClickBtn={goNextTask}>
                       번호 확인 완료

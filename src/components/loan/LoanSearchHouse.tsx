@@ -9,6 +9,7 @@ import ExclaminationList from "@components/list/ExclaminationList.tsx";
 import LoanSearchAddressPop from "@components/loan/LoanSearchAddressPop.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import {
   setLoanIdentityCheck,
   setUserSearchedAPT
@@ -70,10 +71,14 @@ const LoanSearchHouse: FC = () => {
   useEffect(() => {
     if (userPhoneVarif) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 315 - 60));
       setTimeout(() => {
         dispatch(setLoanIdentityCheck(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [userPhoneVarif, dispatch]);
 
   return (

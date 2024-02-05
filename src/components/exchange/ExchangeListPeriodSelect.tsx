@@ -50,11 +50,14 @@ const ExchangeListPeriodSelect: FC = () => {
   useEffect(() => {
     if (requestedDate) {
       setShowBotStep(true);
-      dispatch(setContainerBottomSize(null));
+      dispatch(setContainerBottomSize(window.innerHeight - 379 - 60));
       setTimeout(() => {
         dispatch(setExchangeListPeriodSelect(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [requestedDate, dispatch]);
 
   return (

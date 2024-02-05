@@ -53,7 +53,7 @@ const ReceiveBankBranch: FC = () => {
   useEffect(() => {
     if (joinInsurance) {
       setShowBotStep(true);
-      dispatch(setContainerBottomSize(200));
+      dispatch(setContainerBottomSize(window.innerHeight - 447 - 60));
       setTimeout(() => {
         dispatch(setReceiveBankBranch(true));
       }, 600);

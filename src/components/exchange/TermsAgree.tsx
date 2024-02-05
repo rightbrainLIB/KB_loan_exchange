@@ -54,13 +54,14 @@ const TermsAgree: FC = () => {
   useEffect(() => {
     if (isTakenPlace) {
       setShowBotStep(true);
-      dispatch(setContainerBottomSize(null));
+      dispatch(setContainerBottomSize(window.innerHeight - 223 - 60));
       setTimeout(() => {
         dispatch(setPrsTermsAgreeForExchange(true));
       }, 600);
     } else {
       setTimeout(() => {
         setShowBotStep(false);
+        dispatch(setContainerBottomSize(null));
       });
     }
   }, [isTakenPlace, dispatch]);

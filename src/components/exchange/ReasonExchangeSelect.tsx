@@ -1,7 +1,7 @@
 /**
  * Step 05. 출금정보입력(Progress bar 5/7)
  * 환전사유 선택 / 바텀시트 아닌 경우
- * 환전 사유를 알려주세요
+ * 환전사유를 알려주세요
  */
 import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
@@ -13,6 +13,7 @@ import {
   setExchangeReason,
   setReasonExchangeSelect
 } from "@slices/exchangeSlices.ts";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
@@ -49,10 +50,14 @@ const ReasonExchangeSelect: FC = () => {
   useEffect(() => {
     if (checkUserPhoneNumber) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 423 - 60));
       setTimeout(() => {
         dispatch(setReasonExchangeSelect(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [checkUserPhoneNumber, dispatch]);
 
   return (

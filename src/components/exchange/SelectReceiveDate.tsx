@@ -58,7 +58,7 @@ const SelectReceiveDate: FC = () => {
   useEffect(() => {
     if (receiveKeepGoing) {
       setShowBotStep(true);
-      dispatch(setContainerBottomSize(null));
+      dispatch(setContainerBottomSize(window.innerHeight - 318 - 60));
       setTimeout(() => {
         dispatch(setSelectReceiveDate(true));
       }, 600);

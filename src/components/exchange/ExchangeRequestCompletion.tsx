@@ -55,11 +55,16 @@ const ExchangeRequestCompletion: FC = () => {
     if (requestExchange) {
       dispatch(setIsCompleteExchange(true));
       setShowBotStep(true);
-      dispatch(setContainerBottomSize(null));
+      setTimeout(() => {
+        dispatch(setContainerBottomSize(window.innerHeight - 370 - 60));
+      }, 300);
       setTimeout(() => {
         dispatch(setCheckExchangeInfo(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [requestExchange, dispatch]);
 
   return (

@@ -77,12 +77,14 @@ const ThreeMonthExchangeList: FC = () => {
   useEffect(() => {
     if (eachRequestInfo) {
       setShowBotStep(true);
-      // dispatch(setContainerBottomSize(window.innerHeight - 530 - 60));
-      dispatch(setContainerBottomSize(60));
+      dispatch(setContainerBottomSize(window.innerHeight - 530 - 60));
       setTimeout(() => {
         dispatch(setThreeMonthExchangeList(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [eachRequestInfo, dispatch]);
 
   return (

@@ -7,6 +7,7 @@ import KBTalk from "@components/box/KBTalk.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import { setCompletionNotificationExchangeRate } from "@slices/exchangeSlices.ts";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
@@ -28,10 +29,14 @@ const CompletionNotificationExchangeRate: FC = () => {
   useEffect(() => {
     if (confirmAlarm) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 221 - 60));
       setTimeout(() => {
         dispatch(setCompletionNotificationExchangeRate(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [confirmAlarm, dispatch]);
 
   return (

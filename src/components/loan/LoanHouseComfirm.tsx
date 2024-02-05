@@ -7,6 +7,7 @@ import BotProfile from "@components/imgs/BotProfile.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import img from "@imgs/loan/LoanHouseComfirm_01.png";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import { setLoanHouseConfirm } from "@slices/loanSlices.ts";
 import { KBState } from "@src/store";
 import { FC, useEffect, useState } from "react";
@@ -27,10 +28,14 @@ const LoanHouseComfirm: FC = () => {
   useEffect(() => {
     if (userSearchedAPT) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 187 - 60));
       setTimeout(() => {
         dispatch(setLoanHouseConfirm(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [userSearchedAPT]);
 
   return (
@@ -38,7 +43,7 @@ const LoanHouseComfirm: FC = () => {
       {showBotStep && (
         <div>
           <MotionListWrap>
-            <MotionList aniCondition={loanHouseConfirm}>
+            <MotionList aniCondition={loanHouseConfirm} noScroll>
               <BotBox>
                 <BotProfile />
                 <KBTalk>

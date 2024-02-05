@@ -54,11 +54,14 @@ const LoanPaybackSelectStep01: FC = () => {
   useEffect(() => {
     if (selected10Years) {
       setShowBotStep(true);
-      dispatch(setContainerBottomSize(null));
+      dispatch(setContainerBottomSize(window.innerHeight - 316 - 60));
       setTimeout(() => {
         dispatch(setLoanPaybackSelectStep01(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [selected10Years, dispatch]);
 
   return (

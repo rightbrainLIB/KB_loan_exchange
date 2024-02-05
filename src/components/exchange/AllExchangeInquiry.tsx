@@ -10,6 +10,7 @@ import {
   setAllExchangeInquiry,
   setEachRequestInfo
 } from "@slices/exchangeSlices.ts";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
@@ -51,11 +52,15 @@ const AllExchangeInquiry: FC = () => {
     if (totalRequestInfo) {
       setTimeout(() => {
         setShowBotStep(true);
+        dispatch(setContainerBottomSize(window.innerHeight - 220 - 60));
       }, 300);
       setTimeout(() => {
         dispatch(setAllExchangeInquiry(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [totalRequestInfo, dispatch]);
 
   return (

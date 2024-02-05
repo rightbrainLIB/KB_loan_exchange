@@ -11,7 +11,10 @@ import {
   setRecommendedEmployee,
   setRecommendStaff
 } from "@slices/exchangeSlices.ts";
-import { setIsCompleteExchange } from "@slices/globalUISlice.ts";
+import {
+  setContainerBottomSize,
+  setIsCompleteExchange
+} from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
@@ -54,11 +57,15 @@ const RecommendedEmployee: FC = () => {
     if (checkUserAccount) {
       if (isCompleteExchange) dispatch(setIsCompleteExchange(false));
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 326 - 60));
       setTimeout(() => {
         dispatch(setRecommendedEmployee(true));
       }, 600);
     }
-  }, [checkUserAccount, dispatch]);
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
+  }, [checkUserAccount, dispatch, isCompleteExchange]);
 
   return (
     <>

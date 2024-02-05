@@ -13,6 +13,7 @@ import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import chkIcon from "@imgs/icons/chk_confirm_icon.png";
 import img from "@imgs/loan/LoanHouseAddComfirmStep06.png";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import { setLoanHouseAddConfirm06, setPrimeRate } from "@slices/loanSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import { KBState } from "@src/store";
@@ -65,10 +66,14 @@ const LoanHouseAddComfirmStep06: FC = () => {
   useEffect(() => {
     if (requestLoan) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 381 - 60));
       setTimeout(() => {
         dispatch(setLoanHouseAddConfirm06(true));
       }, 1200);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [requestLoan, dispatch]);
 
   return (

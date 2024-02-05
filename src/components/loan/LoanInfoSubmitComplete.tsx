@@ -15,6 +15,7 @@ import chk_confirm_icon from "@imgs/icons/chk_confirm_icon.png";
 import loader_icon from "@imgs/icons/loader_icon.png";
 // import img from "@imgs/loan/LoanInfoSubmitComplete_01.png";
 import img02 from "@imgs/loan/LoanInfoSubmitComplete_02.png";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import {
   setDocumentImage,
   setLoanInfoSubmitComplete
@@ -80,6 +81,7 @@ const LoanInfoSubmitComplete: FC = () => {
   useEffect(() => {
     if (nationalPurse) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(null));
       setTimeout(() => {
         dispatch(setLoanInfoSubmitComplete(true));
       }, 900);
@@ -105,10 +107,14 @@ const LoanInfoSubmitComplete: FC = () => {
 
   useEffect(() => {
     if (chkStep4) {
+      dispatch(setContainerBottomSize(window.innerHeight - 637 - 60));
       setTimeout(() => {
         setShowNextBox(true);
       }, 300);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [chkStep4]);
 
   return (

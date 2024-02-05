@@ -121,8 +121,7 @@ const TravelInsurance: FC = () => {
   useEffect(() => {
     if (checkRequestValue) {
       setShowBotStep(true);
-      const arrBottom = window.innerHeight - 554 - 60;
-      dispatch(setContainerBottomSize(arrBottom));
+      dispatch(setContainerBottomSize(window.innerHeight - 554 - 60));
       setTimeout(() => {
         dispatch(setTravelInsurance(true));
       }, 600);

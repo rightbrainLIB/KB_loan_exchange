@@ -60,11 +60,14 @@ const NotifyWhenExchangeRate: FC = () => {
   useEffect(() => {
     if (alarmCurrency) {
       setShowBotStep(true);
-      dispatch(setContainerBottomSize(null));
+      dispatch(setContainerBottomSize(window.innerHeight - 429 - 60));
       setTimeout(() => {
         dispatch(setNotifyWhenExchangeRate(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [alarmCurrency, dispatch]);
 
   return (

@@ -16,6 +16,7 @@ import loader_icon from "@imgs/icons/loader_icon.png";
 import img02 from "@imgs/loan/LoanHouseAddComfirmStep05_02.png";
 import img03 from "@imgs/loan/LoanHouseAddComfirmStep05_03.png";
 import loanHouseAddConfirmStep5_1 from "@imgs/loan/loanHouseAddConfirmStep5_1.png";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import {
   setLoanHouseAddConfirm05,
   setRequestLoan
@@ -65,6 +66,7 @@ const LoanHouseAddComfirmStep05: FC = () => {
     // 심사결과 대출이 가능해요 이후
     setTimeout(() => {
       setShowBotStep3(true);
+      dispatch(setContainerBottomSize(60));
     }, 300);
     setTimeout(() => {
       setRecommendInfo(true);
@@ -111,6 +113,9 @@ const LoanHouseAddComfirmStep05: FC = () => {
         dispatch(setLoanHouseAddConfirm05(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [interestRateAndLimit, dispatch, loanHouseAddConfirm05]);
 
   return (

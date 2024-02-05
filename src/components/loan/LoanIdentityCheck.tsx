@@ -11,6 +11,7 @@ import LoanTelecomInputPop from "@components/loan/LoanTelecomInputPop.tsx";
 import LoanTelecomSelectPop from "@components/loan/LoanTelecomSelectPop.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import { setLoanLimitCurrency, setUserPhoneVarif } from "@slices/loanSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import { KBState } from "@src/store";
@@ -62,10 +63,14 @@ const LoanIdentityCheck: FC = () => {
   useEffect(() => {
     if (consentToTermsCond) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 285 - 60));
       setTimeout(() => {
         dispatch(setLoanLimitCurrency(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [consentToTermsCond, dispatch]);
 
   return (

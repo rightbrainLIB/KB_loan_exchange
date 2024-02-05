@@ -1,5 +1,6 @@
 /**
  * Step 21. 대출 신청금액 입력
+ * 대출 신청금액을 알려주세요
  */
 import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
@@ -10,6 +11,7 @@ import LoanApplicationAmountPop from "@components/loan/LoanApplicationAmountPop.
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import img from "@imgs/loan/LoanApplicationAmount.png";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import {
   setLoanApplicationAmount,
   setSelectedUserLoanPrice
@@ -62,10 +64,14 @@ const LoanApplicationAmount: FC = () => {
   useEffect(() => {
     if (selectedUserDate) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 236 - 60));
       setTimeout(() => {
         dispatch(setLoanApplicationAmount(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [selectedUserDate, dispatch]);
 
   return (

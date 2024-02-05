@@ -43,7 +43,6 @@ const CheckExchangeInfo: FC = () => {
     setShowUserStep(true);
     setTimeout(() => {
       dispatch(setRequestExchange(true));
-      dispatch(setContainerBottomSize(null));
     }, 300);
   }, [dispatch]);
 
@@ -58,14 +57,16 @@ const CheckExchangeInfo: FC = () => {
     if (recommendStaff) {
       dispatch(setIsCompleteExchange(true));
       setShowBotStep(true);
-      dispatch(setContainerBottomSize(812 - 658 - 60));
+      setTimeout(() => {
+        dispatch(setContainerBottomSize(window.innerHeight - 658 - 60));
+      }, 300);
       setTimeout(() => {
         dispatch(setExchangeRequestCompletion(true));
       }, 600);
     }
-    // return () => {
-    //   dispatch(setContainerBottomSize(null));
-    // };
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [recommendStaff, dispatch]);
 
   return (

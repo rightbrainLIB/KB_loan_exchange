@@ -48,9 +48,9 @@ const LoanHouseAddComfirmStep01: FC = () => {
   }, [lastStr]);
 
   useEffect(() => {
-    dispatch(setContainerBottomSize(60));
     if (buyHouse) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 313 - 60));
       setTimeout(() => {
         dispatch(setLoanHouseAddConfirm01(true));
       }, 600);

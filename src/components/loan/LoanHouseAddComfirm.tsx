@@ -10,6 +10,7 @@ import BotProfile from "@components/imgs/BotProfile.tsx";
 import SelectableListWrap from "@components/list/SelectableListWrap.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import {
   setBuyHouse,
   setLoanHouseAddConfirm,
@@ -64,9 +65,15 @@ const LoanHouseAddComfirm: FC = () => {
     if (loanHouseConfirm) {
       setShowBotStep(true);
       setTimeout(() => {
+        dispatch(setContainerBottomSize(window.innerHeight - 525 - 60));
+      }, 300);
+      setTimeout(() => {
         dispatch(setLoanHouseAddConfirm(true));
       }, 900);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [loanHouseConfirm, dispatch]);
 
   return (
@@ -76,6 +83,7 @@ const LoanHouseAddComfirm: FC = () => {
           <MotionListWrap>
             <MotionList
               aniCondition={loanHouseAddConfirm}
+              noScroll
               afterAnim={() => setShowNextBotStep(true)}>
               <BotBox>
                 <BotProfile />

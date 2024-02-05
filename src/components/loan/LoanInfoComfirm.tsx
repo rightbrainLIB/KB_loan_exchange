@@ -10,6 +10,7 @@ import SelectableListWrap from "@components/list/SelectableListWrap.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import img from "@imgs/loan/LoanInfoComfirm.png";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import { setCallRequestLoan, setLoanInfoConfirm } from "@slices/loanSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import { KBState } from "@src/store";
@@ -48,10 +49,14 @@ const LoanInfoComfirm: FC = () => {
   useEffect(() => {
     if (selectedUserLoanPrice) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 464 - 60));
       setTimeout(() => {
         dispatch(setLoanInfoConfirm(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [selectedUserLoanPrice, dispatch]);
 
   return (

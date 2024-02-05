@@ -11,6 +11,7 @@ import {
   setPrsNeedfulExchangeMoney,
   setRequestCurrencyValue
 } from "@slices/exchangeSlices.ts";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import { KBState } from "@src/store";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
@@ -77,6 +78,7 @@ const WriteCurrency: FC = () => {
   useEffect(() => {
     if (agreeForeignCurrency) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 259 - 60));
       setTimeout(() => {
         dispatch(setPrsInputCurrencyValue(true));
       }, 600);
@@ -85,6 +87,9 @@ const WriteCurrency: FC = () => {
         setShowBotStep(false);
       });
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [agreeForeignCurrency]);
 
   useEffect(() => {

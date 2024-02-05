@@ -10,6 +10,7 @@ import SelectableListWrap from "@components/list/SelectableListWrap.tsx";
 import UtilUnderTalkList from "@components/list/UtilUnderTalkList.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import { setCofix, setLoanPaybackSelectStep03 } from "@slices/loanSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import { KBState } from "@src/store";
@@ -49,10 +50,14 @@ const LoanPaybackSelectStep03: FC = () => {
   useEffect(() => {
     if (variableInterestRate) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 252 - 60));
       setTimeout(() => {
         dispatch(setLoanPaybackSelectStep03(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [variableInterestRate, dispatch]);
 
   return (

@@ -76,6 +76,9 @@ const LoanPeriodSelect: FC = () => {
         dispatch(setLoanPeriodSelect(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [changeUserInput, dispatch]);
 
   return (

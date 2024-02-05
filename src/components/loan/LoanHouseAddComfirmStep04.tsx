@@ -10,6 +10,7 @@ import SelectableListWrap from "@components/list/SelectableListWrap.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import img from "@imgs/loan/LoanHouseAddComfirmStep04.png";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import {
   setInterestRateAndLimit,
   setLoanHouseAddConfirm04
@@ -42,10 +43,14 @@ const LoanHouseAddComfirmStep04: FC = () => {
   useEffect(() => {
     if (incomeByWork) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 444 - 60));
       setTimeout(() => {
         dispatch(setLoanHouseAddConfirm04(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [incomeByWork]);
 
   return (

@@ -1,5 +1,6 @@
 /**
- * Step 19. 대출 받고자 하는 날짜 선택
+ * Step 19. 대출 받고자 하는 날짜
+ * 대출 받고자 하는 날짜를 선택해주세요
  */
 import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
@@ -10,6 +11,7 @@ import LoanSelectCalendarPop from "@components/loan/LoanSelectCalendarPop.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import img from "@imgs/loan/LoanSelectCalendar.png";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import {
   setLoanSelectCalendar,
   setSelectedUserDate
@@ -64,13 +66,18 @@ const LoanSelectCalendar: FC = () => {
       setShowBotStep(true);
       setTimeout(() => {
         dispatch(setLoanSelectCalendar(true));
+        dispatch(setContainerBottomSize(window.innerHeight - 197 - 60));
       }, 600);
     } else if (reKeepGoingLoan) {
       setShowBotStep(true);
       setTimeout(() => {
         dispatch(setLoanSelectCalendar(true));
+        dispatch(setContainerBottomSize(window.innerHeight - 197 - 60));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [keepGoingLoan, reKeepGoingLoan, dispatch]);
 
   return (

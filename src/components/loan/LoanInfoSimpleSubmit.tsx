@@ -11,6 +11,7 @@ import UtilUnderTalkList from "@components/list/UtilUnderTalkList.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import img from "@imgs/loan/LoanInfoSimpleSubmit.png";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import {
   setLoanInfoSimpleSubmit,
   setNationalPurse
@@ -52,10 +53,14 @@ const LoanInfoSimpleSubmit: FC = () => {
   useEffect(() => {
     if (callRequestLoan) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 265 - 60));
       setTimeout(() => {
         dispatch(setLoanInfoSimpleSubmit(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [callRequestLoan, dispatch]);
 
   return (

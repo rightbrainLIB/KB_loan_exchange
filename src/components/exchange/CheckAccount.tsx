@@ -12,6 +12,7 @@ import {
   setCheckAccount,
   setCheckUserAccount
 } from "@slices/exchangeSlices.ts";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
@@ -50,10 +51,14 @@ const CheckAccount: FC = () => {
   useEffect(() => {
     if (exchangeReason) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 360 - 60));
       setTimeout(() => {
         dispatch(setCheckAccount(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [exchangeReason, dispatch]);
 
   return (

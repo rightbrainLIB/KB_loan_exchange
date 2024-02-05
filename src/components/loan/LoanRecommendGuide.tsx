@@ -95,6 +95,9 @@ const LoanRecommendGuide: FC = () => {
         dispatch(setLoanRecommendGuide(true));
       }, 1800);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [primeRate, dispatch]);
 
   return (

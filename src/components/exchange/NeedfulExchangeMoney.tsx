@@ -60,44 +60,48 @@ const NeedfulExchangeMoney: FC = () => {
   useEffect(() => {
     if (requestCurrencyValue) {
       setShowBotStep(true);
-      // dispatch(setContainerBottomSize(812 - 466 - 68));
-      dispatch(setContainerBottomSize(80));
+      dispatch(setContainerBottomSize(812 - 466 - 68));
       setTimeout(() => {
         dispatch(setPrsNeedfulExchangeMoney(true));
       }, 600);
     } else {
       setShowBotStep(false);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [requestCurrencyValue, dispatch]);
 
   return (
     <>
       {showBotStep && (
-        <MotionList aniCondition={prsNeedfulExchangeMoney}>
-          <BotBox>
-            <BotProfile />
-            <KBTalk>
-              <img src={img} />
-              <SelectableListWrap>
-                <li>
-                  <SelectableBtn
-                    bgBtn
-                    onClickBtn={onClickNext}
-                    disabled={checkRequestValue}>
-                    환전 바로 진행
-                  </SelectableBtn>
-                </li>
-                <li>
-                  <SelectableBtn
-                    onClickBtn={onClickModifyTask}
-                    disabled={checkRequestValue}>
-                    환전 금액 수정
-                  </SelectableBtn>
-                </li>
-              </SelectableListWrap>
-            </KBTalk>
-          </BotBox>
-        </MotionList>
+        <div>
+          <MotionList aniCondition={prsNeedfulExchangeMoney}>
+            <BotBox>
+              <BotProfile />
+              <KBTalk>
+                <img src={img} />
+                <SelectableListWrap>
+                  <li>
+                    <SelectableBtn
+                      bgBtn
+                      onClickBtn={onClickNext}
+                      disabled={checkRequestValue}>
+                      환전 바로 진행
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn
+                      onClickBtn={onClickModifyTask}
+                      disabled={checkRequestValue}>
+                      환전 금액 수정
+                    </SelectableBtn>
+                  </li>
+                </SelectableListWrap>
+              </KBTalk>
+            </BotBox>
+          </MotionList>
+        </div>
       )}
 
       {showUserStep && (

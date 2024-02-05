@@ -1,5 +1,6 @@
 /**
  * Step 28. 대출 신청 완료 내역 확인
+ * 대출 신청 내역을 확인해주세요
  */
 import BotBox from "@components/box/BotBox.tsx";
 import KBTalk from "@components/box/KBTalk.tsx";
@@ -35,9 +36,9 @@ const LoanSubmitInfo: FC = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(setContainerBottomSize(80));
     if (confirmUserRequest) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 643 - 60));
       setTimeout(() => {
         dispatch(setLoanSubmitInfo(true));
       }, 600);
@@ -50,7 +51,7 @@ const LoanSubmitInfo: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ marginTop: 30 }}>
+        <div>
           <MotionListWrap>
             <MotionList showHeight={643} aniCondition={loanSubmitInfo}>
               <BotBox>

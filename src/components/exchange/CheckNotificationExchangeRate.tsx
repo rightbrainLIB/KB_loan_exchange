@@ -12,6 +12,7 @@ import {
   setCheckNotificationExchangeRate,
   setConfirmAlarm
 } from "@slices/exchangeSlices.ts";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
@@ -48,10 +49,14 @@ const CheckNotificationExchangeRate: FC = () => {
   useEffect(() => {
     if (writeExchangeRate) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 354 - 60));
       setTimeout(() => {
         dispatch(setCheckNotificationExchangeRate(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [writeExchangeRate, dispatch]);
 
   return (

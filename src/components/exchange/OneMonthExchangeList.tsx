@@ -12,6 +12,7 @@ import {
   setOneMonthExchangeList,
   setShowMoreDetailInfo
 } from "@slices/exchangeSlices.ts";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import { KBState } from "@src/store";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
@@ -52,13 +53,15 @@ const OneMonthExchangeList: FC = () => {
 
   useEffect(() => {
     if (selectOneMonth) {
-      setTimeout(() => {
-        setShowBotStep(true);
-      }, 300);
+      setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 380 - 60));
       setTimeout(() => {
         dispatch(setOneMonthExchangeList(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [selectOneMonth, dispatch]);
 
   return (

@@ -15,7 +15,14 @@ import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
 // import FindLastElement from "@src/utils/FindLastElement.tsx";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
-import { FC, useCallback, useEffect, useState } from "react";
+import {
+  FC,
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState
+} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const NotificationUSD: FC = () => {
@@ -24,6 +31,8 @@ const NotificationUSD: FC = () => {
   const [showBotStep, setShowBotStep] = useState(false);
   const [showUserStep, setShowUserStep] = useState(false);
   const [isLastChoice, setIsLastChoice] = useState(false);
+
+  const botRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
 
   const { notificationUSD } = useSelector(
     (state: KBState) => state.exchange.botStep
@@ -48,8 +57,7 @@ const NotificationUSD: FC = () => {
   useEffect(() => {
     if (saveAlarm) {
       setShowBotStep(true);
-      // const arrValue = window.innerHeight - 331 - 60;
-      dispatch(setContainerBottomSize(null));
+      dispatch(setContainerBottomSize(window.innerHeight - 331 - 60));
 
       setTimeout(() => {
         dispatch(setSaveAlarm(true));
@@ -62,29 +70,31 @@ const NotificationUSD: FC = () => {
   return (
     <>
       {showBotStep && (
-        <MotionList aniCondition={notificationUSD} showHeight={"100%"}>
-          <BotBox>
-            <BotProfile />
-            <KBTalk>
-              <img src={img} alt="" />
-              <SelectableListWrap>
-                <li>
-                  <SelectableBtn
-                    bgBtn
-                    disabled={alarmCurrency}
-                    onClickBtn={onClickNext}>
-                    계속 진행
-                  </SelectableBtn>
-                </li>
-                <li>
-                  <SelectableBtn disabled={alarmCurrency}>
-                    통화 종류 변경
-                  </SelectableBtn>
-                </li>
-              </SelectableListWrap>
-            </KBTalk>
-          </BotBox>
-        </MotionList>
+        <div ref={botRef}>
+          <MotionList aniCondition={notificationUSD} showHeight={"100%"}>
+            <BotBox>
+              <BotProfile />
+              <KBTalk>
+                <img src={img} alt="" />
+                <SelectableListWrap>
+                  <li>
+                    <SelectableBtn
+                      bgBtn
+                      disabled={alarmCurrency}
+                      onClickBtn={onClickNext}>
+                      계속 진행
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn disabled={alarmCurrency}>
+                      통화 종류 변경
+                    </SelectableBtn>
+                  </li>
+                </SelectableListWrap>
+              </KBTalk>
+            </BotBox>
+          </MotionList>
+        </div>
       )}
 
       {showUserStep && (

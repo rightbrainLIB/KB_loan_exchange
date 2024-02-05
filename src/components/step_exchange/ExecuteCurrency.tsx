@@ -115,8 +115,7 @@ const ExecuteCurrency: FC = () => {
   useEffect(() => {
     if (isCurrencySelected) {
       setShowBotStep(true);
-      const bottomValue = window.innerHeight - 376 - 60;
-      dispatch(setContainerBottomSize(bottomValue));
+      dispatch(setContainerBottomSize(window.innerHeight - 376 - 60));
       setTimeout(() => {
         dispatch(setPrsExchangeRate(true));
       }, 600);

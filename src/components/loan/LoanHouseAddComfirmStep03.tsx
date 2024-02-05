@@ -10,6 +10,7 @@ import SelectableListWrap from "@components/list/SelectableListWrap.tsx";
 import UtilUnderTalkList from "@components/list/UtilUnderTalkList.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import {
   setIncomeByWork,
   setLoanHouseAddConfirm03
@@ -51,10 +52,14 @@ const LoanHouseAddComfirmStep03: FC = () => {
   useEffect(() => {
     if (oneHouseOwner) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 358 - 60));
       setTimeout(() => {
         dispatch(setLoanHouseAddConfirm03(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [oneHouseOwner, dispatch]);
 
   return (

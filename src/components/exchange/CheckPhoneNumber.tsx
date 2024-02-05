@@ -12,6 +12,7 @@ import {
   setCheckPhoneNumber,
   setCheckUserPhoneNumber
 } from "@slices/exchangeSlices.ts";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
@@ -50,10 +51,14 @@ const CheckPhoneNumber: FC = () => {
   useEffect(() => {
     if (userTakenDate) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 285 - 60));
       setTimeout(() => {
         dispatch(setCheckPhoneNumber(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [userTakenDate, dispatch]);
 
   return (

@@ -32,11 +32,14 @@ const WaitingReceive: FC = () => {
   useEffect(() => {
     if (showMoreDetailInfo) {
       setShowBotStep(true);
-      dispatch(setContainerBottomSize(60));
+      dispatch(setContainerBottomSize(window.innerHeight - 530 - 60));
       setTimeout(() => {
         dispatch(setWaitingReceive(true));
       }, 600);
     }
+    return () => {
+      dispatch(setContainerBottomSize(null));
+    };
   }, [showMoreDetailInfo, dispatch]);
 
   return (

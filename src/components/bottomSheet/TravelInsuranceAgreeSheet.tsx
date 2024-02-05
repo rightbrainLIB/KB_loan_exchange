@@ -36,6 +36,7 @@ const TravelInsuranceAgreeSheet: FC<ITravelInsuranceAgreeSheet> = ({
         body: { padding: 0 },
         footer: { borderTop: 0, padding: 0 }
       }}
+      forceRender
       open={sheetOpen}
       onClose={closeAgreeSheet}
       closeIcon={false}

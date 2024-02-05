@@ -41,6 +41,7 @@ const EssentialConfirmationSheet: FC<IEssentialConfirmationSheet> = ({
         body: { padding: 24 },
         footer: { borderTop: 0, padding: 0 }
       }}
+      forceRender
       open={sheetOpen}
       onClose={closeEssentialSheet}
       closeIcon={false}

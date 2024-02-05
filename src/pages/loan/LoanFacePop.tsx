@@ -1,5 +1,6 @@
 /**
  * Step 04. face 인증
+ * 얼굴이 인식되지 않음 - 다시 시도
  */
 import img01 from "@imgs/loan/LoanFacePop.png";
 import { Modal } from "antd";

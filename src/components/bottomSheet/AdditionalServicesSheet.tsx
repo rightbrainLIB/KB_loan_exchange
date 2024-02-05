@@ -34,6 +34,7 @@ const AdditionalServicesSheet: FC<IAdditionalServicesSheet> = ({
         body: { padding: 0 },
         footer: { borderTop: 0, padding: 0 }
       }}
+      forceRender
       open={sheetOpen}
       onClose={closeAdditionalSheet}
       closeIcon={false}

@@ -53,12 +53,12 @@ const ReceiveBankBranch: FC = () => {
   useEffect(() => {
     if (joinInsurance) {
       setShowBotStep(true);
-      dispatch(setContainerBottomSize(null));
+      dispatch(setContainerBottomSize(200));
       setTimeout(() => {
         dispatch(setReceiveBankBranch(true));
       }, 600);
     }
-  }, [joinInsurance]);
+  }, [joinInsurance, dispatch]);
 
   return (
     <>
@@ -68,7 +68,7 @@ const ReceiveBankBranch: FC = () => {
             <BotBox>
               <BotProfile />
               <KBTalk>
-                <img src={img} />
+                <img src={img} alt="" />
                 <SelectableListWrap>
                   <li>
                     <SelectableBtn

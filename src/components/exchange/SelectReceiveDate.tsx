@@ -13,6 +13,7 @@ import {
   setSelectReceiveDate,
   setUserTakenDate
 } from "@slices/exchangeSlices.ts";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
@@ -57,11 +58,12 @@ const SelectReceiveDate: FC = () => {
   useEffect(() => {
     if (receiveKeepGoing) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(null));
       setTimeout(() => {
         dispatch(setSelectReceiveDate(true));
       }, 600);
     }
-  }, [receiveKeepGoing]);
+  }, [receiveKeepGoing, dispatch]);
 
   return (
     <>
@@ -71,7 +73,7 @@ const SelectReceiveDate: FC = () => {
             <BotBox>
               <BotProfile />
               <KBTalk>
-                <img src={img} />
+                <img src={img} alt="" />
                 <SelectableListWrap>
                   <li>
                     <SelectableBtn

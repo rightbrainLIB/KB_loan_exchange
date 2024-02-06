@@ -113,7 +113,7 @@ const KBHeader: FC<IKBHeader> = ({ type, children }) => {
         execConfirm={gotoProcess}
       />
 
-      {/* 환전 신청 취소 */}
+      {/* 대출 신청 취소 */}
       <StopLoanSheet
         sheetOpen={stopLoan}
         closeSheet={closeStopLoan}

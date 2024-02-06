@@ -54,9 +54,8 @@ const LoanSubmitComplete: FC = () => {
   }, [lastStr]);
 
   useEffect(() => {
-    dispatch(setIsCompleteLoan(true));
-
     if (documentImage) {
+      dispatch(setIsCompleteLoan(true));
       setShowBotStep(true);
       dispatch(setContainerBottomSize(window.innerHeight - 473 - 60));
       setTimeout(() => {

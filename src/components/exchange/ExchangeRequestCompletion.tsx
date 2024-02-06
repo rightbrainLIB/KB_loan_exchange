@@ -19,6 +19,7 @@ import {
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
+import FindLastElement from "@src/utils/FindLastElement.tsx";
 // import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,6 +38,14 @@ const ExchangeRequestCompletion: FC = () => {
     (state: KBState) => state.exchange.botStep
   );
 
+  const afterBotShow = useCallback(() => {
+    const { lastEl } = FindLastElement();
+    document.body.scrollTo({
+      top: lastEl.offsetTop - 60,
+      behavior: "smooth"
+    });
+  }, []);
+
   const goNextTask = useCallback(() => {
     setShowUserStep(true);
     setTimeout(() => {
@@ -54,8 +63,8 @@ const ExchangeRequestCompletion: FC = () => {
   useEffect(() => {
     if (requestExchange) {
       dispatch(setIsCompleteExchange(true));
-      setShowBotStep(true);
       dispatch(setContainerBottomSize(window.innerHeight - 370 - 60));
+      setShowBotStep(true);
       setTimeout(() => {
         dispatch(setCheckExchangeInfo(true));
       }, 600);
@@ -69,7 +78,10 @@ const ExchangeRequestCompletion: FC = () => {
     <>
       {showBotStep && (
         <div>
-          <MotionList aniCondition={checkExchangeInfo}>
+          <MotionList
+            aniCondition={checkExchangeInfo}
+            noScroll
+            afterAnim={afterBotShow}>
             <BotBox>
               <BotProfile />
               <KBTalk>

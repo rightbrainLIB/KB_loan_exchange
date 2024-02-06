@@ -61,9 +61,7 @@ const MotionList: FC<IMotionList> = ({
           } else {
             top = 1000000;
           }
-          console.log("noScroll = ", noScroll);
           if (!noScroll) {
-            // console.log("here!!!");
             document.body.scrollTo({
               top: top,
               behavior: "smooth"

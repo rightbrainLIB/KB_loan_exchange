@@ -71,7 +71,7 @@ const LoanImgSubmitPop: FC<ILoanImgSubmitPop> = ({
         open={openSheet}
         onClose={closeSheet}
         closeIcon={false}
-        height={430}
+        height={420}
         title={
           <DrawerTitle
             title={"이미지로 제출"}

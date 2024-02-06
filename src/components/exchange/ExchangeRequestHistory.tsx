@@ -63,6 +63,7 @@ const ExchangeRequestHistory: FC = () => {
   useEffect(() => {
     if (confirmRequestInfo) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(1));
       setTimeout(() => {
         dispatch(setExchangeRequestHistory(true));
       }, 600);
@@ -75,35 +76,34 @@ const ExchangeRequestHistory: FC = () => {
   return (
     <>
       {showBotStep && (
-        <MotionListWrap>
-          <MotionList
-            aniCondition={exchangeRequestHistory}
-            noScroll
-            afterAnim={afterBotShow}>
-            <BotBox>
-              <BotProfile />
-              <KBTalk>
-                <h2>환전 신청 내역을 확인해주세요</h2>
-                <img className={$style.img} src={img} />
-                <SelectableListWrap>
-                  <li>
-                    <SelectableBtn
-                      bgBtn
-                      disabled={totalRequestInfo}
-                      onClickBtn={goNextTask}>
-                      전체 환전 내역
-                    </SelectableBtn>
-                  </li>
-                  <li>
-                    <SelectableBtn disabled={totalRequestInfo}>
-                      홈으로 가기
-                    </SelectableBtn>
-                  </li>
-                </SelectableListWrap>
-              </KBTalk>
-            </BotBox>
-          </MotionList>
-        </MotionListWrap>
+        <div style={{ paddingTop: showBotStep ? 0 : 100 }}>
+          <MotionListWrap>
+            <MotionList aniCondition={exchangeRequestHistory} noScroll>
+              <BotBox>
+                <BotProfile />
+                <KBTalk>
+                  <h2>환전 신청 내역을 확인해주세요</h2>
+                  <img className={$style.img} src={img} alt="" />
+                  <SelectableListWrap>
+                    <li>
+                      <SelectableBtn
+                        bgBtn
+                        disabled={totalRequestInfo}
+                        onClickBtn={goNextTask}>
+                        전체 환전 내역
+                      </SelectableBtn>
+                    </li>
+                    <li>
+                      <SelectableBtn disabled={totalRequestInfo}>
+                        홈으로 가기
+                      </SelectableBtn>
+                    </li>
+                  </SelectableListWrap>
+                </KBTalk>
+              </BotBox>
+            </MotionList>
+          </MotionListWrap>
+        </div>
       )}
 
       {showUserStep && (

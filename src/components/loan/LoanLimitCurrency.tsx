@@ -9,10 +9,11 @@ import SelectableListWrap from "@components/list/SelectableListWrap.tsx";
 import LoanAgreeCheck from "@components/loan/LoanAgreeCheck.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
+import { setIsCompleteLoan } from "@slices/globalUISlice.ts";
 import { setConsentToTermsCond } from "@slices/loanSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import { KBState } from "@src/store";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const LoanLimitCurrency: FC = () => {
@@ -26,6 +27,7 @@ const LoanLimitCurrency: FC = () => {
   const { consentToTermsCond } = useSelector(
     (state: KBState) => state.loan.userStep
   );
+  const { isCompleteLoan } = useSelector((state: KBState) => state.globalUI);
 
   // 심사 약관 동의 팝업 열기
   const clickCurrencyPop = useCallback(() => {
@@ -42,6 +44,14 @@ const LoanLimitCurrency: FC = () => {
     setShowUserStep(true);
     dispatch(setConsentToTermsCond(true));
   }, [closeAgreeChkSheet, dispatch]);
+
+  useEffect(() => {
+    console.log(isCompleteLoan);
+  }, [isCompleteLoan]);
+
+  useEffect(() => {
+    dispatch(setIsCompleteLoan(false));
+  }, []);
 
   return (
     <>

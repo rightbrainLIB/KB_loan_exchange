@@ -3,10 +3,8 @@
  */
 import KBHeader from "@components/common/KBHeader.tsx";
 import img01 from "@imgs/loan/LoanChack_01.png";
-import { Button, CheckboxProps, GetProp } from "antd";
-import { Checkbox } from "antd";
-import { useState } from "react";
-import { FC } from "react";
+import { Button, Checkbox, CheckboxProps, GetProp } from "antd";
+import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanImportCheck.module.scss";
@@ -58,7 +56,7 @@ const LoanImportCheck: FC = () => {
 
   return (
     <>
-      <KBHeader>금융상품의 중요사항</KBHeader>
+      <KBHeader type={"loan"}>금융상품의 중요사항</KBHeader>
       <div className={$style.LoanImportCheckWrap}>
         <h4>대출 신청 전 꼭 확인해주세요</h4>
         <div className={$style.checkBox}>

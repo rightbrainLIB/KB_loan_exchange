@@ -9,8 +9,7 @@ import img01 from "@imgs/loan/LoanImgSubmitPop_01.png";
 import img02 from "@imgs/loan/LoanImgSubmitPop_02.png";
 import img03 from "@imgs/loan/LoanImgSubmitPop_03.png";
 import { Button, Drawer } from "antd";
-import { useState } from "react";
-import { FC } from "react";
+import { FC, useState } from "react";
 
 import $style from "./LoanImgSubmitPop.module.scss";
 
@@ -68,6 +67,7 @@ const LoanImgSubmitPop: FC<ILoanImgSubmitPop> = ({
           body: { padding: 24 },
           footer: { borderTop: 0, padding: 0 }
         }}
+        forceRender
         open={openSheet}
         onClose={closeSheet}
         closeIcon={false}

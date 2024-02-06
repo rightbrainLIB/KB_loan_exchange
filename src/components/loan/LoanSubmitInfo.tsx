@@ -13,6 +13,7 @@ import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import { setLoanSubmitInfo } from "@slices/loanSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import { KBState } from "@src/store";
+import FindLastElement from "@src/utils/FindLastElement.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -31,6 +32,11 @@ const LoanSubmitInfo: FC = () => {
     (state: KBState) => state.loan.botStep
   );
 
+  const afterBotShow = useCallback(() => {
+    const { lastEl } = FindLastElement();
+    document.body.scrollTo({ top: lastEl.offsetTop - 60, behavior: "smooth" });
+  }, []);
+
   const goNextTask = useCallback(() => {
     navigate("/LoanInfoTotalComplete");
   }, []);
@@ -38,7 +44,7 @@ const LoanSubmitInfo: FC = () => {
   useEffect(() => {
     if (confirmUserRequest) {
       setShowBotStep(true);
-      dispatch(setContainerBottomSize(window.innerHeight - 643 - 60));
+      // dispatch(setContainerBottomSize(window.innerHeight - 643 - 60));
       setTimeout(() => {
         dispatch(setLoanSubmitInfo(true));
       }, 600);
@@ -53,7 +59,11 @@ const LoanSubmitInfo: FC = () => {
       {showBotStep && (
         <div>
           <MotionListWrap>
-            <MotionList showHeight={643} aniCondition={loanSubmitInfo}>
+            <MotionList
+              showHeight={643}
+              noScroll
+              aniCondition={loanSubmitInfo}
+              afterAnim={afterBotShow}>
               <BotBox>
                 <BotProfile />
                 <KBTalk>

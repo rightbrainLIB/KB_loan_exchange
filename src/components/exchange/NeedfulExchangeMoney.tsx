@@ -18,6 +18,7 @@ import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
+import FindLastElement from "@src/utils/FindLastElement.tsx";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -50,6 +51,11 @@ const NeedfulExchangeMoney: FC = () => {
     }, 500);
   }, [dispatch]);
 
+  const afterBotShow = useCallback(() => {
+    const { lastEl } = FindLastElement();
+    document.body.scrollTo({ top: lastEl.offsetTop - 60, behavior: "smooth" });
+  }, []);
+
   // 마지막 step 체크하기
   const lastStr = LastTrueUserStep();
 
@@ -60,7 +66,7 @@ const NeedfulExchangeMoney: FC = () => {
   useEffect(() => {
     if (requestCurrencyValue) {
       setShowBotStep(true);
-      dispatch(setContainerBottomSize(812 - 466 - 68));
+      // dispatch(setContainerBottomSize(812 - 466 - 68));
       setTimeout(() => {
         dispatch(setPrsNeedfulExchangeMoney(true));
       }, 600);
@@ -76,7 +82,10 @@ const NeedfulExchangeMoney: FC = () => {
     <>
       {showBotStep && (
         <div>
-          <MotionList aniCondition={prsNeedfulExchangeMoney}>
+          <MotionList
+            aniCondition={prsNeedfulExchangeMoney}
+            noScroll
+            afterAnim={afterBotShow}>
             <BotBox>
               <BotProfile />
               <KBTalk>

@@ -25,6 +25,16 @@
   ],
   "rules": {
     "declaration-colon-space-after": "always",
+    "declaration-colon-newline-after": null,
+    "value-list-comma-newline-after": null,
+    "rule-empty-line-before": [
+      false,
+      {
+        "ignore": [
+          "first-nested"
+        ]
+      }
+    ],
     "function-no-unknown": [
       true,
       {

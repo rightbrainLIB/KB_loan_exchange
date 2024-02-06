@@ -5,7 +5,6 @@
   margin-bottom: 16px;
   padding-bottom: 8px;
   border-bottom: 2px solid #26282C;
-
   .input {
     font-family: "KBB", sans-serif;
     font-size: 19px;
@@ -16,8 +15,11 @@
     padding-right: 10px;
     letter-spacing: -0.01em;
     border: 0;
-
     &::placeholder {
+      color: #929292;
+    }
+
+    &.emptyInput {
       color: #929292;
     }
 

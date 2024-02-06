@@ -35,14 +35,14 @@
       background-image: url("@imgs/loan/LoanChack.png");
       background-repeat: no-repeat;
       background-position: left top;
-      background-size: 24px;
+      background-size: 23px;
 
       &.on {
         background-color: transparent;
         background-image: url("@imgs/loan/LoanChack_on.png");
         background-repeat: no-repeat;
         background-position: left top;
-        background-size: 24px;
+        background-size: 23px;
       }
 
       & + li {

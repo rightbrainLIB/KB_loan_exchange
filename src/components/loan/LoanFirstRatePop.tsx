@@ -28,6 +28,7 @@ const LoanFirstRatePop: FC<ILoanFirstRatePop> = ({
           body: { padding: 24 },
           footer: { borderTop: 0, padding: 0 }
         }}
+        forceRender
         open={openSheet}
         onClose={closeSheet}
         closeIcon={false}

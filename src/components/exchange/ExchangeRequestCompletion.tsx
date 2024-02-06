@@ -55,9 +55,7 @@ const ExchangeRequestCompletion: FC = () => {
     if (requestExchange) {
       dispatch(setIsCompleteExchange(true));
       setShowBotStep(true);
-      setTimeout(() => {
-        dispatch(setContainerBottomSize(window.innerHeight - 370 - 60));
-      }, 300);
+      dispatch(setContainerBottomSize(window.innerHeight - 370 - 60));
       setTimeout(() => {
         dispatch(setCheckExchangeInfo(true));
       }, 600);

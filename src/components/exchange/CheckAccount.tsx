@@ -73,7 +73,7 @@ const CheckAccount: FC = () => {
                 <SelectableListWrap>
                   <li>
                     <SelectableBtn
-                      bgBtn={!checkUserAccount}
+                      bgBtn
                       disabled={checkUserAccount}
                       onClickBtn={goNextTask}>
                       출금계좌 확인 완료

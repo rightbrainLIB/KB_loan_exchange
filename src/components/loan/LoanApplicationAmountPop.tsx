@@ -51,6 +51,7 @@ const LoanApplicationAmountPop: FC<ILoanApplicationAmountPop> = ({
         afterOpenChange={afterChange}
         closeIcon={false}
         height={512}
+        forceRender
         title={
           <DrawerTitle
             title={"신청금액 입력"}

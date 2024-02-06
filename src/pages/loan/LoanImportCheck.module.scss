@@ -14,13 +14,13 @@
     margin: 40px 24px 0;
 
     .checkAll {
-      font-family: 'KBL', sans-serif;
+      font-family: 'KBB', sans-serif;
       font-size: 18px;
       line-height: 25px;
+      width: 100%;
       padding-bottom: 14px;
       border-bottom: 1px solid #484B51;
     }
-
     .checkList {
       display: flex;
       flex-direction: column;
@@ -28,7 +28,7 @@
       border-bottom: 1px solid #DDE1E4;
 
       label {
-        font-family: 'KBL', sans-serif;
+        font-family: 'KBB', sans-serif;
         font-size: 16px;
         line-height: 23px;
 

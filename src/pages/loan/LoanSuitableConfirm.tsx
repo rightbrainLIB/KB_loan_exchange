@@ -6,8 +6,7 @@ import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import img01 from "@imgs/loan/LoanSuitableConfirm_01.png";
 import img02 from "@imgs/loan/LoanSuitableConfirm_02.png";
 import { Button, Checkbox, Drawer } from "antd";
-import { useState } from "react";
-import { FC } from "react";
+import { FC, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanSuitableConfirm.module.scss";
@@ -17,12 +16,14 @@ const LoanSuitableConfirm: FC = () => {
   const [sheetOpen, setsheetOpen] = useState(false);
   const [sheetValue, setsheetValue] = useState(false);
   const [checkAll, setcheckAll] = useState(false);
+  const [chkEmail, setChkEmail] = useState(false);
 
   const onChange = () => {
     if (!checkAll) {
       setcheckAll(true);
     } else {
       setcheckAll(false);
+      setChkEmail(false);
     }
   };
 
@@ -43,9 +44,14 @@ const LoanSuitableConfirm: FC = () => {
   const confirmClick = () => {
     navigate("/LoanFacePop");
   };
+
+  const onClickEmail = useCallback(() => {
+    setChkEmail((prevState) => !prevState);
+  }, []);
+
   return (
     <>
-      <KBHeader>대출 적합성 확인서</KBHeader>
+      <KBHeader type={"loan"}>대출 적합성 확인서</KBHeader>
       {/* S: LoanConfirmWrap */}
       <div className={$style.LoanConfirmWrap}>
         <h4>
@@ -170,7 +176,9 @@ const LoanSuitableConfirm: FC = () => {
             대출 신청 및 적합성 확인 결과 안내 받기
           </Checkbox>
           <ul className={$style.innerList}>
-            <li className={checkAll ? $style.imgChange : ""}>
+            <li
+              className={chkEmail ? $style.imgChange : ""}
+              onClick={onClickEmail}>
               <span>이메일</span>
               <span>sdsfsd@naver.com</span>
             </li>
@@ -185,7 +193,7 @@ const LoanSuitableConfirm: FC = () => {
         </div>
         <div className={$style.btn}>
           <Button
-            disabled={sheetValue && checkAll ? false : true}
+            disabled={!(sheetValue && checkAll && chkEmail)}
             onClick={confirmClick}>
             확인
           </Button>

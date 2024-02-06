@@ -28,6 +28,7 @@ const TravelInsuranceNoticeSheet: FC<ITravelInsuranceNoticeSheet> = ({
         footer: { borderTop: 0, padding: 0 }
       }}
       key={"TravelInsuranceNoticeSheet"}
+      forceRender
       open={openSheet}
       onClose={closeSheet}
       closeIcon={false}

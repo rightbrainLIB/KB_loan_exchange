@@ -11,7 +11,10 @@ import UtilUnderTalkList from "@components/list/UtilUnderTalkList.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
 import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import img from "@imgs/loan/LoanSubmitComplete.png";
-import { setContainerBottomSize } from "@slices/globalUISlice.ts";
+import {
+  setContainerBottomSize,
+  setIsCompleteLoan
+} from "@slices/globalUISlice.ts";
 import {
   setConfirmUserRequest,
   setLoanSubmitComplete
@@ -51,6 +54,8 @@ const LoanSubmitComplete: FC = () => {
   }, [lastStr]);
 
   useEffect(() => {
+    dispatch(setIsCompleteLoan(true));
+
     if (documentImage) {
       setShowBotStep(true);
       dispatch(setContainerBottomSize(window.innerHeight - 473 - 60));

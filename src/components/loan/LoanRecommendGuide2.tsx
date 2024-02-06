@@ -19,6 +19,7 @@ import {
 } from "@slices/loanSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import { KBState } from "@src/store";
+import FindLastElement from "@src/utils/FindLastElement.tsx";
 import LastTrueUserStepLoan from "@src/utils/LastUserStepLoanProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -80,6 +81,14 @@ const LoanRecommendGuide2: FC = () => {
   //   });
   // }, [dispatch]);
 
+  const afterBotShow = useCallback(() => {
+    const { lastEl } = FindLastElement();
+    document.body.scrollTo({
+      top: lastEl.offsetTop - 60,
+      behavior: "smooth"
+    });
+  }, []);
+
   // 마지막 step 체크하기
   const lastStr = LastTrueUserStepLoan();
 
@@ -102,7 +111,10 @@ const LoanRecommendGuide2: FC = () => {
       {showBotStep && (
         <div>
           <MotionListWrap>
-            <MotionList aniCondition={loanRecommendGuide2}>
+            <MotionList
+              aniCondition={loanRecommendGuide2}
+              noScroll
+              afterAnim={afterBotShow}>
               <BotBox>
                 <BotProfile />
                 <KBTalk>

@@ -49,6 +49,7 @@ const CurrencyPriceInput: FC<ICurrencyPriceInput> = ({
         body: { paddingTop: 24, paddingBottom: 16 },
         footer: { borderTop: 0, padding: 0 }
       }}
+      forceRender
       open={sheetOpen}
       onClose={closeSheet}
       closeIcon={false}

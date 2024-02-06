@@ -20,6 +20,7 @@ import {
 } from "@slices/loanSlices.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import { KBState } from "@src/store";
+import FindLastElement from "@src/utils/FindLastElement.tsx";
 import LastTrueUserStepLoan from "@src/utils/LastUserStepLoanProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -56,6 +57,14 @@ const LoanRecommendGuide: FC = () => {
     }
   ];
 
+  const afterBotShow = useCallback(() => {
+    const { lastEl } = FindLastElement();
+    document.body.scrollTo({
+      top: lastEl.offsetTop - 60,
+      behavior: "smooth"
+    });
+  }, []);
+
   const closeRateKnowSheet = useCallback(() => {
     setOpenRateKnowSheet(false);
   }, []);
@@ -89,7 +98,7 @@ const LoanRecommendGuide: FC = () => {
         dispatch(setKeepGoingLoan(false));
         dispatch(setChangeUserInput(false));
         setShowBotStep(true);
-        dispatch(setContainerBottomSize(window.innerHeight - 648 - 60));
+        // dispatch(setContainerBottomSize(window.innerHeight - 648 - 60));
       }, 1200);
       setTimeout(() => {
         dispatch(setLoanRecommendGuide(true));
@@ -105,7 +114,10 @@ const LoanRecommendGuide: FC = () => {
       {showBotStep && (
         <div>
           <MotionListWrap>
-            <MotionList aniCondition={loanRecommendGuide}>
+            <MotionList
+              aniCondition={loanRecommendGuide}
+              noScroll
+              afterAnim={afterBotShow}>
               <BotBox>
                 <BotProfile />
                 <KBTalk>

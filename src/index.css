@@ -126,14 +126,12 @@ body {
   -webkit-text-size-adjust: none;
   -webkit-tap-highlight-color: transparent;
 }
-
 button {
   color: #26282c;
   background-color: inherit;
   -webkit-tap-highlight-color: transparent;
   -webkit-appearance: none;
   appearance: none;
-
   &:focus-visible {
     outline: none;
   }

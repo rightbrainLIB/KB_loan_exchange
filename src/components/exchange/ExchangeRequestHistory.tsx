@@ -7,6 +7,7 @@ import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
+import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import img from "@imgs/exchange/ExchangeRequestHistory.png";
 import {
   setExchangeRequestHistory,
@@ -41,7 +42,6 @@ const ExchangeRequestHistory: FC = () => {
     setShowUserStep(true);
     setTimeout(() => {
       dispatch(setTotalRequestInfo(true));
-      dispatch(setContainerBottomSize(null));
     });
   }, [dispatch]);
 
@@ -63,7 +63,6 @@ const ExchangeRequestHistory: FC = () => {
   useEffect(() => {
     if (confirmRequestInfo) {
       setShowBotStep(true);
-      dispatch(setContainerBottomSize(null));
       setTimeout(() => {
         dispatch(setExchangeRequestHistory(true));
       }, 600);
@@ -76,11 +75,11 @@ const ExchangeRequestHistory: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div>
+        <MotionListWrap>
           <MotionList
             aniCondition={exchangeRequestHistory}
-            afterAnim={afterBotShow}
-            noScroll>
+            noScroll
+            afterAnim={afterBotShow}>
             <BotBox>
               <BotProfile />
               <KBTalk>
@@ -104,7 +103,7 @@ const ExchangeRequestHistory: FC = () => {
               </KBTalk>
             </BotBox>
           </MotionList>
-        </div>
+        </MotionListWrap>
       )}
 
       {showUserStep && (

@@ -81,7 +81,7 @@ const LoanInfoSubmitComplete: FC = () => {
   useEffect(() => {
     if (nationalPurse) {
       setShowBotStep(true);
-      dispatch(setContainerBottomSize(null));
+      dispatch(setContainerBottomSize(1));
       setTimeout(() => {
         dispatch(setLoanInfoSubmitComplete(true));
       }, 900);
@@ -122,8 +122,8 @@ const LoanInfoSubmitComplete: FC = () => {
       {showBotStep && (
         <div>
           <MotionListWrap>
-            <BotBox>
-              <MotionList aniCondition={loanInfoSimpleSubmit}>
+            <MotionList aniCondition={loanInfoSimpleSubmit}>
+              <BotBox>
                 <BotProfile />
                 <KBTalk>
                   <div>
@@ -182,8 +182,12 @@ const LoanInfoSubmitComplete: FC = () => {
                     </ul>
                   </div>
                 </KBTalk>
-              </MotionList>
-              <MotionList aniCondition={showNextBox}>
+              </BotBox>
+            </MotionList>
+
+            {/* 나머지 서류는 이미지로 제출해주세요 */}
+            <MotionList aniCondition={showNextBox}>
+              <BotBox>
                 <KBTalk>
                   <img src={img02} />
                   <SelectableListWrap>
@@ -202,11 +206,11 @@ const LoanInfoSubmitComplete: FC = () => {
                     </li>
                   </SelectableListWrap>
                 </KBTalk>
-              </MotionList>
-            </BotBox>
-            <UtilUnderTalkList
-              btnList={["발급처별 서류 안내", "서류제출 유의사항"]}
-            />
+              </BotBox>
+              <UtilUnderTalkList
+                btnList={["발급처별 서류 안내", "서류제출 유의사항"]}
+              />
+            </MotionList>
           </MotionListWrap>
         </div>
       )}

@@ -55,13 +55,15 @@ const KBHeader: FC<IKBHeader> = ({ type, children }) => {
      * step6 까지는 해당 신청 멈춤
      */
     if (type === "loan") {
-      if (isCompleteLoan) setStopLoanProcess(true);
-      else setStopLoan(true);
+      if (isCompleteLoan) {
+        console.log("here");
+        setStopLoanProcess(true);
+      } else setStopLoan(true);
       return;
     }
     if (isCompleteExchange) setStopExchangeProcess(true);
     else setStopExchange(true);
-  }, [isCompleteExchange, type]);
+  }, [isCompleteExchange, isCompleteLoan, type]);
 
   return (
     <>

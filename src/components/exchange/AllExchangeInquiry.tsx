@@ -18,7 +18,7 @@ import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-// import $style from "./AllExchangeInquiry.module.scss";
+// import $style from "./AllExchangeInquiry.module.sass";
 
 const AllExchangeInquiry: FC = () => {
   const dispatch = useDispatch();

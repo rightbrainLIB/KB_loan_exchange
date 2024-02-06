@@ -12,13 +12,11 @@ import {
   setExchangeRequestCompletion,
   setRequestExchange
 } from "@slices/exchangeSlices.ts";
-import {
-  setContainerBottomSize,
-  setIsCompleteExchange
-} from "@slices/globalUISlice.ts";
+import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 import SelectableBtn from "@src/components/buttons/SelectableBtn";
 import SelectableListWrap from "@src/components/list/SelectableListWrap";
 import { KBState } from "@src/store";
+import FindLastElement from "@src/utils/FindLastElement.tsx";
 import LastTrueUserStep from "@src/utils/LastUserStepProvider.tsx";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -46,6 +44,11 @@ const CheckExchangeInfo: FC = () => {
     }, 300);
   }, [dispatch]);
 
+  const afterBotShow = useCallback(() => {
+    const { lastEl } = FindLastElement();
+    document.body.scrollTo({ top: lastEl.offsetTop - 60, behavior: "smooth" });
+  }, []);
+
   // 마지막 step 체크하기
   const lastStr = LastTrueUserStep();
 
@@ -55,11 +58,7 @@ const CheckExchangeInfo: FC = () => {
 
   useEffect(() => {
     if (recommendStaff) {
-      dispatch(setIsCompleteExchange(true));
       setShowBotStep(true);
-      setTimeout(() => {
-        dispatch(setContainerBottomSize(window.innerHeight - 658 - 60));
-      }, 300);
       setTimeout(() => {
         dispatch(setExchangeRequestCompletion(true));
       }, 600);
@@ -73,7 +72,10 @@ const CheckExchangeInfo: FC = () => {
     <>
       {showBotStep && (
         <div>
-          <MotionList aniCondition={exchangeRequestCompletion}>
+          <MotionList
+            aniCondition={exchangeRequestCompletion}
+            noScroll
+            afterAnim={afterBotShow}>
             <BotBox>
               <BotProfile />
               <KBTalk>

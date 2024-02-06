@@ -64,15 +64,16 @@ const LoanSelectCalendar: FC = () => {
   useEffect(() => {
     if (keepGoingLoan) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 197 - 60));
       setTimeout(() => {
         dispatch(setLoanSelectCalendar(true));
-        dispatch(setContainerBottomSize(window.innerHeight - 197 - 60));
       }, 600);
     } else if (reKeepGoingLoan) {
       setShowBotStep(true);
+      dispatch(setContainerBottomSize(window.innerHeight - 197 - 60));
+
       setTimeout(() => {
         dispatch(setLoanSelectCalendar(true));
-        dispatch(setContainerBottomSize(window.innerHeight - 197 - 60));
       }, 600);
     }
     return () => {

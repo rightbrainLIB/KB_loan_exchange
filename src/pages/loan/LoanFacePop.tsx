@@ -4,8 +4,7 @@
  */
 import img01 from "@imgs/loan/LoanFacePop.png";
 import { Modal } from "antd";
-import { useState } from "react";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanFacePop.module.scss";
@@ -23,6 +22,7 @@ const LoanFacePop: FC = () => {
         title=""
         open={sheetOpen}
         centered
+        forceRender
         footer={null}
         closable={false}
         className={$style.LoanFaceModal}>

@@ -2,7 +2,7 @@
  * Step 09. 본인인증 번호 입력
  */
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
-import iosKeypad from "@imgs/iosKeypad.png";
+import iosKeypadNumberShort from "@imgs/iosKeypad_number_short.png";
 import img01 from "@imgs/loan/LoanTelecomInputPop_01.png";
 import { Button, Drawer } from "antd";
 import cx from "classnames";
@@ -60,7 +60,7 @@ const LoanTelecomInputPop: FC<ILoanTelecomInputPop> = ({
         open={openSheet}
         onClose={closeSheet}
         closeIcon={false}
-        height={716}
+        height={672}
         title={
           <DrawerTitle
             title={"인증번호 입력"}
@@ -102,7 +102,7 @@ const LoanTelecomInputPop: FC<ILoanTelecomInputPop> = ({
           </div>
         </div>
         <div className={$style.keypadBox} onClick={onClickVarifNum}>
-          <img src={iosKeypad} alt="" />
+          <img src={iosKeypadNumberShort} alt="" />
         </div>
       </Drawer>
     </>

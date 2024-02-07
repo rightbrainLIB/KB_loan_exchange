@@ -26,7 +26,6 @@ const WriteCurrency: FC = () => {
   const [sheetOpen, setSheetOpen] = useState(false);
   const [showUserStep, setShowUserStep] = useState(false);
   const [isLastChoice, setIsLastChoice] = useState(false);
-  // const [isRollBack, setIsRollBack] = useState(false);
 
   const { requestCurrencyValue, agreeForeignCurrency } = useSelector(
     (state: KBState) => state.exchange.userStep
@@ -56,18 +55,25 @@ const WriteCurrency: FC = () => {
   const onClickConfirmSheet = useCallback(() => {
     setSheetOpen(false); // 팝업 닫기
     setShowUserStep(true);
-    // setIsRollBack(false);
     setTimeout(() => {
       dispatch(setRequestCurrencyValue(true));
     }, 500);
   }, [dispatch]);
 
-  // 수정 버튼
+  // 연필 수정 버튼
   const modifyTask = useCallback(() => {
-    dispatch(setPrsNeedfulExchangeMoney(false));
     setTimeout(() => {
-      dispatch(setRequestCurrencyValue(false)); // NeedfulExchangeMoney 컴포넌트에서 useEffect로 requestCurrencyValue를 감시
-    }, 500);
+      document.body.scrollTo({ top: 1387, behavior: "smooth" });
+    }, 100);
+    dispatch(setPrsNeedfulExchangeMoney(false));
+    dispatch(setContainerBottomSize(window.innerHeight - 375 - 60));
+
+    // dispatch(setPrsNeedfulExchangeMoney(false));
+    // dispatch(setContainerBottomSize(window.innerHeight - 375 - 60));
+    // setTimeout(() => {
+    //   dispatch(setRequestCurrencyValue(false)); // NeedfulExchangeMoney 컴포넌트에서 useEffect로 requestCurrencyValue를 감시
+    // }, 500);
+    // dispatch(setRequestCurrencyValue(false));
   }, [dispatch]);
 
   // 마지막 step 체크하기
@@ -99,14 +105,14 @@ const WriteCurrency: FC = () => {
     if (!prsNeedfulExchangeMoney) {
       if (showBotStep) {
         setTimeout(() => {
-          setShowUserStep(false);
-        }, 600);
-        // setTimeout(() => {
-        //   setIsRollBack(true);
-        // }, 900);
+          dispatch(setRequestCurrencyValue(false));
+        }, 800);
         setTimeout(() => {
-          setSheetOpen(true);
-        }, 1000);
+          setShowUserStep(false);
+        }, 1100);
+        // setTimeout(() => {
+        //   setSheetOpen(true);
+        // }, 1600);
       }
     }
   }, [prsNeedfulExchangeMoney]);

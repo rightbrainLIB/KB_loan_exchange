@@ -11,7 +11,6 @@ import img from "@imgs/exchange/NeedfulExchangeMoney.png";
 import {
   setCheckRequestValue,
   setPrsNeedfulExchangeMoney,
-  setRequestCurrencyValue
 } from "@slices/exchangeSlices.ts";
 import { setContainerBottomSize } from "@slices/globalUISlice.ts";
 // import { setContainerBottomSize } from "@slices/globalUISlice.ts";
@@ -44,14 +43,14 @@ const NeedfulExchangeMoney: FC = () => {
     dispatch(setCheckRequestValue(true));
   }, [dispatch]);
 
+  // 환전 금액 수정 버튼
   const onClickModifyTask = useCallback(() => {
-    document.body.scrollTo({ top: 1381, behavior: "smooth" });
+    document.body.scrollTo({ top: 1387, behavior: "smooth" });
+    dispatch(setPrsNeedfulExchangeMoney(false));
+    dispatch(setContainerBottomSize(window.innerHeight - 375 - 60));
     setTimeout(() => {
-      dispatch(setPrsNeedfulExchangeMoney(false)); // wrapper 감추기
-    }, 300);
-    setTimeout(() => {
-      dispatch(setRequestCurrencyValue(false)); // USD 1,000 (userStep)을 false로 돌림 - 렌더 삭제됨!
-    }, 500);
+      setShowBotStep(false);
+    }, 900);
   }, [dispatch]);
 
   const afterBotShow = useCallback(() => {
@@ -69,12 +68,14 @@ const NeedfulExchangeMoney: FC = () => {
   useEffect(() => {
     if (requestCurrencyValue) {
       setShowBotStep(true);
-      // dispatch(setContainerBottomSize(812 - 466 - 68));
+      dispatch(setContainerBottomSize(window.innerHeight - 467 - 60));
       setTimeout(() => {
         dispatch(setPrsNeedfulExchangeMoney(true));
       }, 600);
     } else {
-      setShowBotStep(false);
+      setTimeout(() => {
+        setShowBotStep(false);
+      }, 600);
     }
     return () => {
       dispatch(setContainerBottomSize(null));

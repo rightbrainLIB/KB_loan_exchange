@@ -3,7 +3,11 @@ import {
   setResetExchangeBotSteps,
   setResetExchangeUserStep
 } from "@slices/exchangeSlices.ts";
-import { setContainerBottomSize } from "@slices/globalUISlice.ts";
+import {
+  setContainerBottomSize,
+  setIsCompleteExchange,
+  setIsCompleteLoan
+} from "@slices/globalUISlice.ts";
 import {
   setResetLoanBotStep,
   setResetLoanUserStep
@@ -34,6 +38,8 @@ const Index = () => {
     dispatch(setResetLoanUserStep());
     dispatch(setResetLoanBotStep());
     dispatch(setContainerBottomSize(null));
+    dispatch(setIsCompleteLoan(false));
+    dispatch(setIsCompleteExchange(false));
   }, [dispatch]);
 
   return (

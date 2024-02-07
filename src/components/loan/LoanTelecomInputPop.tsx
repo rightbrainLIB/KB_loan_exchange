@@ -60,7 +60,7 @@ const LoanTelecomInputPop: FC<ILoanTelecomInputPop> = ({
         open={openSheet}
         onClose={closeSheet}
         closeIcon={false}
-        height={672}
+        height={userVarifNum !== "123456" ? 672 : 428}
         title={
           <DrawerTitle
             title={"인증번호 입력"}
@@ -101,7 +101,12 @@ const LoanTelecomInputPop: FC<ILoanTelecomInputPop> = ({
             <img src={img01} width="100%" />
           </div>
         </div>
-        <div className={$style.keypadBox} onClick={onClickVarifNum}>
+        <div
+          className={cx(
+            $style.keypadBox,
+            userVarifNum === "123456" && $style.hidePad
+          )}
+          onClick={onClickVarifNum}>
           <img src={iosKeypadNumberShort} alt="" />
         </div>
       </Drawer>

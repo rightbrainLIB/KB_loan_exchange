@@ -93,7 +93,15 @@
   }
 
   .keypadBox {
+    height: 254px;
     padding-top: 20px;
+    transition: all .3s ease;
+
+    &.hidePad {
+      height: 0;
+      padding: 0;
+      transform: translateY(100%);
+    }
 
     img {
       width: 100%;

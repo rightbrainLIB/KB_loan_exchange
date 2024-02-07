@@ -98,7 +98,7 @@ const LoanTelecomInputPop: FC<ILoanTelecomInputPop> = ({
             </div>
           </div>
           <div className={$style.img}>
-            <img src={img01} width="100%" />
+            <img src={img01} width="100%" alt="" />
           </div>
         </div>
         <div

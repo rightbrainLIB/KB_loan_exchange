@@ -96,6 +96,9 @@ const WriteCurrency: FC = () => {
     if (!prsNeedfulExchangeMoney) {
       if (showBotStep) {
         setTimeout(() => {
+          setShowUserStep(false);
+        }, 600);
+        setTimeout(() => {
           setSheetOpen(true);
         }, 1000);
       }

@@ -42,6 +42,7 @@ const LoanSelectCalendarPop: FC<ILoanSelectrCalendarPop> = ({
             closeDrawerBtn={closeSheet}
           />
         }
+        forceRender
         placement={"bottom"}
         key={"LoanSelectCalendarPop"}
         footer={

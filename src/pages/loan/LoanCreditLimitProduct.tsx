@@ -4,7 +4,7 @@
 import KBConfirmBtn from "@components/buttons/KBConfirmBtn.tsx";
 import img01 from "@imgs/loan/LoanCreditLimitProduct_01.png";
 import img02 from "@imgs/loan/LoanCreditLimitProduct_02.png";
-import { FC } from "react";
+import { FC, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 import $style from "./LoanCreditLimitProduct.module.scss";
@@ -15,10 +15,14 @@ const LoanCreditLimitProduct: FC = () => {
     navigate("/LoanImportCheck");
   };
 
+  const onClickBack = useCallback(() => {
+    navigate("/");
+  }, []);
+
   return (
     <>
       <div className={$style.LoanCreditLimitProductWrap}>
-        <div className={$style.header}>
+        <div className={$style.header} onClick={onClickBack}>
           <img src={img01} width="100%" />
         </div>
 

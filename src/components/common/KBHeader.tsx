@@ -56,7 +56,6 @@ const KBHeader: FC<IKBHeader> = ({ type, children }) => {
      */
     if (type === "loan") {
       if (isCompleteLoan) {
-        console.log("here");
         setStopLoanProcess(true);
       } else setStopLoan(true);
       return;

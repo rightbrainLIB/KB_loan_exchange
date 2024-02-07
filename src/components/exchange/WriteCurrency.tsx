@@ -26,6 +26,7 @@ const WriteCurrency: FC = () => {
   const [sheetOpen, setSheetOpen] = useState(false);
   const [showUserStep, setShowUserStep] = useState(false);
   const [isLastChoice, setIsLastChoice] = useState(false);
+  const [isRollBack, setIsRollBack] = useState(false);
 
   const { requestCurrencyValue, agreeForeignCurrency } = useSelector(
     (state: KBState) => state.exchange.userStep
@@ -55,6 +56,7 @@ const WriteCurrency: FC = () => {
   const onClickConfirmSheet = useCallback(() => {
     setSheetOpen(false); // 팝업 닫기
     setShowUserStep(true);
+    setIsRollBack(false);
     setTimeout(() => {
       dispatch(setRequestCurrencyValue(true));
     }, 500);
@@ -78,6 +80,7 @@ const WriteCurrency: FC = () => {
   useEffect(() => {
     if (agreeForeignCurrency) {
       setShowBotStep(true);
+      setIsRollBack(false);
       dispatch(setContainerBottomSize(window.innerHeight - 259 - 60));
       setTimeout(() => {
         dispatch(setPrsInputCurrencyValue(true));
@@ -98,6 +101,9 @@ const WriteCurrency: FC = () => {
         setTimeout(() => {
           setShowUserStep(false);
         }, 600);
+        setTimeout(() => {
+          setIsRollBack(true);
+        }, 900);
         setTimeout(() => {
           setSheetOpen(true);
         }, 1000);
@@ -131,19 +137,19 @@ const WriteCurrency: FC = () => {
                 </KBTalk>
               </BotBox>
             </MotionList>
-
-            {showUserStep && (
-              <MotionList aniCondition={requestCurrencyValue}>
-                <SelectedUserBox
-                  isLastSelect={isLastChoice}
-                  useTaskModify
-                  modifyUserSelect={modifyTask}>
-                  USD 1,000
-                </SelectedUserBox>
-              </MotionList>
-            )}
           </MotionListWrap>
         </div>
+      )}
+
+      {showUserStep && (
+        <MotionList aniCondition={requestCurrencyValue}>
+          <SelectedUserBox
+            isLastSelect={isLastChoice}
+            useTaskModify
+            modifyUserSelect={modifyTask}>
+            USD 1,000
+          </SelectedUserBox>
+        </MotionList>
       )}
 
       {/* S: 환전 신청금액 입력-modal */}

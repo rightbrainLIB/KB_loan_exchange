@@ -6,7 +6,7 @@ import KBConfirmBtn from "@components/buttons/KBConfirmBtn.tsx";
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import img from "@imgs/exchange/SelectReceiveDateSheet.png";
 import { Drawer } from "antd";
-import { FC, useCallback } from "react";
+import { FC, useCallback, useState } from "react";
 
 import $style from "./SelectReceiveDateSheet.module.scss";
 
@@ -27,6 +27,8 @@ const SelectReceiveDateSheet: FC<ISelectReceiveDateSheet> = ({
   const closeCalendar = useCallback(() => {
     closeSheet && closeSheet();
   }, [closeSheet]);
+
+  const [isChkDate, setIsChkDate] = useState(false);
 
   return (
     <Drawer
@@ -49,8 +51,16 @@ const SelectReceiveDateSheet: FC<ISelectReceiveDateSheet> = ({
       }
       placement={"bottom"}
       key={"SelectReceiveDateSheet"}
-      footer={<KBConfirmBtn onClickConfirm={clickNext}>확인</KBConfirmBtn>}>
-      <img src={img} className={$style.img} onClick={clickNext} />
+      footer={
+        <KBConfirmBtn disabled={!isChkDate} onClickConfirm={clickNext}>
+          확인
+        </KBConfirmBtn>
+      }>
+      <img
+        src={img}
+        className={$style.img}
+        onClick={() => setIsChkDate(true)}
+      />
     </Drawer>
   );
 };

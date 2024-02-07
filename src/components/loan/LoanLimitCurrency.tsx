@@ -27,7 +27,6 @@ const LoanLimitCurrency: FC = () => {
   const { consentToTermsCond } = useSelector(
     (state: KBState) => state.loan.userStep
   );
-  const { isCompleteLoan } = useSelector((state: KBState) => state.globalUI);
 
   // 심사 약관 동의 팝업 열기
   const clickCurrencyPop = useCallback(() => {
@@ -46,12 +45,8 @@ const LoanLimitCurrency: FC = () => {
   }, [closeAgreeChkSheet, dispatch]);
 
   useEffect(() => {
-    console.log(isCompleteLoan);
-  }, [isCompleteLoan]);
-
-  useEffect(() => {
     dispatch(setIsCompleteLoan(false));
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

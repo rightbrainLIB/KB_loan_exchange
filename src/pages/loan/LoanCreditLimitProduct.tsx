@@ -22,7 +22,7 @@ const LoanCreditLimitProduct: FC = () => {
           <img src={img01} width="100%" />
         </div>
 
-        <div style={{ marginTop: -1 }}>
+        <div>
           <img src={img02} width="100%" />
         </div>
         <KBConfirmBtn onClickConfirm={onClickConfirmBtn}>

@@ -7,7 +7,6 @@ import KBTalk from "@components/box/KBTalk.tsx";
 import SelectedUserBox from "@components/box/SelectedUserBox.tsx";
 import BotProfile from "@components/imgs/BotProfile.tsx";
 import MotionList from "@components/motion/MotionList.tsx";
-import MotionListWrap from "@components/motion/MotionListWrap.tsx";
 import img from "@imgs/exchange/ExchangeRequestHistory.png";
 import {
   setExchangeRequestHistory,
@@ -76,33 +75,36 @@ const ExchangeRequestHistory: FC = () => {
   return (
     <>
       {showBotStep && (
-        <div style={{ paddingTop: showBotStep ? 0 : 100 }}>
-          <MotionListWrap>
-            <MotionList aniCondition={exchangeRequestHistory} noScroll>
-              <BotBox>
-                <BotProfile />
-                <KBTalk>
-                  <h2>환전 신청 내역을 확인해주세요</h2>
-                  <img className={$style.img} src={img} alt="" />
-                  <SelectableListWrap>
-                    <li>
-                      <SelectableBtn
-                        bgBtn
-                        disabled={totalRequestInfo}
-                        onClickBtn={goNextTask}>
-                        전체 환전 내역
-                      </SelectableBtn>
-                    </li>
-                    <li>
-                      <SelectableBtn disabled={totalRequestInfo}>
-                        홈으로 가기
-                      </SelectableBtn>
-                    </li>
-                  </SelectableListWrap>
-                </KBTalk>
-              </BotBox>
-            </MotionList>
-          </MotionListWrap>
+        <div>
+          <MotionList
+            aniCondition={exchangeRequestHistory}
+            noScroll
+            afterAnim={afterBotShow}>
+            <BotBox>
+              <BotProfile />
+              <KBTalk>
+                <h2>환전 신청 내역을 확인해주세요</h2>
+                <div className={$style.img}>
+                  <img src={img} alt="" />
+                </div>
+                <SelectableListWrap>
+                  <li>
+                    <SelectableBtn
+                      bgBtn
+                      disabled={totalRequestInfo}
+                      onClickBtn={goNextTask}>
+                      전체 환전 내역
+                    </SelectableBtn>
+                  </li>
+                  <li>
+                    <SelectableBtn disabled={totalRequestInfo}>
+                      홈으로 가기
+                    </SelectableBtn>
+                  </li>
+                </SelectableListWrap>
+              </KBTalk>
+            </BotBox>
+          </MotionList>
         </div>
       )}
 

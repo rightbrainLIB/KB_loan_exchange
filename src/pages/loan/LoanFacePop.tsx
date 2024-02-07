@@ -21,6 +21,7 @@ const LoanFacePop: FC = () => {
       <Modal
         title=""
         open={sheetOpen}
+        mousePosition={{ x: 187, y: 400 }}
         centered
         forceRender
         footer={null}

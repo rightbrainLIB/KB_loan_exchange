@@ -105,7 +105,7 @@ const ExchangeRequestCompletion: FC = () => {
       )}
 
       {showUserStep && (
-        <MotionList aniCondition={confirmRequestInfo}>
+        <MotionList aniCondition={confirmRequestInfo} noScroll>
           <SelectedUserBox>환전 신청 내역</SelectedUserBox>
         </MotionList>
       )}

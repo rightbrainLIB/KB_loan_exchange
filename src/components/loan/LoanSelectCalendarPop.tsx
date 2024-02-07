@@ -4,7 +4,7 @@
 import DrawerTitle from "@components/contents/DrawerTitle.tsx";
 import img01 from "@imgs/loan/LoanSelectCalendarPop.png";
 import { Button, Drawer } from "antd";
-import { FC } from "react";
+import { FC, useState } from "react";
 
 import $style from "./LoanFirstRatePop.module.scss";
 
@@ -19,6 +19,8 @@ const LoanSelectCalendarPop: FC<ILoanSelectrCalendarPop> = ({
   closeSheet,
   showNextStep
 }) => {
+  const [isChkDate, setIsChkDate] = useState(false);
+
   return (
     <>
       <Drawer
@@ -43,12 +45,15 @@ const LoanSelectCalendarPop: FC<ILoanSelectrCalendarPop> = ({
         placement={"bottom"}
         key={"LoanSelectCalendarPop"}
         footer={
-          <Button className={$style.btn} onClick={showNextStep}>
+          <Button
+            className={$style.btn}
+            disabled={!isChkDate}
+            onClick={showNextStep}>
             확인
           </Button>
         }
         className={$style.LoanFirstRatePop}>
-        <div className={$style.img} onClick={showNextStep}>
+        <div className={$style.img} onClick={() => setIsChkDate(true)}>
           <img src={img01} width="100%" />
         </div>
       </Drawer>

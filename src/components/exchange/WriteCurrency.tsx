@@ -49,7 +49,7 @@ const WriteCurrency: FC = () => {
         setShowUserStep(true); // 사용자의 USD 1,000 표시
       }); // 환전 신청금액 입력 바텀시트 닫히고
     }
-  }, [showUserStep, sheetOpen]);
+  }, [requestCurrencyValue]);
 
   // 금액 입력 후 확인
   const onClickConfirmSheet = useCallback(() => {
@@ -90,7 +90,7 @@ const WriteCurrency: FC = () => {
     return () => {
       dispatch(setContainerBottomSize(null));
     };
-  }, [agreeForeignCurrency]);
+  }, [agreeForeignCurrency, dispatch]);
 
   useEffect(() => {
     if (!prsNeedfulExchangeMoney) {
@@ -103,7 +103,7 @@ const WriteCurrency: FC = () => {
         }, 1000);
       }
     }
-  }, [prsNeedfulExchangeMoney]);
+  }, [prsNeedfulExchangeMoney, showBotStep]);
 
   return (
     <>

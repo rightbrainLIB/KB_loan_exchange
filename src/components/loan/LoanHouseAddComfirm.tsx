@@ -64,9 +64,9 @@ const LoanHouseAddComfirm: FC = () => {
   useEffect(() => {
     if (loanHouseConfirm) {
       setShowBotStep(true);
-      // setTimeout(() => {
-      //   dispatch(setContainerBottomSize(window.innerHeight - 525 - 60));
-      // }, 300);
+      setTimeout(() => {
+        dispatch(setContainerBottomSize(window.innerHeight - 525 - 60));
+      }, 300);
       setTimeout(() => {
         dispatch(setLoanHouseAddConfirm(true));
       }, 900);

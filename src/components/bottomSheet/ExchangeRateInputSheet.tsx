@@ -12,31 +12,35 @@ import $style from "./ExchangeRateInputSheet.module.scss";
 
 interface IExchangeRateInputSheet {
   sheetOpen: boolean;
+  closeSheet: () => void;
   confirmAlarmPrice?: () => void;
 }
 
 const ExchangeRateInputSheet: FC<IExchangeRateInputSheet> = ({
   sheetOpen,
+  closeSheet,
   confirmAlarmPrice
 }) => {
   // const dispatch = useDispatch();
 
   const [userClicked, setUserClicked] = useState("1,344.5");
+  const [chkValue, setChkValue] = useState(false);
 
   const isClickedClassName =
     userClicked === "1,344.5" ? `${$style.disabled}` : "";
 
   // 시트 닫기
-  const closeSheet = useCallback(() => {
-    // dispatch(setOpenTakenWaySheet(false));
-  }, []);
+  // const closeSheet = useCallback(() => {
+  //   // dispatch(setOpenTakenWaySheet(false));
+  // }, []);
 
   // 금액 클릭
   const onClickValue = useCallback(() => {
     setUserClicked((prevState) =>
       prevState === "1,344.5" ? "1,300.8" : "1,344.5"
     );
-  }, [userClicked]);
+    setChkValue((prevState) => !prevState);
+  }, []);
 
   const onClickConfirm = useCallback(() => {
     confirmAlarmPrice && confirmAlarmPrice();
@@ -65,7 +69,9 @@ const ExchangeRateInputSheet: FC<IExchangeRateInputSheet> = ({
       placement={"bottom"}
       key={"ExchangeRateInputSheet"}
       footer={
-        <KBConfirmBtn onClickConfirm={onClickConfirm}>확인</KBConfirmBtn>
+        <KBConfirmBtn disabled={!chkValue} onClickConfirm={onClickConfirm}>
+          확인
+        </KBConfirmBtn>
       }>
       <div className={$style.inputWrap} onClick={onClickValue}>
         <div className={`${$style.input} ${isClickedClassName}`}>

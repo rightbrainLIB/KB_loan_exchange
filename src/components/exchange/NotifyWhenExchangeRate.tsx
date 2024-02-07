@@ -78,7 +78,7 @@ const NotifyWhenExchangeRate: FC = () => {
             <BotBox>
               <BotProfile />
               <KBTalk>
-                <img src={img} />
+                <img src={img} alt="" />
                 <SelectableListWrap>
                   <li>
                     <SelectableBtn
@@ -112,6 +112,7 @@ const NotifyWhenExchangeRate: FC = () => {
 
       <ExchangeRateInputSheet
         sheetOpen={openSheet}
+        closeSheet={() => setOpenSheet(false)}
         confirmAlarmPrice={confirmAlarmPrice}
       />
     </>

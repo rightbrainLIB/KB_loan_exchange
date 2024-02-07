@@ -42,10 +42,13 @@ const NeedfulExchangeMoney: FC = () => {
   const onClickNext = useCallback(() => {
     setShowUserStep(true);
     dispatch(setCheckRequestValue(true));
-  }, [dispatch, showUserStep]);
+  }, [dispatch]);
 
   const onClickModifyTask = useCallback(() => {
-    dispatch(setPrsNeedfulExchangeMoney(false)); // wrapper 감추기
+    document.body.scrollTo({ top: 1381, behavior: "smooth" });
+    setTimeout(() => {
+      dispatch(setPrsNeedfulExchangeMoney(false)); // wrapper 감추기
+    }, 300);
     setTimeout(() => {
       dispatch(setRequestCurrencyValue(false)); // USD 1,000 (userStep)을 false로 돌림 - 렌더 삭제됨!
     }, 500);
@@ -89,7 +92,7 @@ const NeedfulExchangeMoney: FC = () => {
             <BotBox>
               <BotProfile />
               <KBTalk>
-                <img src={img} />
+                <img src={img} alt="" />
                 <SelectableListWrap>
                   <li>
                     <SelectableBtn

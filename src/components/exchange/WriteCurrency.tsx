@@ -103,7 +103,7 @@ const WriteCurrency: FC = () => {
         }, 1000);
       }
     }
-  }, [prsNeedfulExchangeMoney, showBotStep]);
+  }, [prsNeedfulExchangeMoney]);
 
   return (
     <>

@@ -98,7 +98,7 @@ const ThreeMonthExchangeList: FC = () => {
                 afterAnim={() => setShowDetailList(true)}>
                 <BotProfile />
                 <KBTalk>
-                  <img src={img} />
+                  <img src={img} alt="" />
                   <SelectableListWrap>
                     <li>
                       <SelectableBtn
@@ -110,52 +110,54 @@ const ThreeMonthExchangeList: FC = () => {
                   </SelectableListWrap>
                 </KBTalk>
               </MotionList>
-              <MotionList aniCondition={showDetailList}>
-                <div className={$style.exchangeListWrap}>
-                  <div className={$style.exchangeList}>
-                    <img src={ThreeMonthExchange_list} />
-                    <SelectableBtn
-                      size="small"
-                      disabled={showMoreDetailInfo || requestedDate}
-                      onClickBtn={goDetailContent}>
-                      자세히 보기
-                    </SelectableBtn>
+              <div className={$style.detailList}>
+                <MotionList aniCondition={showDetailList}>
+                  <div className={$style.exchangeListWrap}>
+                    <div className={$style.exchangeList}>
+                      <img src={ThreeMonthExchange_list} alt="" />
+                      <SelectableBtn
+                        size="small"
+                        disabled={showMoreDetailInfo || requestedDate}
+                        onClickBtn={goDetailContent}>
+                        자세히 보기
+                      </SelectableBtn>
+                    </div>
+                    <div className={$style.exchangeList}>
+                      <img src={ThreeMonthExchange_list} alt="" />
+                      <SelectableBtn
+                        size="small"
+                        disabled={showMoreDetailInfo || requestedDate}>
+                        자세히 보기
+                      </SelectableBtn>
+                    </div>
+                    <div className={$style.exchangeList}>
+                      <img src={ThreeMonthExchange_list} alt="" />
+                      <SelectableBtn
+                        size="small"
+                        disabled={showMoreDetailInfo || requestedDate}>
+                        자세히 보기
+                      </SelectableBtn>
+                    </div>
+                    <div className={$style.exchangeList}>
+                      <img src={ThreeMonthExchange_list} alt="" />
+                      <SelectableBtn
+                        size="small"
+                        disabled={showMoreDetailInfo || requestedDate}>
+                        자세히 보기
+                      </SelectableBtn>
+                    </div>
+                    <div className={$style.MoreBtn}>
+                      <img src={MoreBtn} alt="" />
+                    </div>
                   </div>
-                  <div className={$style.exchangeList}>
-                    <img src={ThreeMonthExchange_list} />
-                    <SelectableBtn
-                      size="small"
-                      disabled={showMoreDetailInfo || requestedDate}>
-                      자세히 보기
-                    </SelectableBtn>
+                  <div className={$style.pagination}>
+                    <div className={`${$style.dot} ${$style.active}`}></div>
+                    <div className={$style.dot}></div>
+                    <div className={$style.dot}></div>
+                    <div className={$style.dot}></div>
                   </div>
-                  <div className={$style.exchangeList}>
-                    <img src={ThreeMonthExchange_list} />
-                    <SelectableBtn
-                      size="small"
-                      disabled={showMoreDetailInfo || requestedDate}>
-                      자세히 보기
-                    </SelectableBtn>
-                  </div>
-                  <div className={$style.exchangeList}>
-                    <img src={ThreeMonthExchange_list} />
-                    <SelectableBtn
-                      size="small"
-                      disabled={showMoreDetailInfo || requestedDate}>
-                      자세히 보기
-                    </SelectableBtn>
-                  </div>
-                  <div className={$style.MoreBtn}>
-                    <img src={MoreBtn} />
-                  </div>
-                </div>
-                <div className={$style.pagination}>
-                  <div className={`${$style.dot} ${$style.active}`}></div>
-                  <div className={$style.dot}></div>
-                  <div className={$style.dot}></div>
-                  <div className={$style.dot}></div>
-                </div>
-              </MotionList>
+                </MotionList>
+              </div>
             </BotBox>
           </MotionListWrap>
         </div>

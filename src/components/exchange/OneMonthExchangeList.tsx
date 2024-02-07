@@ -77,46 +77,48 @@ const OneMonthExchangeList: FC = () => {
               <p className={$style.subText}>2023.12.05~2024.01.05</p>
             </KBTalk>
           </MotionList>
-          <MotionList aniCondition={showDetailList}>
-            <div className={$style.exchangeListWrap}>
-              <div className={$style.exchangeList}>
-                <img src={OneMonthExchange_list} />
-                <SelectableBtn
-                  size="small"
-                  disabled={showMoreDetailInfo}
-                  onClickBtn={goDetailContent}>
-                  자세히 보기
-                </SelectableBtn>
+          <div style={{ marginTop: 10 }}>
+            <MotionList aniCondition={showDetailList}>
+              <div className={$style.exchangeListWrap}>
+                <div className={$style.exchangeList}>
+                  <img src={OneMonthExchange_list} alt="" />
+                  <SelectableBtn
+                    size="small"
+                    disabled={showMoreDetailInfo}
+                    onClickBtn={goDetailContent}>
+                    자세히 보기
+                  </SelectableBtn>
+                </div>
+                <div className={$style.exchangeList}>
+                  <img src={OneMonthExchange_list} alt="" />
+                  <SelectableBtn size="small" disabled={showMoreDetailInfo}>
+                    자세히 보기
+                  </SelectableBtn>
+                </div>
+                <div className={$style.exchangeList}>
+                  <img src={OneMonthExchange_list} alt="" />
+                  <SelectableBtn size="small" disabled={showMoreDetailInfo}>
+                    자세히 보기
+                  </SelectableBtn>
+                </div>
+                <div className={$style.exchangeList}>
+                  <img src={OneMonthExchange_list} alt="" />
+                  <SelectableBtn size="small" disabled={showMoreDetailInfo}>
+                    자세히 보기
+                  </SelectableBtn>
+                </div>
+                <div className={$style.MoreBtn}>
+                  <img src={MoreBtn} alt="" />
+                </div>
               </div>
-              <div className={$style.exchangeList}>
-                <img src={OneMonthExchange_list} />
-                <SelectableBtn size="small" disabled={showMoreDetailInfo}>
-                  자세히 보기
-                </SelectableBtn>
+              <div className={$style.pagination}>
+                <div className={`${$style.dot} ${$style.active}`}></div>
+                <div className={$style.dot}></div>
+                <div className={$style.dot}></div>
+                <div className={$style.dot}></div>
               </div>
-              <div className={$style.exchangeList}>
-                <img src={OneMonthExchange_list} />
-                <SelectableBtn size="small" disabled={showMoreDetailInfo}>
-                  자세히 보기
-                </SelectableBtn>
-              </div>
-              <div className={$style.exchangeList}>
-                <img src={OneMonthExchange_list} />
-                <SelectableBtn size="small" disabled={showMoreDetailInfo}>
-                  자세히 보기
-                </SelectableBtn>
-              </div>
-              <div className={$style.MoreBtn}>
-                <img src={MoreBtn} />
-              </div>
-            </div>
-            <div className={$style.pagination}>
-              <div className={`${$style.dot} ${$style.active}`}></div>
-              <div className={$style.dot}></div>
-              <div className={$style.dot}></div>
-              <div className={$style.dot}></div>
-            </div>
-          </MotionList>
+            </MotionList>
+          </div>
         </MotionListWrap>
       )}
 

@@ -45,7 +45,7 @@ const LoanPeriodSelect: FC = () => {
   // 대출기간 선택 바텀시트
   const showPeriodSheet = useCallback(() => {
     setOpenPeriodSheet(true);
-  }, [openPeriodSheet]);
+  }, []);
 
   // 대출기간 선택 바텀시트 닫기
   const closePeriodSheet = useCallback(() => {
@@ -99,7 +99,7 @@ const LoanPeriodSelect: FC = () => {
       )}
 
       {showBotStep2 && (
-        <div style={{ marginTop: 12 }}>
+        <div>
           <MotionListWrap>
             <MotionList aniCondition={chapter2} showHeight={130}>
               <KBTalk>
